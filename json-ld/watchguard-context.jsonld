@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wg": "https://cloud.watchguard.com/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "sec": "https://w3id.org/security#",
+
+    "Account": "wg:Account",
+    "Device": "wg:EndpointDevice",
+    "Operator": "wg:Operator",
+    "Activation": "wg:Activation",
+    "AllocationRecord": "wg:AllocationRecord",
+    "SecurityEvent": "wg:SecurityEvent",
+    "RiskSummary": "wg:RiskSummary",
+    "License": "wg:License",
+    "Configuration": "wg:Configuration",
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "accountId": {
+      "@id": "wg:accountId",
+      "@type": "xsd:string"
+    },
+    "accountType": {
+      "@id": "wg:accountType",
+      "@type": "xsd:integer"
+    },
+    "deviceId": {
+      "@id": "wg:deviceId",
+      "@type": "xsd:string"
+    },
+    "hostname": {
+      "@id": "wg:hostname",
+      "@type": "xsd:string"
+    },
+    "ipAddress": {
+      "@id": "schema:ipAddressOfSubject",
+      "@type": "xsd:string"
+    },
+    "operatingSystem": {
+      "@id": "schema:operatingSystem",
+      "@type": "xsd:string"
+    },
+    "protectionStatus": {
+      "@id": "wg:protectionStatus",
+      "@type": "xsd:string"
+    },
+    "isolated": {
+      "@id": "wg:isolated",
+      "@type": "xsd:boolean"
+    },
+    "lastSeen": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "agentVersion": {
+      "@id": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "activationKey": {
+      "@id": "wg:activationKey",
+      "@type": "xsd:string"
+    },
+    "batchId": {
+      "@id": "wg:batchId",
+      "@type": "xsd:string"
+    },
+    "productName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "riskSeverity": {
+      "@id": "wg:riskSeverity",
+      "@type": "xsd:string"
+    },
+    "eventType": {
+      "@id": "wg:eventType",
+      "@type": "xsd:string"
+    },
+    "username": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "schema:roleName",
+      "@type": "xsd:string"
+    }
+  }
+}

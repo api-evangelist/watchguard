@@ -1,0 +1,28 @@
+{
+  "summary": "Get Account Information",
+  "request": {
+    "method": "GET",
+    "url": "https://api.usa.cloud.watchguard.com/rest/platform/accounts/v1/accounts/WGC-1-123abc456",
+    "headers": {
+      "Authorization": "Bearer <access_token>",
+      "WatchGuard-API-Key": "<api_key>",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "accountId": "WGC-1-123abc456",
+      "name": "Acme Corp",
+      "status": "Active",
+      "type": 2,
+      "contacts": {
+        "primaryContactId": "CONT-001",
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "jane.smith@acme.com",
+        "phone": "555-867-5309"
+      }
+    }
+  }
+}

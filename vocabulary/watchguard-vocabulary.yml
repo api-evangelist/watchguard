@@ -1,0 +1,147 @@
+vocabulary:
+  name: WatchGuard Vocabulary
+  description: >-
+    Domain vocabulary for WatchGuard, a network and endpoint security company
+    providing cloud-managed firewalls, endpoint protection, multi-factor
+    authentication, and secure access solutions. Covers WatchGuard Cloud
+    platform concepts, endpoint security operations, and licensing terminology.
+  version: '1.0'
+  created: '2026-05-03'
+  modified: '2026-05-03'
+  tags:
+    - Network Security
+    - Endpoint Security
+    - Cloud Management
+    - Firewall
+  terms:
+    - term: WatchGuard Cloud
+      definition: >-
+        The cloud-based management platform for WatchGuard products and services.
+        WatchGuard Cloud provides centralized visibility and management of
+        Firebox appliances, endpoint security, multi-factor authentication,
+        and other WatchGuard products across customer accounts.
+      tags:
+        - Core Concept
+        - Platform
+    - term: Account
+      definition: >-
+        A WatchGuard Cloud organizational entity that can be a Service Provider
+        (type 1, managing multiple sub-accounts) or a Subscriber (type 2,
+        a managed customer). Accounts are identified by IDs in formats like
+        WGC-1-123abc456 or ACC-1234567.
+      tags:
+        - Account Management
+    - term: Service Provider
+      definition: >-
+        A WatchGuard Cloud account type (type=1) representing a managed service
+        provider (MSP) or reseller that creates and manages Subscriber accounts
+        on behalf of their customers. Service providers use the audience token
+        API to make API calls on behalf of managed accounts.
+      tags:
+        - Account Management
+        - MSP
+    - term: Subscriber
+      definition: >-
+        A WatchGuard Cloud account type (type=2) representing an end-customer
+        organization managed by a Service Provider or operating independently.
+        Subscribers own the actual device and license inventory.
+      tags:
+        - Account Management
+    - term: Firebox
+      definition: >-
+        WatchGuard's line of network security appliances (hardware or virtual)
+        that provide firewall, intrusion prevention, VPN, and advanced threat
+        detection. Fireboxes are activated via serial number and managed through
+        WatchGuard Cloud.
+      tags:
+        - Network Security
+        - Hardware
+    - term: Audience Token
+      definition: >-
+        An OAuth 2.0 audience parameter value that Service Providers must obtain
+        via the Authorization API before making API calls on behalf of a managed
+        Subscriber account. The audience token scopes the access token to a
+        specific managed account.
+      tags:
+        - Authentication
+        - API
+    - term: API Key
+      definition: >-
+        A static credential (included as the WatchGuard-API-Key request header)
+        that identifies the WatchGuard Cloud account making an API request.
+        Used together with a time-limited OAuth 2.0 access token for all
+        WatchGuard API calls.
+      tags:
+        - Authentication
+        - API
+    - term: Endpoint Security
+      definition: >-
+        WatchGuard's endpoint protection platform (WES — WatchGuard Endpoint
+        Security) that provides malware protection, EDR, and advanced threat
+        detection on Windows, macOS, and Linux devices. Managed through the
+        Endpoint Security Management API.
+      tags:
+        - Endpoint Security
+        - Product
+    - term: Device Isolation
+      definition: >-
+        A WatchGuard Endpoint Security action that blocks all network
+        communication to and from a compromised device, preventing lateral
+        movement while preserving the WatchGuard management connection.
+        Isolation can allow specific programs to continue communicating.
+      tags:
+        - Incident Response
+        - Endpoint Security
+    - term: Protection Status
+      definition: >-
+        The current security state of a WatchGuard-managed endpoint device.
+        States include Protected (fully up-to-date and threat-free), AtRisk
+        (pending updates, detected threats, or configuration issues), and
+        Unprotected (agent not installed or disabled).
+      tags:
+        - Endpoint Security
+        - Monitoring
+    - term: Operator
+      definition: >-
+        A user in WatchGuard Cloud with a defined role (Owner, Administrator,
+        Analyst, or Monitor) who can manage WatchGuard products and policies.
+        Operators are managed via the Operator Management API.
+      tags:
+        - Identity
+        - Account Management
+    - term: Activation
+      definition: >-
+        The process of registering a WatchGuard hardware device (Firebox) or
+        software license with a WatchGuard Cloud account by submitting its serial
+        number or license key. Activation is asynchronous and returns a batch ID
+        for status polling.
+      tags:
+        - Licensing
+        - Provisioning
+    - term: Allocation
+      definition: >-
+        The distribution of WatchGuard hardware or software assets from a parent
+        Service Provider account to a managed Subscriber account. Allocations
+        are time-limited and can be revoked via the Allocations API.
+      tags:
+        - Licensing
+        - MSP
+    - term: ThreatSync
+      definition: >-
+        WatchGuard's cross-product threat correlation engine that aggregates
+        detection signals from Firebox, endpoint, Wi-Fi, and AuthPoint to
+        prioritize and automate response actions. ThreatSync+ NDR extends this
+        to network detection and response.
+      tags:
+        - Threat Intelligence
+        - Automation
+    - term: AuthPoint
+      definition: >-
+        WatchGuard's multi-factor authentication (MFA) solution integrated with
+        WatchGuard Cloud. AuthPoint provides push-based MFA for VPN, cloud apps,
+        and workstation logins. Managed through WatchGuard Cloud and the
+        AuthPoint API.
+      tags:
+        - Authentication
+        - MFA
+        - Product

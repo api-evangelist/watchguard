@@ -1,0 +1,25 @@
+{
+  "summary": "Isolate Devices",
+  "request": {
+    "method": "POST",
+    "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/WGC-1-123abc456/devices/isolation",
+    "headers": {
+      "Authorization": "Bearer <access_token>",
+      "WatchGuard-API-Key": "<api_key>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "device_ids": ["DEV-001", "DEV-003"],
+      "exclusion_programs": ["C:\\Windows\\System32\\svchost.exe"],
+      "customized_message": "Your device has been isolated by IT Security due to a potential threat. Please contact your IT department.",
+      "hide_customized_alert": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": "success",
+      "message": "Isolation initiated for 2 devices."
+    }
+  }
+}

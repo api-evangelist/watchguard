@@ -1,0 +1,16 @@
+{
+  "name": "WatchGuard Endpoint Device",
+  "description": "Structure of a WatchGuard Endpoint Security device record",
+  "type": "object",
+  "fields": [
+    { "name": "deviceId", "type": "string", "required": true, "description": "Unique device identifier" },
+    { "name": "hostname", "type": "string", "required": true, "description": "Device hostname" },
+    { "name": "ipAddress", "type": "string", "required": false, "description": "IPv4 address" },
+    { "name": "operatingSystem", "type": "string", "required": false, "description": "OS name and version" },
+    { "name": "agentVersion", "type": "string", "required": false, "description": "WatchGuard agent version" },
+    { "name": "protectionStatus", "type": "string", "required": true, "description": "Protected, AtRisk, or Unprotected" },
+    { "name": "isolated", "type": "boolean", "required": false, "description": "Whether device is network-isolated" },
+    { "name": "lastSeen", "type": "string", "required": false, "description": "Last check-in timestamp (ISO 8601)" },
+    { "name": "groups", "type": "array", "required": false, "description": "Security group memberships" }
+  ]
+}

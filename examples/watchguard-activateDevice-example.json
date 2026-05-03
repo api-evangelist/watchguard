@@ -1,0 +1,30 @@
+{
+  "summary": "Activate Device or License",
+  "request": {
+    "method": "POST",
+    "url": "https://api.usa.cloud.watchguard.com/rest/platform/activation/v1/activate",
+    "headers": {
+      "Authorization": "Bearer <access_token>",
+      "WatchGuard-API-Key": "<api_key>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "activations": [
+        { "activationKey": "H3F7K-2MMHB-WGFBX-12345" },
+        { "activationKey": "LKEY-WGSO-EPDR-ABCDE-12345" }
+      ]
+    }
+  },
+  "response": {
+    "status": 202,
+    "body": {
+      "activations": [
+        {
+          "batchId": "BATCH-2026-001",
+          "status": "Processing",
+          "statusUrl": "https://api.usa.cloud.watchguard.com/rest/platform/activation/v1/activationbatchstatuses/BATCH-2026-001"
+        }
+      ]
+    }
+  }
+}

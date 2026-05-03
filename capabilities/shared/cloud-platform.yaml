@@ -1,0 +1,323 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "WatchGuard Cloud Platform API"
+  description: "WatchGuard Cloud Platform API for account management, authorization, activation, allocation, and operator management."
+  tags:
+    - WatchGuard
+    - Account Management
+    - Cloud Platform
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WATCHGUARD_ACCESS_TOKEN: WATCHGUARD_ACCESS_TOKEN
+      WATCHGUARD_API_KEY: WATCHGUARD_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: wg-platform
+      baseUri: https://api.usa.cloud.watchguard.com/rest
+      description: "WatchGuard Cloud Platform API."
+      authentication:
+        type: bearer
+        token: "{{WATCHGUARD_ACCESS_TOKEN}}"
+      resources:
+        - name: accounts
+          path: /platform/accounts/v1/accounts/{accountId}
+          description: "WatchGuard Cloud account management."
+          operations:
+            - name: get-account
+              method: GET
+              description: "Get account information."
+              inputParameters:
+                - name: accountId
+                  in: path
+                  type: string
+                  required: true
+                  description: "WatchGuard Cloud account ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-account
+              method: POST
+              description: "Create a new managed account."
+              inputParameters:
+                - name: accountId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Parent account ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  type: "{{tools.type}}"
+                  name: "{{tools.name}}"
+                  firstName: "{{tools.firstName}}"
+                  lastName: "{{tools.lastName}}"
+                  email: "{{tools.email}}"
+
+            - name: delete-account
+              method: DELETE
+              description: "Delete a managed account."
+              inputParameters:
+                - name: accountId
+                  in: path
+                  type: string
+                  required: true
+                  description: "WatchGuard Cloud account ID."
+                - name: force
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Also delete all sub-accounts."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: managed-accounts
+          path: /platform/accounts/v1/accounts/{accountId}/children
+          description: "Managed sub-accounts."
+          operations:
+            - name: get-managed-accounts
+              method: GET
+              description: "List managed accounts under the specified account."
+              inputParameters:
+                - name: accountId
+                  in: path
+                  type: string
+                  required: true
+                  description: "WatchGuard Cloud account ID."
+                - name: type
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Filter by account type."
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Records per page."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: authorization
+          path: /platform/authorization/v1/audiences
+          description: "Get audience tokens for managed account API access."
+          operations:
+            - name: get-audience
+              method: POST
+              description: "Get audience token to access a managed account's APIs."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  accountId: "{{tools.accountId}}"
+
+        - name: activations
+          path: /platform/activation/v1/activate
+          description: "Activate hardware devices and software licenses."
+          operations:
+            - name: activate-device-or-license
+              method: POST
+              description: "Activate one or more devices or license keys."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  activations: "{{tools.activations}}"
+
+        - name: recent-activations
+          path: /platform/activation/v1/recentactivations
+          description: "Recent activation history."
+          operations:
+            - name: get-recent-activations
+              method: GET
+              description: "Get recent activation batch history."
+              inputParameters:
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Records per page."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: operators
+          path: /platform/operator-mgmt/v1/operators
+          description: "WatchGuard Cloud operator management."
+          operations:
+            - name: create-operators
+              method: POST
+              description: "Create new operator users."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  username: "{{tools.username}}"
+                  accountId: "{{tools.accountId}}"
+                  firstName: "{{tools.firstName}}"
+                  lastName: "{{tools.lastName}}"
+                  email: "{{tools.email}}"
+                  phone: "{{tools.phone}}"
+                  role: "{{tools.role}}"
+
+            - name: get-operators-by-account
+              method: GET
+              description: "List all operators for an account."
+              inputParameters:
+                - name: account_id
+                  in: query
+                  type: string
+                  required: true
+                  description: "WatchGuard Cloud account ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: wg-platform-rest
+      resources:
+        - path: /v1/accounts/{accountId}
+          operations:
+            - method: GET
+              name: get-account
+              description: "Get WatchGuard account details."
+              call: "wg-platform.get-account"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: wg-platform-mcp
+      transport: http
+      tools:
+        - name: get-account
+          description: "Get WatchGuard Cloud account information."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wg-platform.get-account"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-managed-accounts
+          description: "List managed sub-accounts in WatchGuard Cloud."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wg-platform.get-managed-accounts"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-audience
+          description: "Get audience token for accessing a managed account's APIs."
+          hints:
+            readOnly: true
+          call: "wg-platform.get-audience"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: activate-device-or-license
+          description: "Activate WatchGuard hardware devices or software licenses."
+          hints:
+            readOnly: false
+          call: "wg-platform.activate-device-or-license"
+          with:
+            activations: "tools.activations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-recent-activations
+          description: "Get recent WatchGuard activation batch history."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wg-platform.get-recent-activations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-operators
+          description: "Create new WatchGuard Cloud operator users."
+          hints:
+            readOnly: false
+          call: "wg-platform.create-operators"
+          with:
+            username: "tools.username"
+            accountId: "tools.accountId"
+            firstName: "tools.firstName"
+            lastName: "tools.lastName"
+            email: "tools.email"
+            phone: "tools.phone"
+            role: "tools.role"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-operators
+          description: "List operator users for a WatchGuard Cloud account."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wg-platform.get-operators-by-account"
+          with:
+            account_id: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."

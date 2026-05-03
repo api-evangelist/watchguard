@@ -1,0 +1,74 @@
+extends: spectral:oas
+rules:
+  # WatchGuard APIs require both bearerAuth and apiKeyAuth security schemes
+  wg-dual-security-required:
+    description: All WatchGuard API operations must declare both bearerAuth and apiKeyAuth security.
+    message: "Operation '{{title}}' must declare both bearerAuth and apiKeyAuth security requirements."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: defined
+
+  # Summaries must use Title Case
+  wg-summary-title-case:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' should use Title Case."
+    severity: warning
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*([ ][A-Z][a-zA-Z0-9]*)*$"
+
+  # Operation IDs must use camelCase
+  wg-operation-id-camel-case:
+    description: WatchGuard API operation IDs must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: warning
+    given: "$.paths[*][*].operationId"
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+
+  # accountId path parameters are required in all WatchGuard Cloud endpoints
+  wg-account-id-required:
+    description: WatchGuard Cloud API paths with {accountId} must mark it as required.
+    message: "Path parameter 'accountId' must be required."
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.name == 'accountId')]"
+    then:
+      field: required
+      function: truthy
+
+  # All responses must include a 401 Unauthorized
+  wg-401-response-required:
+    description: All WatchGuard API operations must document a 401 Unauthorized response.
+    message: "Operation '{{title}}' is missing a 401 Unauthorized response."
+    severity: warning
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "401"
+      function: defined
+
+  # API servers must use HTTPS
+  wg-https-servers:
+    description: All WatchGuard API server URLs must use HTTPS.
+    message: "Server URL '{{value}}' must use HTTPS."
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # Ensure the API has a contact object
+  wg-info-contact:
+    description: WatchGuard API specs must include a contact object in info.
+    message: "API spec is missing an info.contact object."
+    severity: warning
+    given: "$.info"
+    then:
+      field: contact
+      function: defined

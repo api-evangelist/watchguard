@@ -1,0 +1,38 @@
+{
+  "summary": "List Endpoint Devices",
+  "request": {
+    "method": "GET",
+    "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/WGC-1-123abc456/devices?$top=10&$orderby=hostname+asc",
+    "headers": {
+      "Authorization": "Bearer <access_token>",
+      "WatchGuard-API-Key": "<api_key>",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "value": [
+        {
+          "deviceId": "DEV-001",
+          "hostname": "LAPTOP-001",
+          "ipAddress": "192.168.1.101",
+          "operatingSystem": "Windows 11 Pro",
+          "agentVersion": "8.0.22.0",
+          "protectionStatus": "Protected",
+          "lastSeen": "2026-05-03T14:30:00Z"
+        },
+        {
+          "deviceId": "DEV-002",
+          "hostname": "LAPTOP-002",
+          "ipAddress": "192.168.1.102",
+          "operatingSystem": "macOS 14.2",
+          "agentVersion": "8.0.22.0",
+          "protectionStatus": "AtRisk",
+          "lastSeen": "2026-05-02T09:15:00Z"
+        }
+      ],
+      "count": 2
+    }
+  }
+}

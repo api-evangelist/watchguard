@@ -1,0 +1,921 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform API
+  description: >-
+    The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud
+    account management, including account creation and management, authorization
+    for managed accounts, device and license activations, asset allocations, and
+    operator management. All endpoints require an OAuth 2.0 bearer token and a
+    WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+  - url: https://api.usa.cloud.watchguard.com/rest
+    description: USA Region
+  - url: https://api.eu.cloud.watchguard.com/rest
+    description: EU Region
+  - url: https://api.apac.cloud.watchguard.com/rest
+    description: APAC Region
+tags:
+  - name: Accounts
+    description: Manage WatchGuard Cloud accounts and sub-accounts.
+  - name: Authorization
+    description: Retrieve audience tokens for managed account API access.
+  - name: Activations
+    description: Activate hardware devices and software licenses.
+  - name: Allocations
+    description: Allocate and deallocate assets to managed accounts.
+  - name: Operators
+    description: Manage WatchGuard Cloud operator users.
+paths:
+  /platform/accounts/v1/accounts/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Get Account Information
+      description: >-
+        Retrieve information about a WatchGuard Cloud account including contacts,
+        addresses, parent account, and service properties.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: fields
+          in: query
+          description: Specify additional fields to include in the response.
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [contacts, parent, addresses, serviceProperties, delegatedParent]
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: Account information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAccount
+      summary: Create Account
+      description: >-
+        Create a new WatchGuard Cloud managed account (service provider or subscriber).
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '200':
+          description: Account created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAccountResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateAccount
+      summary: Update Account
+      description: Update the name and primary contact details of a managed account.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountRequest'
+      responses:
+        '204':
+          description: Account updated successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteAccount
+      summary: Delete Account
+      description: Delete a managed WatchGuard Cloud account and optionally all its sub-accounts.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: force
+          in: query
+          description: If true, delete the account and all managed sub-accounts.
+          schema:
+            type: boolean
+            default: false
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: Account deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAccountResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /platform/accounts/v1/accounts/{accountId}/children:
+    get:
+      operationId: getManagedAccounts
+      summary: Get Managed Accounts
+      description: >-
+        Retrieve a paginated list of accounts managed by the specified account.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: type
+          in: query
+          description: Filter by account type (0=All, 1=Service Provider, 2=Subscriber).
+          schema:
+            type: integer
+            enum: [0, 1, 2]
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+            enum: [name, type]
+        - name: sortOrder
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+        - name: name
+          in: query
+          description: Filter accounts by name.
+          schema:
+            type: string
+        - name: includeDelegatedAccounts
+          in: query
+          schema:
+            type: boolean
+            default: false
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: List of managed accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedAccountList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/authorization/v1/audiences:
+    post:
+      operationId: getAudience
+      summary: Get Audience Token
+      description: >-
+        Returns the audience parameter value for a managed account. Required by
+        service providers when submitting API requests on behalf of a managed account.
+      tags:
+        - Authorization
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudienceRequest'
+      responses:
+        '200':
+          description: Audience token returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/activation/v1/activate:
+    post:
+      operationId: activateDeviceOrLicense
+      summary: Activate Device or License
+      description: >-
+        Activate one or more WatchGuard hardware devices or software licenses
+        by serial number or license key. Activation is asynchronous — use the
+        status URL to poll for completion.
+      tags:
+        - Activations
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+      responses:
+        '202':
+          description: Activation accepted and queued for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/activation/v1/recentactivations:
+    get:
+      operationId: getRecentActivations
+      summary: Get Recent Activations
+      description: Retrieve a paginated list of recent activation batches.
+      tags:
+        - Activations
+      parameters:
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+            nullable: true
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: Recent activations list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecentActivationsList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/activation/v1/activationbatchstatuses/{batchId}:
+    put:
+      operationId: getActivationStatus
+      summary: Get Activation Status
+      description: >-
+        Retrieve the status of individual activation line items within a batch.
+      tags:
+        - Activations
+      parameters:
+        - name: batchId
+          in: path
+          required: true
+          description: Activation batch ID returned by the activate endpoint.
+          schema:
+            type: string
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: Activation batch status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /platform/allocation/v2/{accountId}/assets:
+    post:
+      operationId: allocateAsset
+      summary: Allocate Asset
+      description: >-
+        Allocate hardware devices or software licenses from the parent account
+        to a managed account.
+      tags:
+        - Allocations
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllocateAssetRequest'
+      responses:
+        '200':
+          description: Asset allocated successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deallocateAsset
+      summary: Deallocate Asset
+      description: Remove an asset allocation from a managed account.
+      tags:
+        - Allocations
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeallocateAssetRequest'
+      responses:
+        '204':
+          description: Asset deallocated successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/allocation/v2/{accountId}/assets/summary/{resourceType}:
+    get:
+      operationId: getInventorySummary
+      summary: Get Inventory Summary
+      description: Retrieve asset inventory summary by allocation status for an account.
+      tags:
+        - Allocations
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: resourceType
+          in: path
+          required: true
+          description: Type of resource (hardware or software).
+          schema:
+            type: string
+            enum: [hardware, software]
+        - name: allocationStatus
+          in: query
+          schema:
+            type: string
+        - name: offset
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: Inventory summary.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/operators:
+    post:
+      operationId: createOperators
+      summary: Create Operators
+      description: Create one or more WatchGuard Cloud operator users for an account.
+      tags:
+        - Operators
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOperatorRequest'
+      responses:
+        '200':
+          description: Operator creation queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorTransactionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateOperators
+      summary: Update Operators
+      description: Update existing WatchGuard Cloud operator user information.
+      tags:
+        - Operators
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOperatorRequest'
+      responses:
+        '200':
+          description: Operator update queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorTransactionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/DeleteOperators:
+    post:
+      operationId: deleteOperators
+      summary: Delete Operators
+      description: Delete one or more WatchGuard Cloud operator users.
+      tags:
+        - Operators
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteOperatorRequest'
+      responses:
+        '200':
+          description: Operator deletion queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorTransactionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/TransactionStatus:
+    get:
+      operationId: getOperatorTransactionStatus
+      summary: Get Operator Transaction Status
+      description: Check the status of a previously submitted operator management transaction.
+      tags:
+        - Operators
+      parameters:
+        - name: transaction_id
+          in: query
+          required: true
+          description: Transaction ID returned by a create/update/delete operator request.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: Transaction status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/OperatorsByAccountId:
+    get:
+      operationId: getOperatorsByAccount
+      summary: Get Operators by Account
+      description: Retrieve all operator users associated with a WatchGuard Cloud account.
+      tags:
+        - Operators
+      parameters:
+        - name: account_id
+          in: query
+          required: true
+          description: WatchGuard Cloud account ID.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+          apiKeyAuth: []
+      responses:
+        '200':
+          description: List of operators for the account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    AccountInfo:
+      type: object
+      description: WatchGuard Cloud account information.
+      properties:
+        accountId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        type:
+          type: integer
+          description: 1=Service Provider, 2=Subscriber
+        contacts:
+          type: object
+          properties:
+            primaryContactId:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+        addresses:
+          type: object
+        parent:
+          type: object
+          properties:
+            id:
+              type: string
+            access:
+              type: string
+        serviceProperties:
+          type: object
+    CreateAccountRequest:
+      type: object
+      required: [type, name, firstName, lastName, email]
+      properties:
+        type:
+          type: integer
+          enum: [1, 2]
+          description: 1=Service Provider, 2=Subscriber
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+    CreateAccountResponse:
+      type: object
+      properties:
+        accountID:
+          type: string
+          description: Newly created account ID.
+    UpdateAccountRequest:
+      type: object
+      required: [name, firstName, lastName, email]
+      properties:
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+    DeleteAccountResponse:
+      type: object
+      properties:
+        childIds:
+          type: array
+          items:
+            type: string
+          description: IDs of deleted child accounts.
+    ManagedAccountList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedAccount'
+        pageControls:
+          $ref: '#/components/schemas/PageControls'
+    ManagedAccount:
+      type: object
+      properties:
+        accountId:
+          type: string
+        name:
+          type: string
+        type:
+          type: integer
+        parentAccess:
+          type: string
+        totalOperators:
+          type: integer
+    PageControls:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalItems:
+          type: integer
+    AudienceRequest:
+      type: object
+      required: [accountId]
+      properties:
+        accountId:
+          type: string
+          description: Account ID of the managed account to get the audience token for.
+    AudienceResponse:
+      type: object
+      properties:
+        audience:
+          type: string
+          description: Audience token value for the specified managed account.
+    ActivationRequest:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              activationKey:
+                type: string
+                description: Serial number or license key to activate.
+    ActivationResponse:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              batchId:
+                type: string
+              status:
+                type: string
+                enum: [Processing, Created, Complete, CompleteWithErrors]
+              statusUrl:
+                type: string
+    RecentActivationsList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              batchId:
+                type: string
+              activationStatus:
+                type: string
+              created:
+                type: string
+                format: date-time
+              lastModified:
+                type: string
+                format: date-time
+              lineItemCount:
+                type: integer
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ActivationStatusResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              lineItemId:
+                type: string
+              activationKey:
+                type: string
+              status:
+                type: string
+                enum: [Created, Queued, Pending, Success, Failed]
+              created:
+                type: string
+                format: date-time
+              lastModified:
+                type: string
+                format: date-time
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    AllocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        quantity:
+          type: integer
+        serialOrLicense:
+          type: string
+        allocationExpiryType:
+          type: string
+        allocationExpiryDate:
+          type: string
+          format: date
+    DeallocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        serialOrLicense:
+          type: string
+    CreateOperatorRequest:
+      type: object
+      required: [username, accountId, firstName, lastName, email, phone, role]
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        role:
+          type: string
+        password:
+          type: string
+    UpdateOperatorRequest:
+      type: object
+      required: [username, accountId]
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        role:
+          type: string
+    DeleteOperatorRequest:
+      type: object
+      required: [username, accountId]
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+    OperatorTransactionResponse:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    TransactionStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        transaction_status:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              status:
+                type: string
+              message:
+                type: string
+    OperatorListResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              email:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              phone:
+                type: string
+              mfa:
+                type: boolean
+              userName:
+                type: string
+        status:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalResults:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.usa.cloud.watchguard.com/schemas/device.json",
+  "title": "WatchGuard Endpoint Device",
+  "description": "Schema for a WatchGuard Endpoint Security managed device record.",
+  "type": "object",
+  "required": ["deviceId", "hostname", "protectionStatus"],
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "Unique identifier for the endpoint device."
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Device hostname."
+    },
+    "ipAddress": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "Current IP address of the device."
+    },
+    "operatingSystem": {
+      "type": "string",
+      "description": "Operating system name and version."
+    },
+    "agentVersion": {
+      "type": "string",
+      "description": "WatchGuard endpoint agent version installed."
+    },
+    "protectionStatus": {
+      "type": "string",
+      "enum": ["Protected", "AtRisk", "Unprotected"],
+      "description": "Current endpoint protection status."
+    },
+    "isolated": {
+      "type": "boolean",
+      "description": "Whether the device is currently network-isolated."
+    },
+    "lastSeen": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last device check-in."
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Security groups the device belongs to."
+    }
+  }
+}
