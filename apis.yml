@@ -71,7 +71,7 @@ common:
     url: https://www.watchguard.com/help/docs/API/
   - type: Developer Portal
     url: https://developer.cloud.watchguard.com/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://www.watchguard.com/help/docs/API/Content/en-US/api_get_started/get_started.html
   - type: OpenAPI
     url: openapi/watchguard-cloud-platform-openapi.yml
@@ -83,7 +83,7 @@ common:
     url: json-schema/watchguard-device-schema.json
   - type: JSONStructure
     url: json-structure/watchguard-device-structure.json
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/watchguard-context.jsonld
   - type: Vocabulary
     url: vocabulary/watchguard-vocabulary.yml
