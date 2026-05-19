@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WatchGuard Endpoint Security Management API — Risk Assessment
+  description: 'WatchGuard Endpoint Security Management API — Risk Assessment. 2 operations. Lead operation: Get Company Risk
+    Summary. Self-contained Naftiko capability covering one Watchguard business surface.'
+  tags:
+  - Watchguard
+  - Risk Assessment
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WATCHGUARD_API_KEY: WATCHGUARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: endpoint-security-risk-assessment
+    baseUri: https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1
+    description: WatchGuard Endpoint Security Management API — Risk Assessment business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: accounts-accountId-riskassessment-companyrisksummary
+      path: /accounts/{accountId}/riskassessment/companyrisksummary
+      operations:
+      - name: getcompanyrisksummary
+        method: GET
+        description: Get Company Risk Summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-riskassessment-detectedrisks
+      path: /accounts/{accountId}/riskassessment/detectedrisks
+      operations:
+      - name: getdetectedrisks
+        method: GET
+        description: Get Detected Risks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+          description: OData filter expression supporting device type and OS filtering.
+    authentication:
+      type: bearer
+      token: '{{env.WATCHGUARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: endpoint-security-risk-assessment-rest
+    port: 8080
+    description: REST adapter for WatchGuard Endpoint Security Management API — Risk Assessment. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/riskassessment/companyrisksummary
+      name: accounts-accountid-riskassessment-companyrisksummary
+      description: REST surface for accounts-accountId-riskassessment-companyrisksummary.
+      operations:
+      - method: GET
+        name: getcompanyrisksummary
+        description: Get Company Risk Summary
+        call: endpoint-security-risk-assessment.getcompanyrisksummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/riskassessment/detectedrisks
+      name: accounts-accountid-riskassessment-detectedrisks
+      description: REST surface for accounts-accountId-riskassessment-detectedrisks.
+      operations:
+      - method: GET
+        name: getdetectedrisks
+        description: Get Detected Risks
+        call: endpoint-security-risk-assessment.getdetectedrisks
+        with:
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: endpoint-security-risk-assessment-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WatchGuard Endpoint Security Management API — Risk Assessment. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: get-company-risk-summary
+      description: Get Company Risk Summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-risk-assessment.getcompanyrisksummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-detected-risks
+      description: Get Detected Risks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-risk-assessment.getdetectedrisks
+      with:
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.

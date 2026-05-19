@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WatchGuard Endpoint Security Management API — Security Events
+  description: 'WatchGuard Endpoint Security Management API — Security Events. 3 operations. Lead operation: Get Security
+    Event Counters. Self-contained Naftiko capability covering one Watchguard business surface.'
+  tags:
+  - Watchguard
+  - Security Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WATCHGUARD_API_KEY: WATCHGUARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: endpoint-security-security-events
+    baseUri: https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1
+    description: WatchGuard Endpoint Security Management API — Security Events business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: accounts-accountId-securityeventcounters-type
+      path: /accounts/{accountId}/securityeventcounters/{type}
+      operations:
+      - name: getsecurityeventcounters
+        method: GET
+        description: Get Security Event Counters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: path
+          type: integer
+          description: Bitmask value specifying the event types to retrieve.
+          required: true
+        - name: filter
+          in: query
+          type: string
+    - name: accounts-accountId-securityevents-type-export-period
+      path: /accounts/{accountId}/securityevents/{type}/export/{period}
+      operations:
+      - name: exportsecurityevents
+        method: GET
+        description: Export Security Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: path
+          type: integer
+          description: Security event type (1-19).
+          required: true
+        - name: period
+          in: path
+          type: integer
+          description: Time period in days (1 or 7).
+          required: true
+        - name: hostname
+          in: query
+          type: string
+          description: Base-64 encoded hostname to filter events by device.
+    - name: accounts-accountId-securityoverview-period
+      path: /accounts/{accountId}/securityoverview/{period}
+      operations:
+      - name: getsecurityoverview
+        method: GET
+        description: Get Security Overview
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: period
+          in: path
+          type: integer
+          description: Period in days (1, 7, or 30).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WATCHGUARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: endpoint-security-security-events-rest
+    port: 8080
+    description: REST adapter for WatchGuard Endpoint Security Management API — Security Events. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/securityeventcounters/{type}
+      name: accounts-accountid-securityeventcounters-type
+      description: REST surface for accounts-accountId-securityeventcounters-type.
+      operations:
+      - method: GET
+        name: getsecurityeventcounters
+        description: Get Security Event Counters
+        call: endpoint-security-security-events.getsecurityeventcounters
+        with:
+          type: rest.type
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/securityevents/{type}/export/{period}
+      name: accounts-accountid-securityevents-type-export-period
+      description: REST surface for accounts-accountId-securityevents-type-export-period.
+      operations:
+      - method: GET
+        name: exportsecurityevents
+        description: Export Security Events
+        call: endpoint-security-security-events.exportsecurityevents
+        with:
+          type: rest.type
+          period: rest.period
+          hostname: rest.hostname
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/securityoverview/{period}
+      name: accounts-accountid-securityoverview-period
+      description: REST surface for accounts-accountId-securityoverview-period.
+      operations:
+      - method: GET
+        name: getsecurityoverview
+        description: Get Security Overview
+        call: endpoint-security-security-events.getsecurityoverview
+        with:
+          period: rest.period
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: endpoint-security-security-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WatchGuard Endpoint Security Management API — Security Events. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: get-security-event-counters
+      description: Get Security Event Counters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-security-events.getsecurityeventcounters
+      with:
+        type: tools.type
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-security-events
+      description: Export Security Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-security-events.exportsecurityevents
+      with:
+        type: tools.type
+        period: tools.period
+        hostname: tools.hostname
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-security-overview
+      description: Get Security Overview
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-security-events.getsecurityoverview
+      with:
+        period: tools.period
+      outputParameters:
+      - type: object
+        mapping: $.

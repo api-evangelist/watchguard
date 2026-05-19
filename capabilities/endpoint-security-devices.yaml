@@ -1,0 +1,143 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WatchGuard Endpoint Security Management API — Devices
+  description: 'WatchGuard Endpoint Security Management API — Devices. 3 operations. Lead operation: List Devices. Self-contained
+    Naftiko capability covering one Watchguard business surface.'
+  tags:
+  - Watchguard
+  - Devices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WATCHGUARD_API_KEY: WATCHGUARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: endpoint-security-devices
+    baseUri: https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1
+    description: WatchGuard Endpoint Security Management API — Devices business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-accountId-devices
+      path: /accounts/{accountId}/devices
+      operations:
+      - name: listdevices
+        method: GET
+        description: List Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $config
+          in: query
+          type: string
+          description: Include configuration details in the response.
+    - name: accounts-accountId-devicesprotectionstatus
+      path: /accounts/{accountId}/devicesprotectionstatus
+      operations:
+      - name: getdevicesprotectionstatus
+        method: GET
+        description: Get Devices Protection Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-accountId-unmanageddevices
+      path: /accounts/{accountId}/unmanageddevices
+      operations:
+      - name: listunmanageddevices
+        method: GET
+        description: List Unmanaged Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WATCHGUARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: endpoint-security-devices-rest
+    port: 8080
+    description: REST adapter for WatchGuard Endpoint Security Management API — Devices. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{accountid}/devices
+      name: accounts-accountid-devices
+      description: REST surface for accounts-accountId-devices.
+      operations:
+      - method: GET
+        name: listdevices
+        description: List Devices
+        call: endpoint-security-devices.listdevices
+        with:
+          $config: rest.$config
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/devicesprotectionstatus
+      name: accounts-accountid-devicesprotectionstatus
+      description: REST surface for accounts-accountId-devicesprotectionstatus.
+      operations:
+      - method: GET
+        name: getdevicesprotectionstatus
+        description: Get Devices Protection Status
+        call: endpoint-security-devices.getdevicesprotectionstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{accountid}/unmanageddevices
+      name: accounts-accountid-unmanageddevices
+      description: REST surface for accounts-accountId-unmanageddevices.
+      operations:
+      - method: GET
+        name: listunmanageddevices
+        description: List Unmanaged Devices
+        call: endpoint-security-devices.listunmanageddevices
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: endpoint-security-devices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WatchGuard Endpoint Security Management API — Devices. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-devices
+      description: List Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-devices.listdevices
+      with:
+        $config: tools.$config
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-devices-protection-status
+      description: Get Devices Protection Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-devices.getdevicesprotectionstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-unmanaged-devices
+      description: List Unmanaged Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: endpoint-security-devices.listunmanageddevices
+      outputParameters:
+      - type: object
+        mapping: $.

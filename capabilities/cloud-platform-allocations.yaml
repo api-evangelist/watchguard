@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WatchGuard Cloud Platform API — Allocations
+  description: 'WatchGuard Cloud Platform API — Allocations. 3 operations. Lead operation: Allocate Asset. Self-contained
+    Naftiko capability covering one Watchguard business surface.'
+  tags:
+  - Watchguard
+  - Allocations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WATCHGUARD_API_KEY: WATCHGUARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-platform-allocations
+    baseUri: https://api.usa.cloud.watchguard.com/rest
+    description: WatchGuard Cloud Platform API — Allocations business capability. Self-contained, no shared references.
+    resources:
+    - name: platform-allocation-v2-accountId-assets
+      path: /platform/allocation/v2/{accountId}/assets
+      operations:
+      - name: allocateasset
+        method: POST
+        description: Allocate Asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deallocateasset
+        method: DELETE
+        description: Deallocate Asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: platform-allocation-v2-accountId-assets-summary-resourceType
+      path: /platform/allocation/v2/{accountId}/assets/summary/{resourceType}
+      operations:
+      - name: getinventorysummary
+        method: GET
+        description: Get Inventory Summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceType
+          in: path
+          type: string
+          description: Type of resource (hardware or software).
+          required: true
+        - name: allocationStatus
+          in: query
+          type: string
+        - name: offset
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.WATCHGUARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-platform-allocations-rest
+    port: 8080
+    description: REST adapter for WatchGuard Cloud Platform API — Allocations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/platform/allocation/v2/{accountid}/assets
+      name: platform-allocation-v2-accountid-assets
+      description: REST surface for platform-allocation-v2-accountId-assets.
+      operations:
+      - method: POST
+        name: allocateasset
+        description: Allocate Asset
+        call: cloud-platform-allocations.allocateasset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deallocateasset
+        description: Deallocate Asset
+        call: cloud-platform-allocations.deallocateasset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/platform/allocation/v2/{accountid}/assets/summary/{resourcetype}
+      name: platform-allocation-v2-accountid-assets-summary-resourcetype
+      description: REST surface for platform-allocation-v2-accountId-assets-summary-resourceType.
+      operations:
+      - method: GET
+        name: getinventorysummary
+        description: Get Inventory Summary
+        call: cloud-platform-allocations.getinventorysummary
+        with:
+          resourceType: rest.resourceType
+          allocationStatus: rest.allocationStatus
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-platform-allocations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WatchGuard Cloud Platform API — Allocations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: allocate-asset
+      description: Allocate Asset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-platform-allocations.allocateasset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deallocate-asset
+      description: Deallocate Asset
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cloud-platform-allocations.deallocateasset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-inventory-summary
+      description: Get Inventory Summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-platform-allocations.getinventorysummary
+      with:
+        resourceType: tools.resourceType
+        allocationStatus: tools.allocationStatus
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

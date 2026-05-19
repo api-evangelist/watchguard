@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WatchGuard Cloud Platform API — Activations
+  description: 'WatchGuard Cloud Platform API — Activations. 3 operations. Lead operation: Activate Device or License. Self-contained
+    Naftiko capability covering one Watchguard business surface.'
+  tags:
+  - Watchguard
+  - Activations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WATCHGUARD_API_KEY: WATCHGUARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-platform-activations
+    baseUri: https://api.usa.cloud.watchguard.com/rest
+    description: WatchGuard Cloud Platform API — Activations business capability. Self-contained, no shared references.
+    resources:
+    - name: platform-activation-v1-activate
+      path: /platform/activation/v1/activate
+      operations:
+      - name: activatedeviceorlicense
+        method: POST
+        description: Activate Device or License
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: platform-activation-v1-activationbatchstatuses-batchId
+      path: /platform/activation/v1/activationbatchstatuses/{batchId}
+      operations:
+      - name: getactivationstatus
+        method: PUT
+        description: Get Activation Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: batchId
+          in: path
+          type: string
+          description: Activation batch ID returned by the activate endpoint.
+          required: true
+        - name: offset
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+    - name: platform-activation-v1-recentactivations
+      path: /platform/activation/v1/recentactivations
+      operations:
+      - name: getrecentactivations
+        method: GET
+        description: Get Recent Activations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+        - name: sortBy
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.WATCHGUARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-platform-activations-rest
+    port: 8080
+    description: REST adapter for WatchGuard Cloud Platform API — Activations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/platform/activation/v1/activate
+      name: platform-activation-v1-activate
+      description: REST surface for platform-activation-v1-activate.
+      operations:
+      - method: POST
+        name: activatedeviceorlicense
+        description: Activate Device or License
+        call: cloud-platform-activations.activatedeviceorlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/platform/activation/v1/activationbatchstatuses/{batchid}
+      name: platform-activation-v1-activationbatchstatuses-batchid
+      description: REST surface for platform-activation-v1-activationbatchstatuses-batchId.
+      operations:
+      - method: PUT
+        name: getactivationstatus
+        description: Get Activation Status
+        call: cloud-platform-activations.getactivationstatus
+        with:
+          batchId: rest.batchId
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/platform/activation/v1/recentactivations
+      name: platform-activation-v1-recentactivations
+      description: REST surface for platform-activation-v1-recentactivations.
+      operations:
+      - method: GET
+        name: getrecentactivations
+        description: Get Recent Activations
+        call: cloud-platform-activations.getrecentactivations
+        with:
+          offset: rest.offset
+          limit: rest.limit
+          sortBy: rest.sortBy
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-platform-activations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WatchGuard Cloud Platform API — Activations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: activate-device-license
+      description: Activate Device or License
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-platform-activations.activatedeviceorlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-activation-status
+      description: Get Activation Status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cloud-platform-activations.getactivationstatus
+      with:
+        batchId: tools.batchId
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-recent-activations
+      description: Get Recent Activations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-platform-activations.getrecentactivations
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        sortBy: tools.sortBy
+      outputParameters:
+      - type: object
+        mapping: $.
