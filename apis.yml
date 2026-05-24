@@ -106,6 +106,8 @@ common:
     url: vocabulary/watchguard-vocabulary.yml
   - type: NaftikoCapabilities
     url: capabilities/endpoint-threat-response.yaml
+  - type: LLMsTxt
+    url: https://developer.cloud.watchguard.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
