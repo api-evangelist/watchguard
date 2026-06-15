@@ -1,0 +1,637 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Endpoint Security Management API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/licenses",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve endpoint security license information for the account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/devices",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 3000)."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$search",
+                "value": "",
+                "type": "query",
+                "description": "Text search across supported fields."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort results (e.g., hostname+asc)."
+              },
+              {
+                "name": "$config",
+                "value": "",
+                "type": "query",
+                "description": "Include configuration details in the response."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated, searchable list of managed endpoint devices for the account. Supports OData-style query parameters."
+        },
+        {
+          "info": {
+            "name": "Get Devices Protection Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/devicesprotectionstatus",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 3000)."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$search",
+                "value": "",
+                "type": "query",
+                "description": "Text search across supported fields."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort results (e.g., hostname+asc)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve protection status information for all managed devices."
+        },
+        {
+          "info": {
+            "name": "List Unmanaged Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/unmanageddevices",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 3000)."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$search",
+                "value": "",
+                "type": "query",
+                "description": "Text search across supported fields."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort results (e.g., hostname+asc)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve devices discovered on the network that are not yet managed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Device Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Isolate Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/devices/isolation",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Isolate specified devices from network communication, optionally allowing specific programs and displaying a customized alert message."
+        },
+        {
+          "info": {
+            "name": "Remove Device Isolation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/devices/noisolation",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove network isolation from previously isolated devices."
+        },
+        {
+          "info": {
+            "name": "Uninstall Device Protection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/devices/uninstall",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Uninstall WatchGuard endpoint protection from specified devices."
+        },
+        {
+          "info": {
+            "name": "Perform Device Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/devices/action",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate a device action such as reboot on specified devices."
+        },
+        {
+          "info": {
+            "name": "Start Immediate Scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/immediatescan",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate an immediate security scan task on specified devices."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Security Event Counters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/securityeventcounters/:type",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Bitmask value specifying the event types to retrieve."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve counts of security events by type for the account."
+        },
+        {
+          "info": {
+            "name": "Export Security Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/securityevents/:type/export/:period",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Security event type (1-19)."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Time period in days (1 or 7)."
+              },
+              {
+                "name": "hostname",
+                "value": "",
+                "type": "query",
+                "description": "Base-64 encoded hostname to filter events by device."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detailed security event records for a specified type and time period (1 or 7 days)."
+        },
+        {
+          "info": {
+            "name": "Get Security Overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/securityoverview/:period",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Period in days (1, 7, or 30)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a security overview summary for the account covering the specified number of days (1, 7, or 30)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Risk Assessment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Company Risk Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/riskassessment/companyrisksummary",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve company-wide risk summary categorized by severity level."
+        },
+        {
+          "info": {
+            "name": "Get Detected Risks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/riskassessment/detectedrisks",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression supporting device type and OS filtering."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detected risk counts by type, with optional filtering by device type and operating system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Managed Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/managedconfigurations/:type",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Configuration type (1-12)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 3000)."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$search",
+                "value": "",
+                "type": "query",
+                "description": "Text search across supported fields."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort results (e.g., hostname+asc)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve managed endpoint security configurations by type."
+        },
+        {
+          "info": {
+            "name": "Get Installer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1/accounts/:accountId/installers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "platformId",
+                "value": "",
+                "type": "query",
+                "description": "Target platform identifier."
+              },
+              {
+                "name": "managedConfigurationId",
+                "value": "",
+                "type": "query",
+                "description": "Configuration ID to associate with the installer."
+              },
+              {
+                "name": "useActiveDirectory",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use Active Directory for deployment."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the download URL for an endpoint security installation package for a specific platform and configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
