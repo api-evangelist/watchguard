@@ -6,7 +6,7 @@ description: >-
   the unified management platform exposing RESTful APIs for account management, device activation, asset allocation,
   endpoint device management, security event monitoring, and operator administration.
 url: https://www.watchguard.com
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Cloud Security
   - Endpoint Security
@@ -26,7 +26,7 @@ apis:
       management, audience token generation for managed account access, hardware/license activation, asset allocation,
       and operator management. Uses OAuth 2.0 bearer tokens and WatchGuard API Key header authentication.
     humanURL: https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     properties:
       - type: Documentation
         url: https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
@@ -48,7 +48,7 @@ apis:
       and exports, security overview, risk assessment summaries, and configuration management.
     humanURL: >-
       https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     properties:
       - type: Documentation
         url: >-
