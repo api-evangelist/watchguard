@@ -69,7 +69,7 @@ common:
     url: https://www.watchguard.com
   - type: Documentation
     url: https://www.watchguard.com/help/docs/API/
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.cloud.watchguard.com/
   - type: GettingStarted
     url: https://www.watchguard.com/help/docs/API/Content/en-US/api_get_started/get_started.html
@@ -87,7 +87,7 @@ common:
     url: json-ld/watchguard-context.jsonld
   - type: Vocabulary
     url: vocabulary/watchguard-vocabulary.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developer.cloud.watchguard.com/llms.txt
 maintainers:
   - FN: Kin Lane
