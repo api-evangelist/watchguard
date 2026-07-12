@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/watchguard-cloud-platform-openapi.yml, openapi/watchguard-endpoint-security-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+  sources:
+  - openapi/watchguard-cloud-platform-openapi.yml
+  - openapi/watchguard-endpoint-security-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: WatchGuard-API-Key
+  description: API key from the WatchGuard Cloud Managed Access page.
+  sources:
+  - openapi/watchguard-cloud-platform-openapi.yml
+  - openapi/watchguard-endpoint-security-openapi.yml

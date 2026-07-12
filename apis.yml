@@ -61,6 +61,12 @@ apis:
       - Incident Response
       - Risk Assessment
 common:
+  - type: VulnerabilityDisclosure
+    url: security/watchguard-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/watchguard-domain-security.yml
+  - type: Authentication
+    url: authentication/watchguard-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/WatchGuard
   - type: LinkedIn
@@ -89,6 +95,8 @@ common:
     url: vocabulary/watchguard-vocabulary.yml
   - type: LlmsText
     url: https://developer.cloud.watchguard.com/llms.txt
+  - url: https://www.watchguard.com/wgrd-news/blog/feed
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
