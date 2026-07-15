@@ -61,6 +61,8 @@ apis:
       - Incident Response
       - Risk Assessment
 common:
+  - type: AgenticAccess
+    url: agentic-access/watchguard-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/watchguard-vulnerability-disclosure.yml
   - type: DomainSecurity
