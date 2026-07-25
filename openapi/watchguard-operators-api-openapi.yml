@@ -1,0 +1,287 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Operators API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Operators
+  description: Manage WatchGuard Cloud operator users.
+paths:
+  /platform/operator-mgmt/v1/operators:
+    post:
+      operationId: createOperators
+      summary: Create Operators
+      description: Create one or more WatchGuard Cloud operator users for an account.
+      tags:
+      - Operators
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOperatorRequest'
+      responses:
+        '200':
+          description: Operator creation queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorTransactionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateOperators
+      summary: Update Operators
+      description: Update existing WatchGuard Cloud operator user information.
+      tags:
+      - Operators
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOperatorRequest'
+      responses:
+        '200':
+          description: Operator update queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorTransactionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/DeleteOperators:
+    post:
+      operationId: deleteOperators
+      summary: Delete Operators
+      description: Delete one or more WatchGuard Cloud operator users.
+      tags:
+      - Operators
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteOperatorRequest'
+      responses:
+        '200':
+          description: Operator deletion queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorTransactionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/TransactionStatus:
+    get:
+      operationId: getOperatorTransactionStatus
+      summary: Get Operator Transaction Status
+      description: Check the status of a previously submitted operator management transaction.
+      tags:
+      - Operators
+      parameters:
+      - name: transaction_id
+        in: query
+        required: true
+        description: Transaction ID returned by a create/update/delete operator request.
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Transaction status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/operator-mgmt/v1/OperatorsByAccountId:
+    get:
+      operationId: getOperatorsByAccount
+      summary: Get Operators by Account
+      description: Retrieve all operator users associated with a WatchGuard Cloud account.
+      tags:
+      - Operators
+      parameters:
+      - name: account_id
+        in: query
+        required: true
+        description: WatchGuard Cloud account ID.
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: List of operators for the account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    UpdateOperatorRequest:
+      type: object
+      required:
+      - username
+      - accountId
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        role:
+          type: string
+    OperatorTransactionResponse:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    DeleteOperatorRequest:
+      type: object
+      required:
+      - username
+      - accountId
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+    OperatorListResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              email:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              phone:
+                type: string
+              mfa:
+                type: boolean
+              userName:
+                type: string
+        status:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    TransactionStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        transaction_status:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              status:
+                type: string
+              message:
+                type: string
+    CreateOperatorRequest:
+      type: object
+      required:
+      - username
+      - accountId
+      - firstName
+      - lastName
+      - email
+      - phone
+      - role
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        role:
+          type: string
+        password:
+          type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.

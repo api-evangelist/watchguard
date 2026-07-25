@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Allocations API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Allocations
+  description: Allocate and deallocate assets to managed accounts.
+paths:
+  /platform/allocation/v2/{accountId}/assets:
+    post:
+      operationId: allocateAsset
+      summary: Allocate Asset
+      description: Allocate hardware devices or software licenses from the parent account to a managed account.
+      tags:
+      - Allocations
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllocateAssetRequest'
+      responses:
+        '200':
+          description: Asset allocated successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deallocateAsset
+      summary: Deallocate Asset
+      description: Remove an asset allocation from a managed account.
+      tags:
+      - Allocations
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeallocateAssetRequest'
+      responses:
+        '204':
+          description: Asset deallocated successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/allocation/v2/{accountId}/assets/summary/{resourceType}:
+    get:
+      operationId: getInventorySummary
+      summary: Get Inventory Summary
+      description: Retrieve asset inventory summary by allocation status for an account.
+      tags:
+      - Allocations
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: resourceType
+        in: path
+        required: true
+        description: Type of resource (hardware or software).
+        schema:
+          type: string
+          enum:
+          - hardware
+          - software
+      - name: allocationStatus
+        in: query
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Inventory summary.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    AllocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        quantity:
+          type: integer
+        serialOrLicense:
+          type: string
+        allocationExpiryType:
+          type: string
+        allocationExpiryDate:
+          type: string
+          format: date
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    DeallocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        serialOrLicense:
+          type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.

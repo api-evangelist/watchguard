@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Configurations API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Configurations
+  description: Manage endpoint security configurations.
+paths:
+  /accounts/{accountId}/managedconfigurations/{type}:
+    get:
+      operationId: getManagedConfigurations
+      summary: Get Managed Configurations
+      description: Retrieve managed endpoint security configurations by type.
+      tags:
+      - Configurations
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: type
+        in: path
+        required: true
+        description: Configuration type (1-12).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 12
+      - $ref: '#/components/parameters/ODataTop'
+      - $ref: '#/components/parameters/ODataSkip'
+      - $ref: '#/components/parameters/ODataSearch'
+      - $ref: '#/components/parameters/ODataCount'
+      - $ref: '#/components/parameters/ODataOrderby'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: List of managed configurations.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/installers:
+    get:
+      operationId: getInstaller
+      summary: Get Installer
+      description: Retrieve the download URL for an endpoint security installation package for a specific platform and configuration.
+      tags:
+      - Configurations
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: platformId
+        in: query
+        required: true
+        description: Target platform identifier.
+        schema:
+          type: string
+      - name: managedConfigurationId
+        in: query
+        required: true
+        description: Configuration ID to associate with the installer.
+        schema:
+          type: string
+      - name: useActiveDirectory
+        in: query
+        required: true
+        description: Whether to use Active Directory for deployment.
+        schema:
+          type: boolean
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Installer download URL.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    ODataOrderby:
+      name: $orderby
+      in: query
+      description: Sort results (e.g., hostname+asc).
+      schema:
+        type: string
+    ODataSearch:
+      name: $search
+      in: query
+      description: Text search across supported fields.
+      schema:
+        type: string
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
+    ODataTop:
+      name: $top
+      in: query
+      description: Number of records to return (max 3000).
+      schema:
+        type: integer
+        maximum: 3000
+    ODataCount:
+      name: $count
+      in: query
+      description: Include total count in response.
+      schema:
+        type: boolean
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.

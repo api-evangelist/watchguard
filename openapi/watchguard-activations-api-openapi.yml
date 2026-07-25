@@ -1,0 +1,249 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Activations API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Activations
+  description: Activate hardware devices and software licenses.
+paths:
+  /platform/activation/v1/activate:
+    post:
+      operationId: activateDeviceOrLicense
+      summary: Activate Device or License
+      description: Activate one or more WatchGuard hardware devices or software licenses by serial number or license key. Activation is asynchronous — use the status URL to poll for completion.
+      tags:
+      - Activations
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+      responses:
+        '202':
+          description: Activation accepted and queued for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/activation/v1/recentactivations:
+    get:
+      operationId: getRecentActivations
+      summary: Get Recent Activations
+      description: Retrieve a paginated list of recent activation batches.
+      tags:
+      - Activations
+      parameters:
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          nullable: true
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Recent activations list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecentActivationsList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /platform/activation/v1/activationbatchstatuses/{batchId}:
+    put:
+      operationId: getActivationStatus
+      summary: Get Activation Status
+      description: Retrieve the status of individual activation line items within a batch.
+      tags:
+      - Activations
+      parameters:
+      - name: batchId
+        in: path
+        required: true
+        description: Activation batch ID returned by the activate endpoint.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Activation batch status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ActivationResponse:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              batchId:
+                type: string
+              status:
+                type: string
+                enum:
+                - Processing
+                - Created
+                - Complete
+                - CompleteWithErrors
+              statusUrl:
+                type: string
+    ActivationRequest:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              activationKey:
+                type: string
+                description: Serial number or license key to activate.
+    ActivationStatusResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              lineItemId:
+                type: string
+              activationKey:
+                type: string
+              status:
+                type: string
+                enum:
+                - Created
+                - Queued
+                - Pending
+                - Success
+                - Failed
+              created:
+                type: string
+                format: date-time
+              lastModified:
+                type: string
+                format: date-time
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    RecentActivationsList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              batchId:
+                type: string
+              activationStatus:
+                type: string
+              created:
+                type: string
+                format: date-time
+              lastModified:
+                type: string
+                format: date-time
+              lineItemCount:
+                type: integer
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalResults:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.

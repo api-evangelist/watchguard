@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Security Events API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Security Events
+  description: Retrieve security event data and overviews.
+paths:
+  /accounts/{accountId}/securityeventcounters/{type}:
+    get:
+      operationId: getSecurityEventCounters
+      summary: Get Security Event Counters
+      description: Retrieve counts of security events by type for the account.
+      tags:
+      - Security Events
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: type
+        in: path
+        required: true
+        description: Bitmask value specifying the event types to retrieve.
+        schema:
+          type: integer
+      - name: filter
+        in: query
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Security event counters.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/securityevents/{type}/export/{period}:
+    get:
+      operationId: exportSecurityEvents
+      summary: Export Security Events
+      description: Retrieve detailed security event records for a specified type and time period (1 or 7 days).
+      tags:
+      - Security Events
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: type
+        in: path
+        required: true
+        description: Security event type (1-19).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 19
+      - name: period
+        in: path
+        required: true
+        description: Time period in days (1 or 7).
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 7
+      - name: hostname
+        in: query
+        description: Base-64 encoded hostname to filter events by device.
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Security event export.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/securityoverview/{period}:
+    get:
+      operationId: getSecurityOverview
+      summary: Get Security Overview
+      description: Retrieve a security overview summary for the account covering the specified number of days (1, 7, or 30).
+      tags:
+      - Security Events
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: period
+        in: path
+        required: true
+        description: Period in days (1, 7, or 30).
+        schema:
+          type: integer
+          enum:
+          - 1
+          - 7
+          - 30
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      responses:
+        '200':
+          description: Security overview summary.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.

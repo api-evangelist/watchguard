@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Authorization API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Authorization
+  description: Retrieve audience tokens for managed account API access.
+paths:
+  /platform/authorization/v1/audiences:
+    post:
+      operationId: getAudience
+      summary: Get Audience Token
+      description: Returns the audience parameter value for a managed account. Required by service providers when submitting API requests on behalf of a managed account.
+      tags:
+      - Authorization
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudienceRequest'
+      responses:
+        '200':
+          description: Audience token returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    AudienceResponse:
+      type: object
+      properties:
+        audience:
+          type: string
+          description: Audience token value for the specified managed account.
+    AudienceRequest:
+      type: object
+      required:
+      - accountId
+      properties:
+        accountId:
+          type: string
+          description: Account ID of the managed account to get the audience token for.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.

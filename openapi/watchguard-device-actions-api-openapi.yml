@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: WatchGuard Cloud Platform Accounts Device Actions API
+  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  version: v1
+  contact:
+    name: WatchGuard Support
+    url: https://www.watchguard.com/help/docs/API/
+servers:
+- url: https://api.usa.cloud.watchguard.com/rest
+  description: USA Region
+- url: https://api.eu.cloud.watchguard.com/rest
+  description: EU Region
+- url: https://api.apac.cloud.watchguard.com/rest
+  description: APAC Region
+tags:
+- name: Device Actions
+  description: Perform actions on endpoint devices such as isolation and scanning.
+paths:
+  /accounts/{accountId}/devices/isolation:
+    post:
+      operationId: isolateDevices
+      summary: Isolate Devices
+      description: Isolate specified devices from network communication, optionally allowing specific programs and displaying a customized alert message.
+      tags:
+      - Device Actions
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IsolationRequest'
+      responses:
+        '200':
+          description: Isolation initiated.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/devices/noisolation:
+    post:
+      operationId: removeDeviceIsolation
+      summary: Remove Device Isolation
+      description: Remove network isolation from previously isolated devices.
+      tags:
+      - Device Actions
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceIdsRequest'
+      responses:
+        '200':
+          description: Isolation removed.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/devices/uninstall:
+    post:
+      operationId: uninstallDeviceProtection
+      summary: Uninstall Device Protection
+      description: Uninstall WatchGuard endpoint protection from specified devices.
+      tags:
+      - Device Actions
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceIdsRequest'
+      responses:
+        '200':
+          description: Uninstall initiated.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/devices/action:
+    post:
+      operationId: performDeviceAction
+      summary: Perform Device Action
+      description: Initiate a device action such as reboot on specified devices.
+      tags:
+      - Device Actions
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceActionRequest'
+      responses:
+        '200':
+          description: Device action initiated.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /accounts/{accountId}/immediatescan:
+    post:
+      operationId: startImmediateScan
+      summary: Start Immediate Scan
+      description: Initiate an immediate security scan task on specified devices.
+      tags:
+      - Device Actions
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      security:
+      - bearerAuth: []
+        apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImmediateScanRequest'
+      responses:
+        '200':
+          description: Immediate scan started.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ImmediateScanRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+        task_name:
+          type: string
+        task_description:
+          type: string
+        scan_scope:
+          type: string
+          description: Scope of the scan (full, quick, custom).
+    DeviceActionRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+        action_type:
+          type: string
+          description: Type of action to perform (e.g., reboot).
+        count_down_type:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    DeviceIdsRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+          description: List of device IDs to perform the action on.
+    IsolationRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+        exclusion_programs:
+          type: array
+          items:
+            type: string
+          description: Programs allowed to communicate during isolation.
+        customized_message:
+          type: string
+          description: Message displayed to users on isolated devices.
+        hide_customized_alert:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: WatchGuard-API-Key
+      description: API key from the WatchGuard Cloud Managed Access page.
