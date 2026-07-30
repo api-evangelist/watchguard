@@ -6,7 +6,20 @@ description: >-
   the unified management platform exposing RESTful APIs for account management, device activation, asset allocation,
   endpoint device management, security event monitoring, and operator administration.
 url: https://www.watchguard.com
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/watchguard.png
 tags:
   - Cloud Security
   - Endpoint Security
@@ -19,47 +32,204 @@ modified: '2026-05-19'
 specificationVersion: '0.19'
 type: Index
 apis:
-  - aid: watchguard:watchguard-cloud-platform-api
-    name: WatchGuard Cloud Platform API
-    description: >-
-      RESTful API for managing WatchGuard Cloud accounts, sub-accounts, and users. Provides account creation and
-      management, audience token generation for managed account access, hardware/license activation, asset allocation,
-      and operator management. Uses OAuth 2.0 bearer tokens and WatchGuard API Key header authentication.
-    humanURL: https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    properties:
-      - type: Documentation
-        url: https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
-      - type: OpenAPI
-        url: openapi/watchguard-cloud-platform-openapi.yml
-      - type: SpectralRules
-        url: rules/watchguard-rules.yml
-    tags:
-      - Account Management
-      - Activation
-      - Allocation
-      - Operators
-      - Platform
-  - aid: watchguard:watchguard-endpoint-security-api
-    name: WatchGuard Endpoint Security Management API
-    description: >-
-      RESTful API for managing WatchGuard Endpoint Security (WES) devices and security operations. Provides device
-      listing and protection status, device isolation and release, immediate scan initiation, security event counters
-      and exports, security overview, risk assessment summaries, and configuration management.
-    humanURL: >-
+- aid: watchguard:watchguard-accounts-api
+  name: WatchGuard Accounts API
+  description: Manage WatchGuard Cloud accounts and sub-accounts.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-accounts-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
       https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
-      - type: OpenAPI
-        url: openapi/watchguard-endpoint-security-openapi.yml
-    tags:
-      - Device Management
-      - Endpoint Security
-      - Incident Response
-      - Risk Assessment
+- aid: watchguard:watchguard-activations-api
+  name: WatchGuard Activations API
+  description: Activate hardware devices and software licenses.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Activations
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-activations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-allocations-api
+  name: WatchGuard Allocations API
+  description: Allocate and deallocate assets to managed accounts.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Allocations
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-allocations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-authorization-api
+  name: WatchGuard Authorization API
+  description: Retrieve audience tokens for managed account API access.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-authorization-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-configurations-api
+  name: WatchGuard Configurations API
+  description: Manage endpoint security configurations.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-configurations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-device-actions-api
+  name: WatchGuard Device Actions API
+  description: Perform actions on endpoint devices such as isolation and scanning.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Device Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-device-actions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-devices-api
+  name: WatchGuard Devices API
+  description: Manage and query endpoint devices.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-devices-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-licenses-api
+  name: WatchGuard Licenses API
+  description: Retrieve endpoint security license information.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-licenses-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-operators-api
+  name: WatchGuard Operators API
+  description: Manage WatchGuard Cloud operator users.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Operators
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-operators-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-risk-assessment-api
+  name: WatchGuard Risk Assessment API
+  description: Retrieve risk assessment summaries and detected risks.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Risk Assessment
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-risk-assessment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
+- aid: watchguard:watchguard-security-events-api
+  name: WatchGuard Security Events API
+  description: Retrieve security event data and overviews.
+  humanURL: >-
+    https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  tags:
+  - Security Events
+  properties:
+  - type: OpenAPI
+    url: openapi/watchguard-security-events-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
+  - type: SpectralRules
+    url: rules/watchguard-rules.yml
+  - type: Documentation
+    url: >-
+      https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
 common:
   - type: AgenticAccess
     url: agentic-access/watchguard-agentic-access.yml
