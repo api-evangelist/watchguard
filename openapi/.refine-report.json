@@ -1,0 +1,34 @@
+{
+  "provider": "watchguard",
+  "sources": [
+    "watchguard-accounts-api-openapi.yml",
+    "watchguard-activations-api-openapi.yml",
+    "watchguard-allocations-api-openapi.yml",
+    "watchguard-authorization-api-openapi.yml",
+    "watchguard-configurations-api-openapi.yml",
+    "watchguard-device-actions-api-openapi.yml",
+    "watchguard-devices-api-openapi.yml",
+    "watchguard-licenses-api-openapi.yml",
+    "watchguard-operators-api-openapi.yml",
+    "watchguard-risk-assessment-api-openapi.yml",
+    "watchguard-security-events-api-openapi.yml"
+  ],
+  "outputs": [
+    "watchguard-accounts-api-openapi.yml",
+    "watchguard-activations-api-openapi.yml",
+    "watchguard-allocations-api-openapi.yml",
+    "watchguard-authorization-api-openapi.yml",
+    "watchguard-configurations-api-openapi.yml",
+    "watchguard-device-actions-api-openapi.yml",
+    "watchguard-devices-api-openapi.yml",
+    "watchguard-licenses-api-openapi.yml",
+    "watchguard-operators-api-openapi.yml",
+    "watchguard-risk-assessment-api-openapi.yml",
+    "watchguard-security-events-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
