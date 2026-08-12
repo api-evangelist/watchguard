@@ -252,9 +252,9 @@ common:
   - type: GettingStarted
     url: https://www.watchguard.com/help/docs/API/Content/en-US/api_get_started/get_started.html
   - type: OpenAPI
-    url: openapi/watchguard-cloud-platform-openapi.yml
+    url: openapi/_original/watchguard-cloud-platform-openapi.yml
   - type: OpenAPI
-    url: openapi/watchguard-endpoint-security-openapi.yml
+    url: openapi/_original/watchguard-endpoint-security-openapi.yml
   - type: SpectralRules
     url: rules/watchguard-rules.yml
   - type: JSONSchema
