@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Configurations API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Managed Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/managedconfigurations/:type",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Configuration type (1-12)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return (max 3000)."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$search",
+                "value": "",
+                "type": "query",
+                "description": "Text search across supported fields."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort results (e.g., hostname+asc)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve managed endpoint security configurations by type."
+        },
+        {
+          "info": {
+            "name": "Get Installer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/installers",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "platformId",
+                "value": "",
+                "type": "query",
+                "description": "Target platform identifier."
+              },
+              {
+                "name": "managedConfigurationId",
+                "value": "",
+                "type": "query",
+                "description": "Configuration ID to associate with the installer."
+              },
+              {
+                "name": "useActiveDirectory",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use Active Directory for deployment."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the download URL for an endpoint security installation package for a specific platform and configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,705 @@
+{
+  "item": [
+    {
+      "id": "2055254f-45b0-4f66-9872-ec8173b6b314",
+      "name": "Allocations",
+      "description": {
+        "content": "Allocate and deallocate assets to managed accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fe84a66-8114-475a-a8a7-723b9e407463",
+          "name": "Allocate Asset",
+          "request": {
+            "name": "Allocate Asset",
+            "description": {
+              "content": "Allocate hardware devices or software licenses from the parent account to a managed account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "allocation",
+                "v2",
+                ":accountId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serialOrLicense\": \"<string>\",\n  \"allocationExpiryType\": \"<string>\",\n  \"allocationExpiryDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84545dc6-94b2-496f-9bb0-336c84897dd8",
+              "name": "Asset allocated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serialOrLicense\": \"<string>\",\n  \"allocationExpiryType\": \"<string>\",\n  \"allocationExpiryDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69d4ced9-4073-4bab-ac08-f6bf5a1ed4be",
+              "name": "Bad request — validation error in request body or parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serialOrLicense\": \"<string>\",\n  \"allocationExpiryType\": \"<string>\",\n  \"allocationExpiryDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5362,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b60191f5-d438-4107-8fc5-0558631284e0",
+              "name": "Unauthorized — invalid or expired access token or API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"serialOrLicense\": \"<string>\",\n  \"allocationExpiryType\": \"<string>\",\n  \"allocationExpiryDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5362,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31f894b2-cad9-4407-9e5a-176f192c82d9",
+          "name": "Deallocate Asset",
+          "request": {
+            "name": "Deallocate Asset",
+            "description": {
+              "content": "Remove an asset allocation from a managed account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "allocation",
+                "v2",
+                ":accountId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"serialOrLicense\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14f7ff50-5a2d-4908-9151-e39d5a87822b",
+              "name": "Asset deallocated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"serialOrLicense\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0f63264-32f0-4fe3-93e0-77a838f69849",
+              "name": "Unauthorized — invalid or expired access token or API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productName\": \"<string>\",\n  \"allocationType\": \"<string>\",\n  \"serialOrLicense\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5362,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a82b8b75-5016-4ff4-af4d-d6839f010a23",
+          "name": "Get Inventory Summary",
+          "request": {
+            "name": "Get Inventory Summary",
+            "description": {
+              "content": "Retrieve asset inventory summary by allocation status for an account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "platform",
+                "allocation",
+                "v2",
+                ":accountId",
+                "assets",
+                "summary",
+                ":resourceType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "allocationStatus",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceType",
+                  "description": "(Required) Type of resource (hardware or software)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e8bbfd9-09da-4da6-b2f1-bde6d5054bcb",
+              "name": "Inventory summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets",
+                    "summary",
+                    ":resourceType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "allocationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceType",
+                      "description": "(Required) Type of resource (hardware or software)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9b23d131-d931-4d88-8dba-f6bafc7437ea",
+              "name": "Unauthorized — invalid or expired access token or API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "platform",
+                    "allocation",
+                    "v2",
+                    ":accountId",
+                    "assets",
+                    "summary",
+                    ":resourceType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "allocationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceType",
+                      "description": "(Required) Type of resource (hardware or software)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5362,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usa.cloud.watchguard.com/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "799f2ab2-7379-4dc6-a78a-1497a9e6df62",
+    "name": "WatchGuard Cloud Platform Accounts Allocations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Risk Assessment API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk Assessment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Company Risk Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/riskassessment/companyrisksummary",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve company-wide risk summary categorized by severity level."
+        },
+        {
+          "info": {
+            "name": "Get Detected Risks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/riskassessment/detectedrisks",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression supporting device type and OS filtering."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detected risk counts by type, with optional filtering by device type and operating system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

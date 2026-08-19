@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Allocations API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allocations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allocate Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/allocation/v2/:accountId/assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Allocate hardware devices or software licenses from the parent account to a managed account."
+        },
+        {
+          "info": {
+            "name": "Deallocate Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/allocation/v2/:accountId/assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove an asset allocation from a managed account."
+        },
+        {
+          "info": {
+            "name": "Get Inventory Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/allocation/v2/:accountId/assets/summary/:resourceType",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "path",
+                "description": "Type of resource (hardware or software)."
+              },
+              {
+                "name": "allocationStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve asset inventory summary by allocation status for an account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

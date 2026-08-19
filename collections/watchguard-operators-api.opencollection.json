@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Operators API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Operators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/operator-mgmt/v1/operators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create one or more WatchGuard Cloud operator users for an account."
+        },
+        {
+          "info": {
+            "name": "Update Operators",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/operator-mgmt/v1/operators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update existing WatchGuard Cloud operator user information."
+        },
+        {
+          "info": {
+            "name": "Delete Operators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/operator-mgmt/v1/DeleteOperators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete one or more WatchGuard Cloud operator users."
+        },
+        {
+          "info": {
+            "name": "Get Operator Transaction Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/operator-mgmt/v1/TransactionStatus",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "query",
+                "description": "Transaction ID returned by a create/update/delete operator request."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check the status of a previously submitted operator management transaction."
+        },
+        {
+          "info": {
+            "name": "Get Operators by Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/operator-mgmt/v1/OperatorsByAccountId",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all operator users associated with a WatchGuard Cloud account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

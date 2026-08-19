@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Device Actions API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Isolate Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/devices/isolation",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Isolate specified devices from network communication, optionally allowing specific programs and displaying a customized alert message."
+        },
+        {
+          "info": {
+            "name": "Remove Device Isolation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/devices/noisolation",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove network isolation from previously isolated devices."
+        },
+        {
+          "info": {
+            "name": "Uninstall Device Protection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/devices/uninstall",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Uninstall WatchGuard endpoint protection from specified devices."
+        },
+        {
+          "info": {
+            "name": "Perform Device Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/devices/action",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate a device action such as reboot on specified devices."
+        },
+        {
+          "info": {
+            "name": "Start Immediate Scan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/immediatescan",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate an immediate security scan task on specified devices."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

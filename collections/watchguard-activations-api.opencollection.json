@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Activations API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Activate Device or License",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/activation/v1/activate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Activate one or more WatchGuard hardware devices or software licenses by serial number or license key. Activation is asynchronous — use the status URL to poll for completion."
+        },
+        {
+          "info": {
+            "name": "Get Recent Activations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/activation/v1/recentactivations",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of recent activation batches."
+        },
+        {
+          "info": {
+            "name": "Get Activation Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.usa.cloud.watchguard.com/rest/platform/activation/v1/activationbatchstatuses/:batchId",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Activation batch ID returned by the activate endpoint."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the status of individual activation line items within a batch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

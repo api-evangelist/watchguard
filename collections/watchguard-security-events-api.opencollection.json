@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WatchGuard Cloud Platform Accounts Security Events API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Security Event Counters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/securityeventcounters/:type",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Bitmask value specifying the event types to retrieve."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve counts of security events by type for the account."
+        },
+        {
+          "info": {
+            "name": "Export Security Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/securityevents/:type/export/:period",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Security event type (1-19)."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Time period in days (1 or 7)."
+              },
+              {
+                "name": "hostname",
+                "value": "",
+                "type": "query",
+                "description": "Base-64 encoded hostname to filter events by device."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detailed security event records for a specified type and time period (1 or 7 days)."
+        },
+        {
+          "info": {
+            "name": "Get Security Overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usa.cloud.watchguard.com/rest/accounts/:accountId/securityoverview/:period",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "WatchGuard Cloud account ID."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "path",
+                "description": "Period in days (1, 7, or 30)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a security overview summary for the account covering the specified number of days (1, 7, or 30)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
