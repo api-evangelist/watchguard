@@ -38,6 +38,8 @@ apis:
   humanURL: >-
     https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
