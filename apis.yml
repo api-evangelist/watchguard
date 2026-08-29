@@ -6,6 +6,17 @@ description: >-
   the unified management platform exposing RESTful APIs for account management, device activation, asset allocation,
   endpoint device management, security event monitoring, and operator administration.
 url: https://www.watchguard.com
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
