@@ -196,6 +196,8 @@ apis:
   humanURL: >-
     https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html
   tags:
+  - Operator
+  tags_raw:
   - Operators
   properties:
   - type: OpenAPI
