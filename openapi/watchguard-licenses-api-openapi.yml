@@ -1,18 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: WatchGuard Cloud Platform Accounts Licenses API
-  description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
+  title: WatchGuard Endpoint Security Management Licenses API
+  description: The WatchGuard Endpoint Security Management API provides RESTful access to WatchGuard Endpoint Security (WES) features including device management, security events, risk assessment, configuration management, and license information. All endpoints require OAuth 2.0 bearer authentication and the WatchGuard-API-Key header.
   version: v1
   contact:
     name: WatchGuard Support
-    url: https://www.watchguard.com/help/docs/API/
+    url: https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
 servers:
-- url: https://api.usa.cloud.watchguard.com/rest
+- url: https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1
   description: USA Region
-- url: https://api.eu.cloud.watchguard.com/rest
+- url: https://api.eu.cloud.watchguard.com/rest/endpoint-security/management/api/v1
   description: EU Region
-- url: https://api.apac.cloud.watchguard.com/rest
-  description: APAC Region
 tags:
 - name: Licenses
   description: Retrieve endpoint security license information.
@@ -35,13 +33,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     AccountId:
       name: accountId
@@ -58,12 +49,19 @@ components:
           type: integer
         message:
           type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 access token obtained from the WatchGuard Authentication API.
+      description: OAuth 2.0 access token from the WatchGuard Authentication API.
     apiKeyAuth:
       type: apiKey
       in: header

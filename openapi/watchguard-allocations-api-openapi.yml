@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: WatchGuard Cloud Platform Accounts Allocations API
+  title: WatchGuard Cloud Platform Allocations API
   description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
   version: v1
   contact:
@@ -104,6 +104,15 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    DeallocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        serialOrLicense:
+          type: string
     AllocateAssetRequest:
       type: object
       properties:
@@ -129,24 +138,15 @@ components:
           type: string
         details:
           type: string
-    DeallocateAssetRequest:
-      type: object
-      properties:
-        productName:
-          type: string
-        allocationType:
-          type: string
-        serialOrLicense:
-          type: string
   responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request — validation error in request body or parameters.
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
       content:
         application/json:
           schema:

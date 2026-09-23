@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: WatchGuard Cloud Platform Accounts Activations API
+  title: WatchGuard Cloud Platform Activations API
   description: The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.
   version: v1
   contact:
@@ -119,6 +119,26 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ActivationRequest:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              activationKey:
+                type: string
+                description: Serial number or license key to activate.
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalResults:
+          type: integer
     ActivationResponse:
       type: object
       properties:
@@ -138,17 +158,28 @@ components:
                 - CompleteWithErrors
               statusUrl:
                 type: string
-    ActivationRequest:
+    RecentActivationsList:
       type: object
       properties:
-        activations:
+        results:
           type: array
           items:
             type: object
             properties:
-              activationKey:
+              batchId:
                 type: string
-                description: Serial number or license key to activate.
+              activationStatus:
+                type: string
+              created:
+                type: string
+                format: date-time
+              lastModified:
+                type: string
+                format: date-time
+              lineItemCount:
+                type: integer
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     ActivationStatusResponse:
       type: object
       properties:
@@ -186,40 +217,9 @@ components:
           type: string
         details:
           type: string
-    RecentActivationsList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              batchId:
-                type: string
-              activationStatus:
-                type: string
-              created:
-                type: string
-                format: date-time
-              lastModified:
-                type: string
-                format: date-time
-              lineItemCount:
-                type: integer
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        totalResults:
-          type: integer
   responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
@@ -230,8 +230,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
       content:
         application/json:
           schema:

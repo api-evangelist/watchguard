@@ -1,34 +1,42 @@
 {
   "provider": "watchguard",
   "sources": [
-    "watchguard-accounts-api-openapi.yml",
-    "watchguard-activations-api-openapi.yml",
-    "watchguard-allocations-api-openapi.yml",
-    "watchguard-authorization-api-openapi.yml",
-    "watchguard-configurations-api-openapi.yml",
-    "watchguard-device-actions-api-openapi.yml",
-    "watchguard-devices-api-openapi.yml",
-    "watchguard-licenses-api-openapi.yml",
-    "watchguard-operators-api-openapi.yml",
-    "watchguard-risk-assessment-api-openapi.yml",
-    "watchguard-security-events-api-openapi.yml"
+    "_original/watchguard-cloud-platform-openapi.yml",
+    "_original/watchguard-endpoint-security-openapi.yml"
   ],
   "outputs": [
     "watchguard-accounts-api-openapi.yml",
     "watchguard-activations-api-openapi.yml",
     "watchguard-allocations-api-openapi.yml",
     "watchguard-authorization-api-openapi.yml",
+    "watchguard-operators-api-openapi.yml",
     "watchguard-configurations-api-openapi.yml",
     "watchguard-device-actions-api-openapi.yml",
     "watchguard-devices-api-openapi.yml",
     "watchguard-licenses-api-openapi.yml",
-    "watchguard-operators-api-openapi.yml",
     "watchguard-risk-assessment-api-openapi.yml",
     "watchguard-security-events-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "watchguard-cloud-platform-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "watchguard-endpoint-security-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "watchguard-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-activations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-allocations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-configurations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-device-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-licenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-operators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-risk-assessment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "watchguard-security-events-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
