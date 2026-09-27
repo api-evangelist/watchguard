@@ -132,32 +132,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    DeviceActionRequest:
-      type: object
-      properties:
-        device_ids:
-          type: array
-          items:
-            type: string
-        action_type:
-          type: string
-          description: Type of action to perform (e.g., reboot).
-        count_down_type:
-          type: string
-    ImmediateScanRequest:
-      type: object
-      properties:
-        device_ids:
-          type: array
-          items:
-            type: string
-        task_name:
-          type: string
-        task_description:
-          type: string
-        scan_scope:
-          type: string
-          description: Scope of the scan (full, quick, custom).
     IsolationRequest:
       type: object
       properties:
@@ -175,6 +149,18 @@ components:
           description: Message displayed to users on isolated devices.
         hide_customized_alert:
           type: boolean
+    DeviceActionRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+        action_type:
+          type: string
+          description: Type of action to perform (e.g., reboot).
+        count_down_type:
+          type: string
     DeviceIdsRequest:
       type: object
       properties:
@@ -183,6 +169,20 @@ components:
           items:
             type: string
           description: List of device IDs to perform the action on.
+    ImmediateScanRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+        task_name:
+          type: string
+        task_description:
+          type: string
+        scan_scope:
+          type: string
+          description: Scope of the scan (full, quick, custom).
     ErrorResponse:
       type: object
       properties:
@@ -190,6 +190,13 @@ components:
           type: integer
         message:
           type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     AccountId:
       name: accountId
@@ -198,13 +205,6 @@ components:
       description: WatchGuard Cloud account ID.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

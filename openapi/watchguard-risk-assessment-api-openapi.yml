@@ -55,14 +55,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID.
-      schema:
-        type: string
   schemas:
     ErrorResponse:
       type: object
@@ -71,6 +63,14 @@ components:
           type: integer
         message:
           type: string
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Unauthorized — invalid or expired access token or API key.

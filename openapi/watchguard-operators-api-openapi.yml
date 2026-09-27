@@ -147,24 +147,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    UpdateOperatorRequest:
-      type: object
-      required:
-      - username
-      - accountId
-      properties:
-        username:
-          type: string
-        accountId:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        phone:
-          type: string
-        role:
-          type: string
     OperatorListResponse:
       type: object
       properties:
@@ -198,6 +180,24 @@ components:
           type: string
         message:
           type: string
+    UpdateOperatorRequest:
+      type: object
+      required:
+      - username
+      - accountId
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        role:
+          type: string
     CreateOperatorRequest:
       type: object
       required:
@@ -226,6 +226,25 @@ components:
           type: string
         password:
           type: string
+    DeleteOperatorRequest:
+      type: object
+      required:
+      - username
+      - accountId
+      properties:
+        username:
+          type: string
+        accountId:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     TransactionStatusResponse:
       type: object
       properties:
@@ -242,25 +261,6 @@ components:
                 type: string
               message:
                 type: string
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    DeleteOperatorRequest:
-      type: object
-      required:
-      - username
-      - accountId
-      properties:
-        username:
-          type: string
-        accountId:
-          type: string
   responses:
     BadRequest:
       description: Bad request — validation error in request body or parameters.

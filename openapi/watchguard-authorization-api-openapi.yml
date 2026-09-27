@@ -44,20 +44,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AudienceRequest:
-      type: object
-      required:
-      - accountId
-      properties:
-        accountId:
-          type: string
-          description: Account ID of the managed account to get the audience token for.
-    AudienceResponse:
-      type: object
-      properties:
-        audience:
-          type: string
-          description: Audience token value for the specified managed account.
     ErrorResponse:
       type: object
       properties:
@@ -67,6 +53,20 @@ components:
           type: string
         details:
           type: string
+    AudienceResponse:
+      type: object
+      properties:
+        audience:
+          type: string
+          description: Audience token value for the specified managed account.
+    AudienceRequest:
+      type: object
+      required:
+      - accountId
+      properties:
+        accountId:
+          type: string
+          description: Account ID of the managed account to get the audience token for.
   responses:
     Unauthorized:
       description: Unauthorized — invalid or expired access token or API key.

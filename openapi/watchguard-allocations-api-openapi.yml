@@ -103,16 +103,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
+      schema:
+        type: string
   schemas:
-    DeallocateAssetRequest:
-      type: object
-      properties:
-        productName:
-          type: string
-        allocationType:
-          type: string
-        serialOrLicense:
-          type: string
     AllocateAssetRequest:
       type: object
       properties:
@@ -138,27 +150,15 @@ components:
           type: string
         details:
           type: string
-  responses:
-    BadRequest:
-      description: Bad request — validation error in request body or parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
-      schema:
-        type: string
+    DeallocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        serialOrLicense:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
