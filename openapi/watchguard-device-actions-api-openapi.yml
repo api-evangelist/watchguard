@@ -131,6 +131,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
   schemas:
     IsolationRequest:
       type: object
@@ -149,6 +157,21 @@ components:
           description: Message displayed to users on isolated devices.
         hide_customized_alert:
           type: boolean
+    DeviceIdsRequest:
+      type: object
+      properties:
+        device_ids:
+          type: array
+          items:
+            type: string
+          description: List of device IDs to perform the action on.
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     DeviceActionRequest:
       type: object
       properties:
@@ -161,14 +184,6 @@ components:
           description: Type of action to perform (e.g., reboot).
         count_down_type:
           type: string
-    DeviceIdsRequest:
-      type: object
-      properties:
-        device_ids:
-          type: array
-          items:
-            type: string
-          description: List of device IDs to perform the action on.
     ImmediateScanRequest:
       type: object
       properties:
@@ -183,13 +198,6 @@ components:
         scan_scope:
           type: string
           description: Scope of the scan (full, quick, custom).
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
   responses:
     Unauthorized:
       description: Unauthorized — invalid or expired access token or API key.
@@ -197,14 +205,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

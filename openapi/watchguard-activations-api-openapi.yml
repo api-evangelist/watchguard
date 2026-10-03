@@ -119,28 +119,35 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    RecentActivationsList:
+    Pagination:
       type: object
       properties:
-        results:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalResults:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    ActivationRequest:
+      type: object
+      properties:
+        activations:
           type: array
           items:
             type: object
             properties:
-              batchId:
+              activationKey:
                 type: string
-              activationStatus:
-                type: string
-              created:
-                type: string
-                format: date-time
-              lastModified:
-                type: string
-                format: date-time
-              lineItemCount:
-                type: integer
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+                description: Serial number or license key to activate.
     ActivationStatusResponse:
       type: object
       properties:
@@ -188,44 +195,37 @@ components:
                 - CompleteWithErrors
               statusUrl:
                 type: string
-    ErrorResponse:
+    RecentActivationsList:
       type: object
       properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    ActivationRequest:
-      type: object
-      properties:
-        activations:
+        results:
           type: array
           items:
             type: object
             properties:
-              activationKey:
+              batchId:
                 type: string
-                description: Serial number or license key to activate.
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        totalResults:
-          type: integer
+              activationStatus:
+                type: string
+              created:
+                type: string
+                format: date-time
+              lastModified:
+                type: string
+                format: date-time
+              lineItemCount:
+                type: integer
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   responses:
-    NotFound:
-      description: Resource not found.
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request — validation error in request body or parameters.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:

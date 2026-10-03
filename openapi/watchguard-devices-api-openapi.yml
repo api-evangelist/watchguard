@@ -91,7 +91,55 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
+    ODataTop:
+      name: $top
+      in: query
+      description: Number of records to return (max 3000).
+      schema:
+        type: integer
+        maximum: 3000
+    ODataCount:
+      name: $count
+      in: query
+      description: Include total count in response.
+      schema:
+        type: boolean
+    ODataSearch:
+      name: $search
+      in: query
+      description: Text search across supported fields.
+      schema:
+        type: string
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+    ODataOrderby:
+      name: $orderby
+      in: query
+      description: Sort results (e.g., hostname+asc).
+      schema:
+        type: string
   schemas:
+    DeviceList:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+        count:
+          type: integer
     Device:
       type: object
       description: An endpoint device managed by WatchGuard Endpoint Security.
@@ -122,54 +170,6 @@ components:
           type: integer
         message:
           type: string
-    DeviceList:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Device'
-        count:
-          type: integer
-  parameters:
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-    ODataSearch:
-      name: $search
-      in: query
-      description: Text search across supported fields.
-      schema:
-        type: string
-    ODataOrderby:
-      name: $orderby
-      in: query
-      description: Sort results (e.g., hostname+asc).
-      schema:
-        type: string
-    ODataTop:
-      name: $top
-      in: query
-      description: Number of records to return (max 3000).
-      schema:
-        type: integer
-        maximum: 3000
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID.
-      schema:
-        type: string
-    ODataCount:
-      name: $count
-      in: query
-      description: Include total count in response.
-      schema:
-        type: boolean
   responses:
     Unauthorized:
       description: Unauthorized — invalid or expired access token or API key.

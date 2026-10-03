@@ -53,12 +53,6 @@ components:
           type: string
         details:
           type: string
-    AudienceResponse:
-      type: object
-      properties:
-        audience:
-          type: string
-          description: Audience token value for the specified managed account.
     AudienceRequest:
       type: object
       required:
@@ -67,6 +61,12 @@ components:
         accountId:
           type: string
           description: Account ID of the managed account to get the audience token for.
+    AudienceResponse:
+      type: object
+      properties:
+        audience:
+          type: string
+          description: Audience token value for the specified managed account.
   responses:
     Unauthorized:
       description: Unauthorized — invalid or expired access token or API key.

@@ -147,38 +147,40 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    OperatorListResponse:
+    TransactionStatusResponse:
       type: object
       properties:
-        result:
+        status:
+          type: string
+        transaction_status:
           type: array
           items:
             type: object
             properties:
-              accountId:
+              username:
                 type: string
-              email:
+              status:
                 type: string
-              firstName:
+              message:
                 type: string
-              lastName:
-                type: string
-              phone:
-                type: string
-              mfa:
-                type: boolean
-              userName:
-                type: string
-        status:
+    DeleteOperatorRequest:
+      type: object
+      required:
+      - username
+      - accountId
+      properties:
+        username:
           type: string
-    OperatorTransactionResponse:
+        accountId:
+          type: string
+    ErrorResponse:
       type: object
       properties:
-        transaction_id:
-          type: string
-        status:
-          type: string
+        code:
+          type: integer
         message:
+          type: string
+        details:
           type: string
     UpdateOperatorRequest:
       type: object
@@ -226,41 +228,39 @@ components:
           type: string
         password:
           type: string
-    DeleteOperatorRequest:
-      type: object
-      required:
-      - username
-      - accountId
-      properties:
-        username:
-          type: string
-        accountId:
-          type: string
-    ErrorResponse:
+    OperatorTransactionResponse:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        transaction_id:
           type: string
-        details:
-          type: string
-    TransactionStatusResponse:
-      type: object
-      properties:
         status:
           type: string
-        transaction_status:
+        message:
+          type: string
+    OperatorListResponse:
+      type: object
+      properties:
+        result:
           type: array
           items:
             type: object
             properties:
-              username:
+              accountId:
                 type: string
-              status:
+              email:
                 type: string
-              message:
+              firstName:
                 type: string
+              lastName:
+                type: string
+              phone:
+                type: string
+              mfa:
+                type: boolean
+              userName:
+                type: string
+        status:
+          type: string
   responses:
     BadRequest:
       description: Bad request — validation error in request body or parameters.

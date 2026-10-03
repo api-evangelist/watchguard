@@ -198,32 +198,15 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request — validation error in request body or parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
+      schema:
+        type: string
   schemas:
-    CreateAccountResponse:
-      type: object
-      properties:
-        accountID:
-          type: string
-          description: Newly created account ID.
     ManagedAccount:
       type: object
       properties:
@@ -237,23 +220,6 @@ components:
           type: string
         totalOperators:
           type: integer
-    ManagedAccountList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedAccount'
-        pageControls:
-          $ref: '#/components/schemas/PageControls'
-    DeleteAccountResponse:
-      type: object
-      properties:
-        childIds:
-          type: array
-          items:
-            type: string
-          description: IDs of deleted child accounts.
     PageControls:
       type: object
       properties:
@@ -263,6 +229,62 @@ components:
           type: integer
         totalItems:
           type: integer
+    CreateAccountRequest:
+      type: object
+      required:
+      - type
+      - name
+      - firstName
+      - lastName
+      - email
+      properties:
+        type:
+          type: integer
+          enum:
+          - 1
+          - 2
+          description: 1=Service Provider, 2=Subscriber
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+    CreateAccountResponse:
+      type: object
+      properties:
+        accountID:
+          type: string
+          description: Newly created account ID.
+    DeleteAccountResponse:
+      type: object
+      properties:
+        childIds:
+          type: array
+          items:
+            type: string
+          description: IDs of deleted child accounts.
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    ManagedAccountList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedAccount'
+        pageControls:
+          $ref: '#/components/schemas/PageControls'
     AccountInfo:
       type: object
       description: WatchGuard Cloud account information.
@@ -300,15 +322,6 @@ components:
               type: string
         serviceProperties:
           type: object
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     UpdateAccountRequest:
       type: object
       required:
@@ -326,38 +339,25 @@ components:
         email:
           type: string
           format: email
-    CreateAccountRequest:
-      type: object
-      required:
-      - type
-      - name
-      - firstName
-      - lastName
-      - email
-      properties:
-        type:
-          type: integer
-          enum:
-          - 1
-          - 2
-          description: 1=Service Provider, 2=Subscriber
-        name:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
-      schema:
-        type: string
+  responses:
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

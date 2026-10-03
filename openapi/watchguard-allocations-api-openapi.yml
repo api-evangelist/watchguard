@@ -103,19 +103,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Bad request — validation error in request body or parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     AccountId:
       name: accountId
@@ -125,6 +112,24 @@ components:
       schema:
         type: string
   schemas:
+    DeallocateAssetRequest:
+      type: object
+      properties:
+        productName:
+          type: string
+        allocationType:
+          type: string
+        serialOrLicense:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     AllocateAssetRequest:
       type: object
       properties:
@@ -141,24 +146,19 @@ components:
         allocationExpiryDate:
           type: string
           format: date
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    DeallocateAssetRequest:
-      type: object
-      properties:
-        productName:
-          type: string
-        allocationType:
-          type: string
-        serialOrLicense:
-          type: string
+  responses:
+    BadRequest:
+      description: Bad request — validation error in request body or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http
