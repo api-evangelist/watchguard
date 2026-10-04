@@ -1,0 +1,45 @@
+slug: watchguard
+provider: WatchGuard
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Device Actions
+  spec_file: watchguard-device-actions-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.8
+  evidence: POST /accounts/{accountId}/devices/isolation isolateDevices Isolate Devices; POST /accounts/{accountId}/immediatescan
+    startImmediateScan
+  reason: Endpoint isolation/containment and on-demand malware scanning are classic EDR threat-response
+    actions.
+- tag: Security Events
+  spec_file: watchguard-security-events-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.8
+  evidence: GET /accounts/{accountId}/securityevents/{type}/export/{period} exportSecurityEvents; getSecurityEventCounters
+  reason: Counting, exporting and summarising security events for SOC/SIEM consumption is threat detection
+    and response.
+- tag: Risk Assessment
+  spec_file: watchguard-risk-assessment-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: GET /accounts/{accountId}/riskassessment/detectedrisks getDetectedRisks; GET .../companyrisksummary
+    getCompanyRiskSummary
+  reason: Detected security risks and a company-level risk summary across endpoints is cybersecurity posture/risk
+    reporting, not enterprise risk management; between vulnerability management and security governance,
+    so L2 withheld.
