@@ -198,15 +198,25 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
-      schema:
-        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    PageControls:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        totalItems:
+          type: integer
     ManagedAccount:
       type: object
       properties:
@@ -220,15 +230,12 @@ components:
           type: string
         totalOperators:
           type: integer
-    PageControls:
+    CreateAccountResponse:
       type: object
       properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        totalItems:
-          type: integer
+        accountID:
+          type: string
+          description: Newly created account ID.
     CreateAccountRequest:
       type: object
       required:
@@ -253,29 +260,6 @@ components:
         email:
           type: string
           format: email
-    CreateAccountResponse:
-      type: object
-      properties:
-        accountID:
-          type: string
-          description: Newly created account ID.
-    DeleteAccountResponse:
-      type: object
-      properties:
-        childIds:
-          type: array
-          items:
-            type: string
-          description: IDs of deleted child accounts.
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     ManagedAccountList:
       type: object
       properties:
@@ -285,6 +269,23 @@ components:
             $ref: '#/components/schemas/ManagedAccount'
         pageControls:
           $ref: '#/components/schemas/PageControls'
+    UpdateAccountRequest:
+      type: object
+      required:
+      - name
+      - firstName
+      - lastName
+      - email
+      properties:
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
     AccountInfo:
       type: object
       description: WatchGuard Cloud account information.
@@ -322,32 +323,17 @@ components:
               type: string
         serviceProperties:
           type: object
-    UpdateAccountRequest:
+    DeleteAccountResponse:
       type: object
-      required:
-      - name
-      - firstName
-      - lastName
-      - email
       properties:
-        name:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
+        childIds:
+          type: array
+          items:
+            type: string
+          description: IDs of deleted child accounts.
   responses:
     BadRequest:
       description: Bad request — validation error in request body or parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found.
       content:
         application/json:
           schema:
@@ -358,6 +344,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567).
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

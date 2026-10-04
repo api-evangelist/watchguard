@@ -147,32 +147,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    TransactionStatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        transaction_status:
-          type: array
-          items:
-            type: object
-            properties:
-              username:
-                type: string
-              status:
-                type: string
-              message:
-                type: string
-    DeleteOperatorRequest:
-      type: object
-      required:
-      - username
-      - accountId
-      properties:
-        username:
-          type: string
-        accountId:
-          type: string
     ErrorResponse:
       type: object
       properties:
@@ -181,6 +155,30 @@ components:
         message:
           type: string
         details:
+          type: string
+    OperatorListResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              email:
+                type: string
+              firstName:
+                type: string
+              lastName:
+                type: string
+              phone:
+                type: string
+              mfa:
+                type: boolean
+              userName:
+                type: string
+        status:
           type: string
     UpdateOperatorRequest:
       type: object
@@ -200,6 +198,31 @@ components:
           type: string
         role:
           type: string
+    OperatorTransactionResponse:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    TransactionStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        transaction_status:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              status:
+                type: string
+              message:
+                type: string
     CreateOperatorRequest:
       type: object
       required:
@@ -228,38 +251,15 @@ components:
           type: string
         password:
           type: string
-    OperatorTransactionResponse:
+    DeleteOperatorRequest:
       type: object
+      required:
+      - username
+      - accountId
       properties:
-        transaction_id:
+        username:
           type: string
-        status:
-          type: string
-        message:
-          type: string
-    OperatorListResponse:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              accountId:
-                type: string
-              email:
-                type: string
-              firstName:
-                type: string
-              lastName:
-                type: string
-              phone:
-                type: string
-              mfa:
-                type: boolean
-              userName:
-                type: string
-        status:
+        accountId:
           type: string
   responses:
     BadRequest:

@@ -119,35 +119,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        offset:
-          type: integer
-        limit:
-          type: integer
-        totalResults:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    ActivationRequest:
-      type: object
-      properties:
-        activations:
-          type: array
-          items:
-            type: object
-            properties:
-              activationKey:
-                type: string
-                description: Serial number or license key to activate.
     ActivationStatusResponse:
       type: object
       properties:
@@ -176,6 +147,35 @@ components:
                 format: date-time
         pagination:
           $ref: '#/components/schemas/Pagination'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        offset:
+          type: integer
+        limit:
+          type: integer
+        totalResults:
+          type: integer
+    ActivationRequest:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              activationKey:
+                type: string
+                description: Serial number or license key to activate.
     ActivationResponse:
       type: object
       properties:

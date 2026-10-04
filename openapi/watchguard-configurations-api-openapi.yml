@@ -82,26 +82,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID.
-      schema:
-        type: string
-    ODataTop:
-      name: $top
-      in: query
-      description: Number of records to return (max 3000).
-      schema:
-        type: integer
-        maximum: 3000
-    ODataCount:
-      name: $count
-      in: query
-      description: Include total count in response.
-      schema:
-        type: boolean
     ODataSearch:
       name: $search
       in: query
@@ -114,6 +94,26 @@ components:
       description: Number of records to skip for pagination.
       schema:
         type: integer
+    ODataTop:
+      name: $top
+      in: query
+      description: Number of records to return (max 3000).
+      schema:
+        type: integer
+        maximum: 3000
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
+    ODataCount:
+      name: $count
+      in: query
+      description: Include total count in response.
+      schema:
+        type: boolean
     ODataOrderby:
       name: $orderby
       in: query

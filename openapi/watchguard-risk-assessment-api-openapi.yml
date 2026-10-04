@@ -55,14 +55,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID.
-      schema:
-        type: string
   schemas:
     ErrorResponse:
       type: object
@@ -78,6 +70,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
