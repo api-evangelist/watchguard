@@ -247,6 +247,12 @@ apis:
     url: >-
       https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html
 common:
+  - type: Plans
+    url: plans/watchguard-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/watchguard-rate-limits.yml
+  - type: FinOps
+    url: finops/watchguard-finops.yml
   - type: CapabilityMap
     url: capabilities/watchguard-capability-edges.yml
     name: WatchGuard Business Capability Map
