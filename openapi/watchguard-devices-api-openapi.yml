@@ -98,12 +98,6 @@ components:
       description: Text search across supported fields.
       schema:
         type: string
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
     ODataTop:
       name: $top
       in: query
@@ -111,6 +105,18 @@ components:
       schema:
         type: integer
         maximum: 3000
+    ODataOrderby:
+      name: $orderby
+      in: query
+      description: Sort results (e.g., hostname+asc).
+      schema:
+        type: string
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
     AccountId:
       name: accountId
       in: path
@@ -124,20 +130,14 @@ components:
       description: Include total count in response.
       schema:
         type: boolean
-    ODataOrderby:
-      name: $orderby
-      in: query
-      description: Sort results (e.g., hostname+asc).
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     DeviceList:
       type: object
       properties:
@@ -147,6 +147,13 @@ components:
             $ref: '#/components/schemas/Device'
         count:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     Device:
       type: object
       description: An endpoint device managed by WatchGuard Endpoint Security.
@@ -170,13 +177,6 @@ components:
         lastSeen:
           type: string
           format: date-time
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

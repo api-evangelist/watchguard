@@ -88,26 +88,6 @@ components:
       description: Text search across supported fields.
       schema:
         type: string
-    ODataSkip:
-      name: $skip
-      in: query
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-    ODataTop:
-      name: $top
-      in: query
-      description: Number of records to return (max 3000).
-      schema:
-        type: integer
-        maximum: 3000
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      description: WatchGuard Cloud account ID.
-      schema:
-        type: string
     ODataCount:
       name: $count
       in: query
@@ -120,6 +100,33 @@ components:
       description: Sort results (e.g., hostname+asc).
       schema:
         type: string
+    ODataSkip:
+      name: $skip
+      in: query
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: WatchGuard Cloud account ID.
+      schema:
+        type: string
+    ODataTop:
+      name: $top
+      in: query
+      description: Number of records to return (max 3000).
+      schema:
+        type: integer
+        maximum: 3000
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -128,13 +135,6 @@ components:
           type: integer
         message:
           type: string
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

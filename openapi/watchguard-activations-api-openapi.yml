@@ -119,6 +119,25 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ActivationResponse:
+      type: object
+      properties:
+        activations:
+          type: array
+          items:
+            type: object
+            properties:
+              batchId:
+                type: string
+              status:
+                type: string
+                enum:
+                - Processing
+                - Created
+                - Complete
+                - CompleteWithErrors
+              statusUrl:
+                type: string
     ActivationStatusResponse:
       type: object
       properties:
@@ -147,15 +166,6 @@ components:
                 format: date-time
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     Pagination:
       type: object
       properties:
@@ -176,25 +186,6 @@ components:
               activationKey:
                 type: string
                 description: Serial number or license key to activate.
-    ActivationResponse:
-      type: object
-      properties:
-        activations:
-          type: array
-          items:
-            type: object
-            properties:
-              batchId:
-                type: string
-              status:
-                type: string
-                enum:
-                - Processing
-                - Created
-                - Complete
-                - CompleteWithErrors
-              statusUrl:
-                type: string
     RecentActivationsList:
       type: object
       properties:
@@ -217,7 +208,22 @@ components:
                 type: integer
         pagination:
           $ref: '#/components/schemas/Pagination'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
   responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Bad request — validation error in request body or parameters.
       content:
@@ -226,12 +232,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
       content:
         application/json:
           schema:

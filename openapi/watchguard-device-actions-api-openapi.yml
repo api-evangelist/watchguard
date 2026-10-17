@@ -131,6 +131,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or expired access token or API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     IsolationRequest:
       type: object
@@ -149,13 +156,14 @@ components:
           description: Message displayed to users on isolated devices.
         hide_customized_alert:
           type: boolean
-    ErrorResponse:
+    DeviceIdsRequest:
       type: object
       properties:
-        code:
-          type: integer
-        message:
-          type: string
+        device_ids:
+          type: array
+          items:
+            type: string
+          description: List of device IDs to perform the action on.
     ImmediateScanRequest:
       type: object
       properties:
@@ -182,14 +190,13 @@ components:
           description: Type of action to perform (e.g., reboot).
         count_down_type:
           type: string
-    DeviceIdsRequest:
+    ErrorResponse:
       type: object
       properties:
-        device_ids:
-          type: array
-          items:
-            type: string
-          description: List of device IDs to perform the action on.
+        code:
+          type: integer
+        message:
+          type: string
   parameters:
     AccountId:
       name: accountId
@@ -198,13 +205,6 @@ components:
       description: WatchGuard Cloud account ID.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or expired access token or API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http
