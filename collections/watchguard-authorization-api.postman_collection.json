@@ -1,199 +1,232 @@
 {
+  "info": {
+    "_postman_id": "a9b0a926-0543-4253-81eb-5d40dfaf8042",
+    "name": "WatchGuard Cloud Platform Authorization API",
+    "description": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:02.000Z",
+    "updatedAt": "2026-10-22T02:04:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9b0a926-0543-4253-81eb-5d40dfaf8042"
+  },
   "item": [
     {
-      "id": "192b3f5f-9677-4932-8d24-4c6543b55561",
-      "name": "Authorization",
-      "description": {
-        "content": "Retrieve audience tokens for managed account API access.",
-        "type": "text/plain"
-      },
+      "name": "platform",
       "item": [
         {
-          "id": "4b68bae8-d3b7-441a-a9c8-e576b57ca41d",
-          "name": "Get Audience Token",
-          "request": {
-            "name": "Get Audience Token",
-            "description": {
-              "content": "Returns the audience parameter value for a managed account. Required by service providers when submitting API requests on behalf of a managed account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "authorization",
-                "v1",
-                "audiences"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"accountId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "authorization",
+          "item": [
             {
-              "id": "e442ae9a-837e-4a1a-b85a-f327eb35afa8",
-              "name": "Audience token returned successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "authorization",
-                    "v1",
-                    "audiences"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"accountId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "audiences",
+                  "item": [
+                    {
+                      "name": "Get Audience Token",
+                      "id": "e5af996d-7a10-49d8-b10f-b106b1826b0e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"accountId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/authorization/v1/audiences",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "authorization",
+                            "v1",
+                            "audiences"
+                          ]
+                        },
+                        "description": "Returns the audience parameter value for a managed account. Required by service providers when submitting API requests on behalf of a managed account."
+                      },
+                      "response": [
+                        {
+                          "id": "cdcb5e1f-ca4c-4740-8bd2-8c930b5ff3a3",
+                          "name": "Audience token returned successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"accountId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/authorization/v1/audiences",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "authorization",
+                                "v1",
+                                "audiences"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"audience\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:03.000Z",
+                          "updatedAt": "2026-10-22T02:04:03.000Z",
+                          "uid": "35240-cdcb5e1f-ca4c-4740-8bd2-8c930b5ff3a3"
+                        },
+                        {
+                          "id": "b9447eac-8d96-4946-806b-655d350f675d",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"accountId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/authorization/v1/audiences",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "authorization",
+                                "v1",
+                                "audiences"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:03.000Z",
+                          "updatedAt": "2026-10-22T02:04:03.000Z",
+                          "uid": "35240-b9447eac-8d96-4946-806b-655d350f675d"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:03.000Z",
+                      "updatedAt": "2026-10-22T02:04:03.000Z",
+                      "uid": "35240-e5af996d-7a10-49d8-b10f-b106b1826b0e"
+                    }
+                  ],
+                  "id": "7fc71354-fea4-4ed7-9a06-cc9806dfffa1",
+                  "createdAt": "2026-10-22T02:04:03.000Z",
+                  "updatedAt": "2026-10-22T02:04:03.000Z",
+                  "uid": "35240-7fc71354-fea4-4ed7-9a06-cc9806dfffa1"
                 }
               ],
-              "body": "{\n  \"audience\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5ef64093-6b11-4ea2-a53b-90a86d390aa1",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "authorization",
-                    "v1",
-                    "audiences"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"accountId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 2262,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "788be421-e755-4f72-86db-5c43bc735339",
+              "createdAt": "2026-10-22T02:04:03.000Z",
+              "updatedAt": "2026-10-22T02:04:03.000Z",
+              "uid": "35240-788be421-e755-4f72-86db-5c43bc735339"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "0ca1014a-ceec-4c26-aaf0-20761c645113",
+          "createdAt": "2026-10-22T02:04:03.000Z",
+          "updatedAt": "2026-10-22T02:04:03.000Z",
+          "uid": "35240-0ca1014a-ceec-4c26-aaf0-20761c645113"
         }
       ],
-      "event": []
+      "id": "8f872ae8-1daf-4365-a05c-75599bf7b6e9",
+      "createdAt": "2026-10-22T02:04:03.000Z",
+      "updatedAt": "2026-10-22T02:04:03.000Z",
+      "uid": "35240-8f872ae8-1daf-4365-a05c-75599bf7b6e9"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest"
     }
-  ],
-  "info": {
-    "_postman_id": "7fd94103-4912-43dd-b527-4a17a6318029",
-    "name": "WatchGuard Cloud Platform Accounts Authorization API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

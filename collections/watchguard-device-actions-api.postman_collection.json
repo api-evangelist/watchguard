@@ -1,964 +1,1014 @@
 {
+  "info": {
+    "_postman_id": "d8a0a632-2f2c-4fc0-ac92-3697c0ebbcdf",
+    "name": "WatchGuard Endpoint Security Management Device Actions API",
+    "description": "The WatchGuard Endpoint Security Management API provides RESTful access to WatchGuard Endpoint Security (WES) features including device management, security events, risk assessment, configuration management, and license information. All endpoints require OAuth 2.0 bearer authentication and the WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:11.000Z",
+    "updatedAt": "2026-10-22T02:04:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d8a0a632-2f2c-4fc0-ac92-3697c0ebbcdf"
+  },
   "item": [
     {
-      "id": "bdbc432a-da90-4303-b09f-37f7fc2a6fc3",
-      "name": "Device Actions",
-      "description": {
-        "content": "Perform actions on endpoint devices such as isolation and scanning.",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "d215ae49-131c-4a3c-b58a-b8336370b001",
-          "name": "Isolate Devices",
-          "request": {
-            "name": "Isolate Devices",
-            "description": {
-              "content": "Isolate specified devices from network communication, optionally allowing specific programs and displaying a customized alert message.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "devices",
-                "isolation"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exclusion_programs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customized_message\": \"<string>\",\n  \"hide_customized_alert\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "31b5e462-64d3-41aa-b7fe-b137165ba803",
-              "name": "Isolation initiated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "isolation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exclusion_programs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customized_message\": \"<string>\",\n  \"hide_customized_alert\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "devices",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "isolation",
+                  "item": [
+                    {
+                      "name": "Isolate Devices",
+                      "id": "5d0e8b94-231d-4931-b6e2-c97af4646fb2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exclusion_programs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customized_message\": \"<string>\",\n  \"hide_customized_alert\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devices/isolation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devices",
+                            "isolation"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3718df02-0a5d-488d-8b43-0042b743a920",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            }
+                          ]
+                        },
+                        "description": "Isolate specified devices from network communication, optionally allowing specific programs and displaying a customized alert message."
+                      },
+                      "response": [
+                        {
+                          "id": "9b89c239-8465-4581-98c6-6895223a7c9b",
+                          "name": "Isolation initiated.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exclusion_programs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customized_message\": \"<string>\",\n  \"hide_customized_alert\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/isolation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "isolation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-9b89c239-8465-4581-98c6-6895223a7c9b"
+                        },
+                        {
+                          "id": "53abeecf-36a2-4387-9249-ea2ffd0ddd55",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exclusion_programs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customized_message\": \"<string>\",\n  \"hide_customized_alert\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/isolation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "isolation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-53abeecf-36a2-4387-9249-ea2ffd0ddd55"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:11.000Z",
+                      "updatedAt": "2026-10-22T02:04:11.000Z",
+                      "uid": "35240-5d0e8b94-231d-4931-b6e2-c97af4646fb2"
+                    }
+                  ],
+                  "id": "b8928518-dde4-4e02-a379-1e00846f39e6",
+                  "createdAt": "2026-10-22T02:04:11.000Z",
+                  "updatedAt": "2026-10-22T02:04:11.000Z",
+                  "uid": "35240-b8928518-dde4-4e02-a379-1e00846f39e6"
+                },
+                {
+                  "name": "noisolation",
+                  "item": [
+                    {
+                      "name": "Remove Device Isolation",
+                      "id": "80de72bb-b5f2-4b8f-abb8-47c41404290a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devices/noisolation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devices",
+                            "noisolation"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d6c2e634-c4ef-4b1e-b29a-6781d8a6a244",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            }
+                          ]
+                        },
+                        "description": "Remove network isolation from previously isolated devices."
+                      },
+                      "response": [
+                        {
+                          "id": "99a40a59-1d97-4d40-adcb-9511cb70d90f",
+                          "name": "Isolation removed.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/noisolation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "noisolation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-99a40a59-1d97-4d40-adcb-9511cb70d90f"
+                        },
+                        {
+                          "id": "b7fb83a7-3557-429a-86b5-2c82600f2cc6",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/noisolation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "noisolation"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-b7fb83a7-3557-429a-86b5-2c82600f2cc6"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:11.000Z",
+                      "updatedAt": "2026-10-22T02:04:11.000Z",
+                      "uid": "35240-80de72bb-b5f2-4b8f-abb8-47c41404290a"
+                    }
+                  ],
+                  "id": "5f9ccbb0-42b1-471f-980a-d5d89b5002a7",
+                  "createdAt": "2026-10-22T02:04:11.000Z",
+                  "updatedAt": "2026-10-22T02:04:11.000Z",
+                  "uid": "35240-5f9ccbb0-42b1-471f-980a-d5d89b5002a7"
+                },
+                {
+                  "name": "uninstall",
+                  "item": [
+                    {
+                      "name": "Uninstall Device Protection",
+                      "id": "bc4a4d5e-bfbb-4bb2-b503-3043bd7bcfbd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devices/uninstall",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devices",
+                            "uninstall"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3b77457c-0eb9-4ccd-85b2-1819fb74e55e",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            }
+                          ]
+                        },
+                        "description": "Uninstall WatchGuard endpoint protection from specified devices."
+                      },
+                      "response": [
+                        {
+                          "id": "7fd28316-39b3-4af8-b0ef-93d18f261c8c",
+                          "name": "Uninstall initiated.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/uninstall",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "uninstall"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-7fd28316-39b3-4af8-b0ef-93d18f261c8c"
+                        },
+                        {
+                          "id": "b7340191-4a1c-45e7-bee7-5d25bbf53507",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/uninstall",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "uninstall"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-b7340191-4a1c-45e7-bee7-5d25bbf53507"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:11.000Z",
+                      "updatedAt": "2026-10-22T02:04:11.000Z",
+                      "uid": "35240-bc4a4d5e-bfbb-4bb2-b503-3043bd7bcfbd"
+                    }
+                  ],
+                  "id": "29bcaf57-f325-4fde-9fa7-70aad3bb94f3",
+                  "createdAt": "2026-10-22T02:04:11.000Z",
+                  "updatedAt": "2026-10-22T02:04:11.000Z",
+                  "uid": "35240-29bcaf57-f325-4fde-9fa7-70aad3bb94f3"
+                },
+                {
+                  "name": "action",
+                  "item": [
+                    {
+                      "name": "Perform Device Action",
+                      "id": "35ccbebd-5a86-4534-8f07-0afac8320af6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"action_type\": \"<string>\",\n  \"count_down_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devices/action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devices",
+                            "action"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0347bbc8-00d6-497c-9f5c-e7687f6d1df6",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            }
+                          ]
+                        },
+                        "description": "Initiate a device action such as reboot on specified devices."
+                      },
+                      "response": [
+                        {
+                          "id": "4a66e17d-32b0-4b2b-aa05-a7dc75def596",
+                          "name": "Device action initiated.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"action_type\": \"<string>\",\n  \"count_down_type\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-4a66e17d-32b0-4b2b-aa05-a7dc75def596"
+                        },
+                        {
+                          "id": "27b1892c-d815-4398-98e2-67a90c8b56ad",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"action_type\": \"<string>\",\n  \"count_down_type\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/devices/action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "devices",
+                                "action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:11.000Z",
+                          "updatedAt": "2026-10-22T02:04:11.000Z",
+                          "uid": "35240-27b1892c-d815-4398-98e2-67a90c8b56ad"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:11.000Z",
+                      "updatedAt": "2026-10-22T02:04:11.000Z",
+                      "uid": "35240-35ccbebd-5a86-4534-8f07-0afac8320af6"
+                    }
+                  ],
+                  "id": "d17c45d0-1a80-43b4-9120-fcd874a182e4",
+                  "createdAt": "2026-10-22T02:04:11.000Z",
+                  "updatedAt": "2026-10-22T02:04:11.000Z",
+                  "uid": "35240-d17c45d0-1a80-43b4-9120-fcd874a182e4"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "730cf22b-8d2e-4e3e-93e7-1dceedabc714",
+              "createdAt": "2026-10-22T02:04:11.000Z",
+              "updatedAt": "2026-10-22T02:04:11.000Z",
+              "uid": "35240-730cf22b-8d2e-4e3e-93e7-1dceedabc714"
             },
             {
-              "id": "e165bf9c-ff62-4e5e-acc4-749164d2653a",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "isolation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "immediatescan",
+              "item": [
+                {
+                  "name": "Start Immediate Scan",
+                  "id": "d4a5139b-f9e9-460c-8543-9148f6d7ad99",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"exclusion_programs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customized_message\": \"<string>\",\n  \"hide_customized_alert\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"task_name\": \"<string>\",\n  \"task_description\": \"<string>\",\n  \"scan_scope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/immediatescan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "immediatescan"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d1255e63-3a9f-42d5-b69f-886e9156e093",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) WatchGuard Cloud account ID."
+                        }
+                      ]
+                    },
+                    "description": "Initiate an immediate security scan task on specified devices."
+                  },
+                  "response": [
+                    {
+                      "id": "8b87906f-7be0-4c9f-90b0-de781e2aba55",
+                      "name": "Immediate scan started.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"task_name\": \"<string>\",\n  \"task_description\": \"<string>\",\n  \"scan_scope\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/immediatescan",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "immediatescan"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:04:11.000Z",
+                      "updatedAt": "2026-10-22T02:04:11.000Z",
+                      "uid": "35240-8b87906f-7be0-4c9f-90b0-de781e2aba55"
+                    },
+                    {
+                      "id": "26fa0f2c-fae3-49fe-bb1d-57580d11b055",
+                      "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"task_name\": \"<string>\",\n  \"task_description\": \"<string>\",\n  \"scan_scope\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/immediatescan",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "immediatescan"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:04:11.000Z",
+                      "updatedAt": "2026-10-22T02:04:11.000Z",
+                      "uid": "35240-26fa0f2c-fae3-49fe-bb1d-57580d11b055"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T02:04:11.000Z",
+                  "updatedAt": "2026-10-22T02:04:11.000Z",
+                  "uid": "35240-d4a5139b-f9e9-460c-8543-9148f6d7ad99"
                 }
               ],
-              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "ce1200bd-3fb0-407e-818d-98e5ad869c5e",
+              "createdAt": "2026-10-22T02:04:11.000Z",
+              "updatedAt": "2026-10-22T02:04:11.000Z",
+              "uid": "35240-ce1200bd-3fb0-407e-818d-98e5ad869c5e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9912d5b4-bde0-4ab2-84d3-8a7fcd66763c",
-          "name": "Remove Device Isolation",
-          "request": {
-            "name": "Remove Device Isolation",
-            "description": {
-              "content": "Remove network isolation from previously isolated devices.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "devices",
-                "noisolation"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "78634e5d-b339-4eb7-98c4-7ef0fad7441b",
-              "name": "Isolation removed.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "noisolation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "182e98aa-0f55-4631-8aee-a2a5e4ea8291",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "noisolation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "320d3e2d-4842-4ad8-95ff-2d562d6fc304",
-          "name": "Uninstall Device Protection",
-          "request": {
-            "name": "Uninstall Device Protection",
-            "description": {
-              "content": "Uninstall WatchGuard endpoint protection from specified devices.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "devices",
-                "uninstall"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1cfccdac-757c-4f54-8bbe-040890d87c25",
-              "name": "Uninstall initiated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "uninstall"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "3e4df8c6-c597-4939-b9ae-1784cf4f1cc6",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "uninstall"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "81776768-a71f-4f9f-82d8-ae8bbd213b8c",
-          "name": "Perform Device Action",
-          "request": {
-            "name": "Perform Device Action",
-            "description": {
-              "content": "Initiate a device action such as reboot on specified devices.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "devices",
-                "action"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"action_type\": \"<string>\",\n  \"count_down_type\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d2891124-ef01-4b6a-a16c-8b3425784569",
-              "name": "Device action initiated.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "action"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"action_type\": \"<string>\",\n  \"count_down_type\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b897ef58-02d3-4b1c-8887-a2c65fda258a",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices",
-                    "action"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"action_type\": \"<string>\",\n  \"count_down_type\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2fb3bb25-9426-43ae-9d47-64fbe9cb7590",
-          "name": "Start Immediate Scan",
-          "request": {
-            "name": "Start Immediate Scan",
-            "description": {
-              "content": "Initiate an immediate security scan task on specified devices.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "immediatescan"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"task_name\": \"<string>\",\n  \"task_description\": \"<string>\",\n  \"scan_scope\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "641983b4-b6ad-45a1-b2a7-189b5e30e127",
-              "name": "Immediate scan started.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "immediatescan"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"task_name\": \"<string>\",\n  \"task_description\": \"<string>\",\n  \"scan_scope\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2d0cd5ec-773f-4822-904a-f3026732837f",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "immediatescan"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"task_name\": \"<string>\",\n  \"task_description\": \"<string>\",\n  \"scan_scope\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 8954,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9a1b2697-e215-4f33-8c1d-4cd3a57fdf2e",
+          "createdAt": "2026-10-22T02:04:11.000Z",
+          "updatedAt": "2026-10-22T02:04:11.000Z",
+          "uid": "35240-9a1b2697-e215-4f33-8c1d-4cd3a57fdf2e"
         }
       ],
-      "event": []
+      "id": "e6d7b3a3-d016-4b96-aa4e-2a1369c3b4d4",
+      "createdAt": "2026-10-22T02:04:11.000Z",
+      "updatedAt": "2026-10-22T02:04:11.000Z",
+      "uid": "35240-e6d7b3a3-d016-4b96-aa4e-2a1369c3b4d4"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "c4993e86-deac-40ef-9455-68adcb99a55f",
-    "name": "WatchGuard Cloud Platform Accounts Device Actions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,629 +1,632 @@
 {
+  "info": {
+    "_postman_id": "405a7d4b-46ca-4c75-91e1-253c045aec6a",
+    "name": "WatchGuard Endpoint Security Management Security Events API",
+    "description": "The WatchGuard Endpoint Security Management API provides RESTful access to WatchGuard Endpoint Security (WES) features including device management, security events, risk assessment, configuration management, and license information. All endpoints require OAuth 2.0 bearer authentication and the WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:34.000Z",
+    "updatedAt": "2026-10-22T02:04:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-405a7d4b-46ca-4c75-91e1-253c045aec6a"
+  },
   "item": [
     {
-      "id": "65c213bc-9718-4e03-9e9f-11f9ae3c059d",
-      "name": "Security Events",
-      "description": {
-        "content": "Retrieve security event data and overviews.",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "25a9ad9f-fffa-4956-bdba-b58ed5a95fae",
-          "name": "Get Security Event Counters",
-          "request": {
-            "name": "Get Security Event Counters",
-            "description": {
-              "content": "Retrieve counts of security events by type for the account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "securityeventcounters",
-                ":type"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "type",
-                  "description": "(Required) Bitmask value specifying the event types to retrieve."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "10eb03ee-d685-4e94-96bc-c8f4f1f1a77d",
-              "name": "Security event counters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "securityeventcounters",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "type",
-                      "description": "(Required) Bitmask value specifying the event types to retrieve."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "securityeventcounters",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "{type}",
+                  "item": [
+                    {
+                      "name": "Get Security Event Counters",
+                      "id": "097bb840-f164-48c5-9512-9f905eafc5f9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/securityeventcounters/:type?filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "securityeventcounters",
+                            ":type"
+                          ],
+                          "query": [
+                            {
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "e14429ad-1f80-4c5f-acca-e4c1af4f6ff5",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            },
+                            {
+                              "id": "91fcb296-c0b2-4807-866e-ad1483c0ec85",
+                              "key": "type",
+                              "value": "<integer>",
+                              "description": "(Required) Bitmask value specifying the event types to retrieve."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve counts of security events by type for the account."
+                      },
+                      "response": [
+                        {
+                          "id": "bd7cead9-13bd-431e-b099-e93e84aeb20d",
+                          "name": "Security event counters.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/securityeventcounters/:type?filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "securityeventcounters",
+                                ":type"
+                              ],
+                              "query": [
+                                {
+                                  "key": "filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "type"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:35.000Z",
+                          "updatedAt": "2026-10-22T02:04:35.000Z",
+                          "uid": "35240-bd7cead9-13bd-431e-b099-e93e84aeb20d"
+                        },
+                        {
+                          "id": "b1f0eb07-5950-4848-a206-9386b7fda1ad",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/securityeventcounters/:type?filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "securityeventcounters",
+                                ":type"
+                              ],
+                              "query": [
+                                {
+                                  "key": "filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "type"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:35.000Z",
+                          "updatedAt": "2026-10-22T02:04:35.000Z",
+                          "uid": "35240-b1f0eb07-5950-4848-a206-9386b7fda1ad"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:35.000Z",
+                      "updatedAt": "2026-10-22T02:04:35.000Z",
+                      "uid": "35240-097bb840-f164-48c5-9512-9f905eafc5f9"
+                    }
+                  ],
+                  "id": "29ef84af-697b-4a72-977f-42d007ebbc75",
+                  "createdAt": "2026-10-22T02:04:35.000Z",
+                  "updatedAt": "2026-10-22T02:04:35.000Z",
+                  "uid": "35240-29ef84af-697b-4a72-977f-42d007ebbc75"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "ad2980e4-f7e0-41f9-8c1e-1ae6df06dfea",
+              "createdAt": "2026-10-22T02:04:35.000Z",
+              "updatedAt": "2026-10-22T02:04:35.000Z",
+              "uid": "35240-ad2980e4-f7e0-41f9-8c1e-1ae6df06dfea"
             },
             {
-              "id": "9513a054-950d-4e00-aafc-5a4bfa88c28a",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "securityeventcounters",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "type",
-                      "description": "(Required) Bitmask value specifying the event types to retrieve."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "securityevents",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{type}",
+                  "item": [
+                    {
+                      "name": "export",
+                      "item": [
+                        {
+                          "name": "{period}",
+                          "item": [
+                            {
+                              "name": "Export Security Events",
+                              "id": "cd8956b4-7a72-4fc3-be30-a47504e654c5",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/accounts/:accountId/securityevents/:type/export/:period?hostname=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "accounts",
+                                    ":accountId",
+                                    "securityevents",
+                                    ":type",
+                                    "export",
+                                    ":period"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Base-64 encoded hostname to filter events by device.",
+                                      "key": "hostname",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6ed268cd-d108-48d1-9d76-96523efbff70",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) WatchGuard Cloud account ID."
+                                    },
+                                    {
+                                      "id": "cf38d8f6-919b-4f3c-bfe3-2f3a6478bf7e",
+                                      "key": "type",
+                                      "value": "<integer>",
+                                      "description": "(Required) Security event type (1-19)."
+                                    },
+                                    {
+                                      "id": "696f414a-939a-4cc9-b4f7-a70f5b64f5fc",
+                                      "key": "period",
+                                      "value": "1",
+                                      "description": "(Required) Time period in days (1 or 7)."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve detailed security event records for a specified type and time period (1 or 7 days)."
+                              },
+                              "response": [
+                                {
+                                  "id": "3055a2d4-0580-4dfb-b989-3a1267aa0e91",
+                                  "name": "Security event export.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/securityevents/:type/export/:period?hostname=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "securityevents",
+                                        ":type",
+                                        "export",
+                                        ":period"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Base-64 encoded hostname to filter events by device.",
+                                          "key": "hostname",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "type"
+                                        },
+                                        {
+                                          "key": "period"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-22T02:04:35.000Z",
+                                  "updatedAt": "2026-10-22T02:04:35.000Z",
+                                  "uid": "35240-3055a2d4-0580-4dfb-b989-3a1267aa0e91"
+                                },
+                                {
+                                  "id": "281c0c01-0532-4322-a279-b87ca90a7fcb",
+                                  "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/accounts/:accountId/securityevents/:type/export/:period?hostname=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "accounts",
+                                        ":accountId",
+                                        "securityevents",
+                                        ":type",
+                                        "export",
+                                        ":period"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Base-64 encoded hostname to filter events by device.",
+                                          "key": "hostname",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        },
+                                        {
+                                          "key": "type"
+                                        },
+                                        {
+                                          "key": "period"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T02:04:35.000Z",
+                                  "updatedAt": "2026-10-22T02:04:35.000Z",
+                                  "uid": "35240-281c0c01-0532-4322-a279-b87ca90a7fcb"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:04:35.000Z",
+                              "updatedAt": "2026-10-22T02:04:35.000Z",
+                              "uid": "35240-cd8956b4-7a72-4fc3-be30-a47504e654c5"
+                            }
+                          ],
+                          "id": "a747ed76-3f11-434b-89f8-997301ff680a",
+                          "createdAt": "2026-10-22T02:04:35.000Z",
+                          "updatedAt": "2026-10-22T02:04:35.000Z",
+                          "uid": "35240-a747ed76-3f11-434b-89f8-997301ff680a"
+                        }
+                      ],
+                      "id": "5886f3c1-4fe3-4821-ad04-8a3824c7f283",
+                      "createdAt": "2026-10-22T02:04:35.000Z",
+                      "updatedAt": "2026-10-22T02:04:35.000Z",
+                      "uid": "35240-5886f3c1-4fe3-4821-ad04-8a3824c7f283"
+                    }
+                  ],
+                  "id": "21a7bf00-8e8b-4906-80e7-49ce6727f3c6",
+                  "createdAt": "2026-10-22T02:04:35.000Z",
+                  "updatedAt": "2026-10-22T02:04:35.000Z",
+                  "uid": "35240-21a7bf00-8e8b-4906-80e7-49ce6727f3c6"
                 }
               ],
-              "body": "{\n  \"code\": 3561,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "6ebb1946-47bb-4079-897d-ab2d1abc7a2f",
+              "createdAt": "2026-10-22T02:04:35.000Z",
+              "updatedAt": "2026-10-22T02:04:35.000Z",
+              "uid": "35240-6ebb1946-47bb-4079-897d-ab2d1abc7a2f"
+            },
+            {
+              "name": "securityoverview",
+              "item": [
+                {
+                  "name": "{period}",
+                  "item": [
+                    {
+                      "name": "Get Security Overview",
+                      "id": "c200895d-ad75-42e9-ac68-98eb02d9196d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/securityoverview/:period",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "securityoverview",
+                            ":period"
+                          ],
+                          "variable": [
+                            {
+                              "id": "18625877-eb33-4a29-8013-b6a7009d1b39",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            },
+                            {
+                              "id": "2f9f3855-c0e4-4263-9bca-91b6bee055b5",
+                              "key": "period",
+                              "value": "1",
+                              "description": "(Required) Period in days (1, 7, or 30)."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a security overview summary for the account covering the specified number of days (1, 7, or 30)."
+                      },
+                      "response": [
+                        {
+                          "id": "01364fd0-77ea-4c22-ae4b-64df983897f0",
+                          "name": "Security overview summary.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/securityoverview/:period",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "securityoverview",
+                                ":period"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "period"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:35.000Z",
+                          "updatedAt": "2026-10-22T02:04:35.000Z",
+                          "uid": "35240-01364fd0-77ea-4c22-ae4b-64df983897f0"
+                        },
+                        {
+                          "id": "1f6f0ee6-b91d-47f7-9e4a-de5f6f0d56c1",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/securityoverview/:period",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "securityoverview",
+                                ":period"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                },
+                                {
+                                  "key": "period"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:35.000Z",
+                          "updatedAt": "2026-10-22T02:04:35.000Z",
+                          "uid": "35240-1f6f0ee6-b91d-47f7-9e4a-de5f6f0d56c1"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:35.000Z",
+                      "updatedAt": "2026-10-22T02:04:35.000Z",
+                      "uid": "35240-c200895d-ad75-42e9-ac68-98eb02d9196d"
+                    }
+                  ],
+                  "id": "87c06131-3191-40d5-b6f5-c5bb72f30fb3",
+                  "createdAt": "2026-10-22T02:04:35.000Z",
+                  "updatedAt": "2026-10-22T02:04:35.000Z",
+                  "uid": "35240-87c06131-3191-40d5-b6f5-c5bb72f30fb3"
+                }
+              ],
+              "id": "a0b20e3a-3674-495c-91a2-b002076b35fb",
+              "createdAt": "2026-10-22T02:04:35.000Z",
+              "updatedAt": "2026-10-22T02:04:35.000Z",
+              "uid": "35240-a0b20e3a-3674-495c-91a2-b002076b35fb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9da8823a-939d-4ed4-9e4c-7effcfe3e164",
-          "name": "Export Security Events",
-          "request": {
-            "name": "Export Security Events",
-            "description": {
-              "content": "Retrieve detailed security event records for a specified type and time period (1 or 7 days).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "securityevents",
-                ":type",
-                "export",
-                ":period"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "hostname",
-                  "value": "<string>",
-                  "description": "Base-64 encoded hostname to filter events by device."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "type",
-                  "description": "(Required) Security event type (1-19)."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "period",
-                  "description": "(Required) Time period in days (1 or 7)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "dc1892a5-caab-4b0b-ab4d-26a868ab7773",
-              "name": "Security event export.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "securityevents",
-                    ":type",
-                    "export",
-                    ":period"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "hostname",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "type",
-                      "description": "(Required) Security event type (1-19)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "period",
-                      "description": "(Required) Time period in days (1 or 7)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c708dfaf-4630-46e7-b293-7297b11ecea8",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "securityevents",
-                    ":type",
-                    "export",
-                    ":period"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "hostname",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "type",
-                      "description": "(Required) Security event type (1-19)."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "period",
-                      "description": "(Required) Time period in days (1 or 7)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 3561,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c2e02fa5-afc1-4cb2-805a-389f0df69b63",
-          "name": "Get Security Overview",
-          "request": {
-            "name": "Get Security Overview",
-            "description": {
-              "content": "Retrieve a security overview summary for the account covering the specified number of days (1, 7, or 30).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "securityoverview",
-                ":period"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "period",
-                  "description": "(Required) Period in days (1, 7, or 30)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "a3ba4234-0f0c-4cdc-99cc-b3516c11b250",
-              "name": "Security overview summary.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "securityoverview",
-                    ":period"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "period",
-                      "description": "(Required) Period in days (1, 7, or 30)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1a9aae0d-ff6e-4c7d-a989-be43d32ad46d",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "securityoverview",
-                    ":period"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "period",
-                      "description": "(Required) Period in days (1, 7, or 30)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 3561,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "126d97f0-810a-41b1-931f-b24464e62372",
+          "createdAt": "2026-10-22T02:04:35.000Z",
+          "updatedAt": "2026-10-22T02:04:35.000Z",
+          "uid": "35240-126d97f0-810a-41b1-931f-b24464e62372"
         }
       ],
-      "event": []
+      "id": "551984ee-ea93-4e6a-98b0-742ccb437343",
+      "createdAt": "2026-10-22T02:04:35.000Z",
+      "updatedAt": "2026-10-22T02:04:35.000Z",
+      "uid": "35240-551984ee-ea93-4e6a-98b0-742ccb437343"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "db7c7d57-abbb-483e-ad4f-94d866607730",
-    "name": "WatchGuard Cloud Platform Accounts Security Events API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

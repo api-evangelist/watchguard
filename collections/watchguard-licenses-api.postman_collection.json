@@ -1,187 +1,187 @@
 {
+  "info": {
+    "_postman_id": "ce0795ba-1ecb-4581-940b-ccced01b10b4",
+    "name": "WatchGuard Endpoint Security Management Licenses API",
+    "description": "The WatchGuard Endpoint Security Management API provides RESTful access to WatchGuard Endpoint Security (WES) features including device management, security events, risk assessment, configuration management, and license information. All endpoints require OAuth 2.0 bearer authentication and the WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:22.000Z",
+    "updatedAt": "2026-10-22T02:04:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce0795ba-1ecb-4581-940b-ccced01b10b4"
+  },
   "item": [
     {
-      "id": "fc1eb952-bc8e-4f95-9991-423c07ad71ff",
-      "name": "Licenses",
-      "description": {
-        "content": "Retrieve endpoint security license information.",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "9848a65b-923e-42b1-b620-39dfb74ca7ba",
-          "name": "Get Licenses",
-          "request": {
-            "name": "Get Licenses",
-            "description": {
-              "content": "Retrieve endpoint security license information for the account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "licenses"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "ecf5f76f-7515-4e06-9498-3a7f63e50cf7",
-              "name": "License information.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "licenses"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "licenses",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1a87ab38-bd34-471d-9c3c-ef43cad36c3d",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "licenses"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                  "name": "Get Licenses",
+                  "id": "56e600fe-fc2d-43bc-b60f-7cd09e4c4bf4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/licenses",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "licenses"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6384edfb-4109-42f1-8de9-532e71913643",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) WatchGuard Cloud account ID."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve endpoint security license information for the account."
+                  },
+                  "response": [
+                    {
+                      "id": "3977ac15-192f-441e-aec4-8bcd3b6b4b84",
+                      "name": "License information.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/licenses",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "licenses"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:04:22.000Z",
+                      "updatedAt": "2026-10-22T02:04:22.000Z",
+                      "uid": "35240-3977ac15-192f-441e-aec4-8bcd3b6b4b84"
+                    },
+                    {
+                      "id": "184164d6-6a09-43b6-b5cb-cc5595500b3a",
+                      "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/licenses",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "licenses"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:04:22.000Z",
+                      "updatedAt": "2026-10-22T02:04:22.000Z",
+                      "uid": "35240-184164d6-6a09-43b6-b5cb-cc5595500b3a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:04:22.000Z",
+                  "updatedAt": "2026-10-22T02:04:22.000Z",
+                  "uid": "35240-56e600fe-fc2d-43bc-b60f-7cd09e4c4bf4"
                 }
               ],
-              "body": "{\n  \"code\": 3558,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "ff2c90d7-3781-481e-ba9f-6f2dd1c987d4",
+              "createdAt": "2026-10-22T02:04:22.000Z",
+              "updatedAt": "2026-10-22T02:04:22.000Z",
+              "uid": "35240-ff2c90d7-3781-481e-ba9f-6f2dd1c987d4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c4c36967-3f17-4272-b6c9-1f095a649561",
+          "createdAt": "2026-10-22T02:04:22.000Z",
+          "updatedAt": "2026-10-22T02:04:22.000Z",
+          "uid": "35240-c4c36967-3f17-4272-b6c9-1f095a649561"
         }
       ],
-      "event": []
+      "id": "dd125594-be12-4af4-b63b-d97b66212936",
+      "createdAt": "2026-10-22T02:04:22.000Z",
+      "updatedAt": "2026-10-22T02:04:22.000Z",
+      "uid": "35240-dd125594-be12-4af4-b63b-d97b66212936"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "8485352b-134d-4501-bf2c-77fdc2af5f31",
-    "name": "WatchGuard Cloud Platform Accounts Licenses API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

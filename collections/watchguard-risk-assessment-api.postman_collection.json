@@ -1,365 +1,372 @@
 {
+  "info": {
+    "_postman_id": "c6a43eae-0288-46df-a468-7a5a0fb59e45",
+    "name": "WatchGuard Endpoint Security Management Risk Assessment API",
+    "description": "The WatchGuard Endpoint Security Management API provides RESTful access to WatchGuard Endpoint Security (WES) features including device management, security events, risk assessment, configuration management, and license information. All endpoints require OAuth 2.0 bearer authentication and the WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:31.000Z",
+    "updatedAt": "2026-10-22T02:04:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c6a43eae-0288-46df-a468-7a5a0fb59e45"
+  },
   "item": [
     {
-      "id": "dddafe66-21fe-4dd9-8dc9-bdfe3c1dd3ce",
-      "name": "Risk Assessment",
-      "description": {
-        "content": "Retrieve risk assessment summaries and detected risks.",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "6245602d-0f6f-4861-939c-30115923c56d",
-          "name": "Get Company Risk Summary",
-          "request": {
-            "name": "Get Company Risk Summary",
-            "description": {
-              "content": "Retrieve company-wide risk summary categorized by severity level.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "riskassessment",
-                "companyrisksummary"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "0e4a5530-684f-4151-a07d-faa98d395dd9",
-              "name": "Company risk summary.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "riskassessment",
-                    "companyrisksummary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "riskassessment",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "companyrisksummary",
+                  "item": [
+                    {
+                      "name": "Get Company Risk Summary",
+                      "id": "6420ffe6-c586-4388-a2c3-0c0f65350e20",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/riskassessment/companyrisksummary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "riskassessment",
+                            "companyrisksummary"
+                          ],
+                          "variable": [
+                            {
+                              "id": "234b0c8d-bac6-45c7-aa17-fa0fcd8bccdd",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve company-wide risk summary categorized by severity level."
+                      },
+                      "response": [
+                        {
+                          "id": "20fc5ff4-841e-455d-8758-2c5759761090",
+                          "name": "Company risk summary.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/riskassessment/companyrisksummary",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "riskassessment",
+                                "companyrisksummary"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:32.000Z",
+                          "updatedAt": "2026-10-22T02:04:32.000Z",
+                          "uid": "35240-20fc5ff4-841e-455d-8758-2c5759761090"
+                        },
+                        {
+                          "id": "0ce62e4a-e44b-4e1d-b703-58c9153e7656",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/riskassessment/companyrisksummary",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "riskassessment",
+                                "companyrisksummary"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:32.000Z",
+                          "updatedAt": "2026-10-22T02:04:32.000Z",
+                          "uid": "35240-0ce62e4a-e44b-4e1d-b703-58c9153e7656"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:32.000Z",
+                      "updatedAt": "2026-10-22T02:04:32.000Z",
+                      "uid": "35240-6420ffe6-c586-4388-a2c3-0c0f65350e20"
+                    }
+                  ],
+                  "id": "082ab182-9648-4972-9480-3cae63645959",
+                  "createdAt": "2026-10-22T02:04:32.000Z",
+                  "updatedAt": "2026-10-22T02:04:32.000Z",
+                  "uid": "35240-082ab182-9648-4972-9480-3cae63645959"
+                },
+                {
+                  "name": "detectedrisks",
+                  "item": [
+                    {
+                      "name": "Get Detected Risks",
+                      "id": "cd79a0f9-9a40-4968-9fe4-1606533692ae",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/riskassessment/detectedrisks?$filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "riskassessment",
+                            "detectedrisks"
+                          ],
+                          "query": [
+                            {
+                              "description": "OData filter expression supporting device type and OS filtering.",
+                              "key": "$filter",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "4cedb5d8-66e4-4847-b2dc-4e38e749e778",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) WatchGuard Cloud account ID."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve detected risk counts by type, with optional filtering by device type and operating system."
+                      },
+                      "response": [
+                        {
+                          "id": "43880db0-7d47-409d-9a76-c909b9babe90",
+                          "name": "Detected risks.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/riskassessment/detectedrisks?$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "riskassessment",
+                                "detectedrisks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "OData filter expression supporting device type and OS filtering.",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:04:32.000Z",
+                          "updatedAt": "2026-10-22T02:04:32.000Z",
+                          "uid": "35240-43880db0-7d47-409d-9a76-c909b9babe90"
+                        },
+                        {
+                          "id": "503214e5-a9c1-4632-adf5-21f899e76e3b",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/:accountId/riskassessment/detectedrisks?$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                ":accountId",
+                                "riskassessment",
+                                "detectedrisks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "OData filter expression supporting device type and OS filtering.",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:32.000Z",
+                          "updatedAt": "2026-10-22T02:04:32.000Z",
+                          "uid": "35240-503214e5-a9c1-4632-adf5-21f899e76e3b"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:32.000Z",
+                      "updatedAt": "2026-10-22T02:04:32.000Z",
+                      "uid": "35240-cd79a0f9-9a40-4968-9fe4-1606533692ae"
+                    }
+                  ],
+                  "id": "a10fe317-3afa-4ae1-9b05-ba61f4956010",
+                  "createdAt": "2026-10-22T02:04:32.000Z",
+                  "updatedAt": "2026-10-22T02:04:32.000Z",
+                  "uid": "35240-a10fe317-3afa-4ae1-9b05-ba61f4956010"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "8b59a348-c7c2-478d-a8af-f66fa4d3987f",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "riskassessment",
-                    "companyrisksummary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5566,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "d35d033d-f2b1-4983-868b-59723945fd34",
+              "createdAt": "2026-10-22T02:04:32.000Z",
+              "updatedAt": "2026-10-22T02:04:32.000Z",
+              "uid": "35240-d35d033d-f2b1-4983-868b-59723945fd34"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1b7b26d2-3deb-41b6-81ce-912d4fabe7f0",
-          "name": "Get Detected Risks",
-          "request": {
-            "name": "Get Detected Risks",
-            "description": {
-              "content": "Retrieve detected risk counts by type, with optional filtering by device type and operating system.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "riskassessment",
-                "detectedrisks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "$filter",
-                  "value": "<string>",
-                  "description": "OData filter expression supporting device type and OS filtering."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "e7d27954-743f-4439-a554-d696c0e1f9ac",
-              "name": "Detected risks.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "riskassessment",
-                    "detectedrisks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "192b1a7d-678e-4466-a4e0-71ebc66f5a20",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "riskassessment",
-                    "detectedrisks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$filter",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5566,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6a3d57f0-f259-4a20-8902-21431b66a01e",
+          "createdAt": "2026-10-22T02:04:32.000Z",
+          "updatedAt": "2026-10-22T02:04:32.000Z",
+          "uid": "35240-6a3d57f0-f259-4a20-8902-21431b66a01e"
         }
       ],
-      "event": []
+      "id": "73ce493a-0da3-453d-a184-ab786bf5926e",
+      "createdAt": "2026-10-22T02:04:32.000Z",
+      "updatedAt": "2026-10-22T02:04:32.000Z",
+      "uid": "35240-73ce493a-0da3-453d-a184-ab786bf5926e"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "a837fd39-d9de-4dbe-8d83-55f895239d3a",
-    "name": "WatchGuard Cloud Platform Accounts Risk Assessment API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

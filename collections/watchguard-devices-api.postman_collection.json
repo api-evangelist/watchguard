@@ -1,734 +1,752 @@
 {
+  "info": {
+    "_postman_id": "3dda59cb-eb6d-43f5-9aa1-38a3032a8d19",
+    "name": "WatchGuard Endpoint Security Management Devices API",
+    "description": "The WatchGuard Endpoint Security Management API provides RESTful access to WatchGuard Endpoint Security (WES) features including device management, security events, risk assessment, configuration management, and license information. All endpoints require OAuth 2.0 bearer authentication and the WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:16.000Z",
+    "updatedAt": "2026-10-22T02:04:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3dda59cb-eb6d-43f5-9aa1-38a3032a8d19"
+  },
   "item": [
     {
-      "id": "4eea15cb-a1b3-494c-919a-9d79f436c40c",
-      "name": "Devices",
-      "description": {
-        "content": "Manage and query endpoint devices.",
-        "type": "text/plain"
-      },
+      "name": "accounts",
       "item": [
         {
-          "id": "b336f745-ce33-4a4a-948b-f133daf7e37a",
-          "name": "List Devices",
-          "request": {
-            "name": "List Devices",
-            "description": {
-              "content": "Retrieve a paginated, searchable list of managed endpoint devices for the account. Supports OData-style query parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "devices"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "$top",
-                  "value": "<integer>",
-                  "description": "Number of records to return (max 3000)."
-                },
-                {
-                  "disabled": false,
-                  "key": "$skip",
-                  "value": "<integer>",
-                  "description": "Number of records to skip for pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "$search",
-                  "value": "<string>",
-                  "description": "Text search across supported fields."
-                },
-                {
-                  "disabled": false,
-                  "key": "$count",
-                  "value": "<boolean>",
-                  "description": "Include total count in response."
-                },
-                {
-                  "disabled": false,
-                  "key": "$orderby",
-                  "value": "<string>",
-                  "description": "Sort results (e.g., hostname+asc)."
-                },
-                {
-                  "disabled": false,
-                  "key": "$config",
-                  "value": "<string>",
-                  "description": "Include configuration details in the response."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{accountId}",
+          "item": [
             {
-              "id": "8293ca21-9786-4b8d-8400-dab6bc661082",
-              "name": "List of managed devices.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$top",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$skip",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$count",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "$orderby",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$config",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "devices",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "List Devices",
+                  "id": "e4ec5723-6e59-4f49-bd50-c3310942ec35",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/devices?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>&$config=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "devices"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to return (max 3000).",
+                          "key": "$top",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip for pagination.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Text search across supported fields.",
+                          "key": "$search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include total count in response.",
+                          "key": "$count",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Sort results (e.g., hostname+asc).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include configuration details in the response.",
+                          "key": "$config",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "9bb5e4f3-ab80-4457-b474-19a3da0215ee",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) WatchGuard Cloud account ID."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a paginated, searchable list of managed endpoint devices for the account. Supports OData-style query parameters."
+                  },
+                  "response": [
+                    {
+                      "id": "14ab5f0d-1cc5-4235-a277-b3545a275aa5",
+                      "name": "List of managed devices.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devices?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>&$config=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to return (max 3000).",
+                              "key": "$top",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination.",
+                              "key": "$skip",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Text search across supported fields.",
+                              "key": "$search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response.",
+                              "key": "$count",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Sort results (e.g., hostname+asc).",
+                              "key": "$orderby",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include configuration details in the response.",
+                              "key": "$config",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": [\n    {\n      \"deviceId\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"operatingSystem\": \"<string>\",\n      \"agentVersion\": \"<string>\",\n      \"protectionStatus\": \"Unprotected\",\n      \"lastSeen\": \"<dateTime>\"\n    },\n    {\n      \"deviceId\": \"<string>\",\n      \"hostname\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"operatingSystem\": \"<string>\",\n      \"agentVersion\": \"<string>\",\n      \"protectionStatus\": \"AtRisk\",\n      \"lastSeen\": \"<dateTime>\"\n    }\n  ],\n  \"count\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T02:04:16.000Z",
+                      "updatedAt": "2026-10-22T02:04:16.000Z",
+                      "uid": "35240-14ab5f0d-1cc5-4235-a277-b3545a275aa5"
+                    },
+                    {
+                      "id": "9c166af8-68d3-4b0d-8356-46da3242d806",
+                      "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devices?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>&$config=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to return (max 3000).",
+                              "key": "$top",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination.",
+                              "key": "$skip",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Text search across supported fields.",
+                              "key": "$search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response.",
+                              "key": "$count",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Sort results (e.g., hostname+asc).",
+                              "key": "$orderby",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include configuration details in the response.",
+                              "key": "$config",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:04:16.000Z",
+                      "updatedAt": "2026-10-22T02:04:16.000Z",
+                      "uid": "35240-9c166af8-68d3-4b0d-8356-46da3242d806"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:04:16.000Z",
+                  "updatedAt": "2026-10-22T02:04:16.000Z",
+                  "uid": "35240-e4ec5723-6e59-4f49-bd50-c3310942ec35"
                 }
               ],
-              "body": "{\n  \"value\": [\n    {\n      \"deviceId\": \"string\",\n      \"hostname\": \"string\",\n      \"ipAddress\": \"string\",\n      \"operatingSystem\": \"string\",\n      \"agentVersion\": \"string\",\n      \"protectionStatus\": \"AtRisk\",\n      \"lastSeen\": \"1971-05-18T11:20:51.591Z\"\n    },\n    {\n      \"deviceId\": \"string\",\n      \"hostname\": \"string\",\n      \"ipAddress\": \"string\",\n      \"operatingSystem\": \"string\",\n      \"agentVersion\": \"string\",\n      \"protectionStatus\": \"Protected\",\n      \"lastSeen\": \"1996-10-08T16:30:18.793Z\"\n    }\n  ],\n  \"count\": 6189\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "ad4e55e6-c74b-4cd6-abc9-3fc14c811910",
+              "createdAt": "2026-10-22T02:04:16.000Z",
+              "updatedAt": "2026-10-22T02:04:16.000Z",
+              "uid": "35240-ad4e55e6-c74b-4cd6-abc9-3fc14c811910"
             },
             {
-              "id": "ca142579-fb6b-4c5a-b83a-3cfe8ab4c97d",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$top",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$skip",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$count",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "$orderby",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$config",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "devicesprotectionstatus",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Get Devices Protection Status",
+                  "id": "450e1702-84fa-427c-b3e3-3e54fc383734",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/devicesprotectionstatus?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "devicesprotectionstatus"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to return (max 3000).",
+                          "key": "$top",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip for pagination.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Text search across supported fields.",
+                          "key": "$search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include total count in response.",
+                          "key": "$count",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Sort results (e.g., hostname+asc).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2b7c2d57-5984-4dcd-b2ac-d285db32cf19",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) WatchGuard Cloud account ID."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve protection status information for all managed devices."
+                  },
+                  "response": [
+                    {
+                      "id": "46be2de5-5ada-495d-b59d-19d90d71a716",
+                      "name": "Device protection status list.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devicesprotectionstatus?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devicesprotectionstatus"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to return (max 3000).",
+                              "key": "$top",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination.",
+                              "key": "$skip",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Text search across supported fields.",
+                              "key": "$search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response.",
+                              "key": "$count",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Sort results (e.g., hostname+asc).",
+                              "key": "$orderby",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:04:16.000Z",
+                      "updatedAt": "2026-10-22T02:04:16.000Z",
+                      "uid": "35240-46be2de5-5ada-495d-b59d-19d90d71a716"
+                    },
+                    {
+                      "id": "ce94866a-f0b6-4fe4-917b-3f4016c0fa56",
+                      "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/devicesprotectionstatus?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "devicesprotectionstatus"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to return (max 3000).",
+                              "key": "$top",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination.",
+                              "key": "$skip",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Text search across supported fields.",
+                              "key": "$search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response.",
+                              "key": "$count",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Sort results (e.g., hostname+asc).",
+                              "key": "$orderby",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:04:16.000Z",
+                      "updatedAt": "2026-10-22T02:04:16.000Z",
+                      "uid": "35240-ce94866a-f0b6-4fe4-917b-3f4016c0fa56"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:04:16.000Z",
+                  "updatedAt": "2026-10-22T02:04:16.000Z",
+                  "uid": "35240-450e1702-84fa-427c-b3e3-3e54fc383734"
                 }
               ],
-              "body": "{\n  \"code\": 5155,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "beac8d62-e09b-4f74-8ddd-5cedc030bae8",
+              "createdAt": "2026-10-22T02:04:16.000Z",
+              "updatedAt": "2026-10-22T02:04:16.000Z",
+              "uid": "35240-beac8d62-e09b-4f74-8ddd-5cedc030bae8"
+            },
+            {
+              "name": "unmanageddevices",
+              "item": [
+                {
+                  "name": "List Unmanaged Devices",
+                  "id": "8e4fceff-1167-4b83-ad3f-758b4cb1cac8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId/unmanageddevices?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId",
+                        "unmanageddevices"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of records to return (max 3000).",
+                          "key": "$top",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of records to skip for pagination.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Text search across supported fields.",
+                          "key": "$search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Include total count in response.",
+                          "key": "$count",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Sort results (e.g., hostname+asc).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e548e2be-1ae2-40aa-aff1-0abd51c4f4a9",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) WatchGuard Cloud account ID."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve devices discovered on the network that are not yet managed."
+                  },
+                  "response": [
+                    {
+                      "id": "599c2d99-a366-4542-b39f-ad9dd0db17b2",
+                      "name": "List of unmanaged devices.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/unmanageddevices?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "unmanageddevices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to return (max 3000).",
+                              "key": "$top",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination.",
+                              "key": "$skip",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Text search across supported fields.",
+                              "key": "$search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response.",
+                              "key": "$count",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Sort results (e.g., hostname+asc).",
+                              "key": "$orderby",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:04:16.000Z",
+                      "updatedAt": "2026-10-22T02:04:16.000Z",
+                      "uid": "35240-599c2d99-a366-4542-b39f-ad9dd0db17b2"
+                    },
+                    {
+                      "id": "899d5e4a-8bfe-4e75-a312-9610b4f9eed4",
+                      "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:accountId/unmanageddevices?$top=<integer>&$skip=<integer>&$search=<string>&$count=<boolean>&$orderby=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":accountId",
+                            "unmanageddevices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of records to return (max 3000).",
+                              "key": "$top",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of records to skip for pagination.",
+                              "key": "$skip",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Text search across supported fields.",
+                              "key": "$search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Include total count in response.",
+                              "key": "$count",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Sort results (e.g., hostname+asc).",
+                              "key": "$orderby",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:04:16.000Z",
+                      "updatedAt": "2026-10-22T02:04:16.000Z",
+                      "uid": "35240-899d5e4a-8bfe-4e75-a312-9610b4f9eed4"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:04:16.000Z",
+                  "updatedAt": "2026-10-22T02:04:16.000Z",
+                  "uid": "35240-8e4fceff-1167-4b83-ad3f-758b4cb1cac8"
+                }
+              ],
+              "id": "03ec5384-1383-4cd5-ac33-6b54d6f55ed7",
+              "createdAt": "2026-10-22T02:04:16.000Z",
+              "updatedAt": "2026-10-22T02:04:16.000Z",
+              "uid": "35240-03ec5384-1383-4cd5-ac33-6b54d6f55ed7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8d38f3e5-0252-45de-8067-d7dc17154d8b",
-          "name": "Get Devices Protection Status",
-          "request": {
-            "name": "Get Devices Protection Status",
-            "description": {
-              "content": "Retrieve protection status information for all managed devices.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "devicesprotectionstatus"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "$top",
-                  "value": "<integer>",
-                  "description": "Number of records to return (max 3000)."
-                },
-                {
-                  "disabled": false,
-                  "key": "$skip",
-                  "value": "<integer>",
-                  "description": "Number of records to skip for pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "$search",
-                  "value": "<string>",
-                  "description": "Text search across supported fields."
-                },
-                {
-                  "disabled": false,
-                  "key": "$count",
-                  "value": "<boolean>",
-                  "description": "Include total count in response."
-                },
-                {
-                  "disabled": false,
-                  "key": "$orderby",
-                  "value": "<string>",
-                  "description": "Sort results (e.g., hostname+asc)."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f4a7aab0-6b43-4ea6-aade-c7cec78c8c1f",
-              "name": "Device protection status list.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devicesprotectionstatus"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$top",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$skip",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$count",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "$orderby",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "e1843390-b23f-4135-861c-5392641e9bea",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "devicesprotectionstatus"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$top",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$skip",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$count",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "$orderby",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5155,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "50732bf7-a3bb-4263-a28c-68e789725e17",
-          "name": "List Unmanaged Devices",
-          "request": {
-            "name": "List Unmanaged Devices",
-            "description": {
-              "content": "Retrieve devices discovered on the network that are not yet managed.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "accounts",
-                ":accountId",
-                "unmanageddevices"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "$top",
-                  "value": "<integer>",
-                  "description": "Number of records to return (max 3000)."
-                },
-                {
-                  "disabled": false,
-                  "key": "$skip",
-                  "value": "<integer>",
-                  "description": "Number of records to skip for pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "$search",
-                  "value": "<string>",
-                  "description": "Text search across supported fields."
-                },
-                {
-                  "disabled": false,
-                  "key": "$count",
-                  "value": "<boolean>",
-                  "description": "Include total count in response."
-                },
-                {
-                  "disabled": false,
-                  "key": "$orderby",
-                  "value": "<string>",
-                  "description": "Sort results (e.g., hostname+asc)."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "a24ebedd-bd52-480e-9d5d-e677d82ae011",
-              "name": "List of unmanaged devices.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "unmanageddevices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$top",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$skip",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$count",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "$orderby",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "61629919-79d1-42cc-bf69-ea6a72dab51f",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "accounts",
-                    ":accountId",
-                    "unmanageddevices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "$top",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$skip",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "$search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "$count",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "$orderby",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 5155,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ce959926-9b01-499d-bd1e-d8edd178ae77",
+          "createdAt": "2026-10-22T02:04:16.000Z",
+          "updatedAt": "2026-10-22T02:04:16.000Z",
+          "uid": "35240-ce959926-9b01-499d-bd1e-d8edd178ae77"
         }
       ],
-      "event": []
+      "id": "96d44afc-96a3-49cc-8181-8211a01b8c35",
+      "createdAt": "2026-10-22T02:04:16.000Z",
+      "updatedAt": "2026-10-22T02:04:16.000Z",
+      "uid": "35240-96d44afc-96a3-49cc-8181-8211a01b8c35"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest/endpoint-security/management/api/v1"
     }
-  ],
-  "info": {
-    "_postman_id": "2e995d93-1e2b-49a4-8e8c-320481f58739",
-    "name": "WatchGuard Cloud Platform Accounts Devices API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

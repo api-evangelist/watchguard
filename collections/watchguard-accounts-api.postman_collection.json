@@ -1,1308 +1,1316 @@
 {
+  "info": {
+    "_postman_id": "86b8097f-d03c-4646-b3dc-f847ef701830",
+    "name": "WatchGuard Cloud Platform Accounts API",
+    "description": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:03:42.000Z",
+    "updatedAt": "2026-10-22T02:03:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-86b8097f-d03c-4646-b3dc-f847ef701830"
+  },
   "item": [
     {
-      "id": "d393d736-210c-421c-9c96-5a338e34bc42",
-      "name": "Accounts",
-      "description": {
-        "content": "Manage WatchGuard Cloud accounts and sub-accounts.",
-        "type": "text/plain"
-      },
+      "name": "platform",
       "item": [
         {
-          "id": "d45db6c3-4809-4472-88a1-d64f4b32d507",
-          "name": "Get Account Information",
-          "request": {
-            "name": "Get Account Information",
-            "description": {
-              "content": "Retrieve information about a WatchGuard Cloud account including contacts, addresses, parent account, and service properties.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "accounts",
-                "v1",
-                "accounts",
-                ":accountId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Specify additional fields to include in the response."
-                },
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Specify additional fields to include in the response."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "accounts",
+          "item": [
             {
-              "id": "34863771-d737-4b0a-b017-8546c7991b21",
-              "name": "Account information retrieved successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "accounts",
+                  "item": [
+                    {
+                      "name": "{accountId}",
+                      "item": [
+                        {
+                          "name": "children",
+                          "item": [
+                            {
+                              "name": "Get Managed Accounts",
+                              "id": "7930c179-3079-4a89-84aa-8c670faf3280",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId/children?type=1&sortBy=name&sortOrder=desc&offset=<integer>&limit=<integer>&name=<string>&includeDelegatedAccounts=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId",
+                                    "children"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by account type (0=All, 1=Service Provider, 2=Subscriber).",
+                                      "key": "type",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "key": "sortBy",
+                                      "value": "name"
+                                    },
+                                    {
+                                      "key": "sortOrder",
+                                      "value": "desc"
+                                    },
+                                    {
+                                      "key": "offset",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "key": "limit",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Filter accounts by name.",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "key": "includeDelegatedAccounts",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "642b5de0-6110-4301-a368-251fb4ea3510",
+                                      "key": "accountId",
+                                      "value": "<string>",
+                                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a paginated list of accounts managed by the specified account."
+                              },
+                              "response": [
+                                {
+                                  "id": "2303cdb5-2696-4a30-892a-7e667091d311",
+                                  "name": "List of managed accounts.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId/children?type=1&sortBy=name&sortOrder=desc&offset=<integer>&limit=<integer>&name=<string>&includeDelegatedAccounts=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "platform",
+                                        "accounts",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "children"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by account type (0=All, 1=Service Provider, 2=Subscriber).",
+                                          "key": "type",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "sortBy",
+                                          "value": "name"
+                                        },
+                                        {
+                                          "key": "sortOrder",
+                                          "value": "desc"
+                                        },
+                                        {
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Filter accounts by name.",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "includeDelegatedAccounts",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"items\": [\n    {\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<integer>\",\n      \"parentAccess\": \"<string>\",\n      \"totalOperators\": \"<integer>\"\n    },\n    {\n      \"accountId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<integer>\",\n      \"parentAccess\": \"<string>\",\n      \"totalOperators\": \"<integer>\"\n    }\n  ],\n  \"pageControls\": {\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\",\n    \"totalItems\": \"<integer>\"\n  }\n}",
+                                  "createdAt": "2026-10-22T02:03:42.000Z",
+                                  "updatedAt": "2026-10-22T02:03:42.000Z",
+                                  "uid": "35240-2303cdb5-2696-4a30-892a-7e667091d311"
+                                },
+                                {
+                                  "id": "2069228d-efed-4ad2-bfff-768b8e7ccfc3",
+                                  "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId/children?type=1&sortBy=name&sortOrder=desc&offset=<integer>&limit=<integer>&name=<string>&includeDelegatedAccounts=false",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "platform",
+                                        "accounts",
+                                        "v1",
+                                        "accounts",
+                                        ":accountId",
+                                        "children"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by account type (0=All, 1=Service Provider, 2=Subscriber).",
+                                          "key": "type",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "sortBy",
+                                          "value": "name"
+                                        },
+                                        {
+                                          "key": "sortOrder",
+                                          "value": "desc"
+                                        },
+                                        {
+                                          "key": "offset",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "key": "limit",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "Filter accounts by name.",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "key": "includeDelegatedAccounts",
+                                          "value": "false"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "accountId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T02:03:42.000Z",
+                                  "updatedAt": "2026-10-22T02:03:42.000Z",
+                                  "uid": "35240-2069228d-efed-4ad2-bfff-768b8e7ccfc3"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-7930c179-3079-4a89-84aa-8c670faf3280"
+                            }
+                          ],
+                          "id": "28ebf76f-484b-4351-8b5c-94834dd6b4dc",
+                          "createdAt": "2026-10-22T02:03:42.000Z",
+                          "updatedAt": "2026-10-22T02:03:42.000Z",
+                          "uid": "35240-28ebf76f-484b-4351-8b5c-94834dd6b4dc"
+                        },
+                        {
+                          "name": "Get Account Information",
+                          "id": "6ddb0175-4df8-4398-b08b-f4e113b63335",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?fields=parent&fields=addresses",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "accounts",
+                                "v1",
+                                "accounts",
+                                ":accountId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specify additional fields to include in the response.",
+                                  "key": "fields",
+                                  "value": "parent"
+                                },
+                                {
+                                  "description": "Specify additional fields to include in the response.",
+                                  "key": "fields",
+                                  "value": "addresses"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a43e1b26-e326-4549-9bf7-7cee127b794c",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                                }
+                              ]
+                            },
+                            "description": "Retrieve information about a WatchGuard Cloud account including contacts, addresses, parent account, and service properties."
+                          },
+                          "response": [
+                            {
+                              "id": "ac117397-fba3-4d26-a23c-84de2e6a752a",
+                              "name": "Account information retrieved successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?fields=addresses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Specify additional fields to include in the response.",
+                                      "key": "fields",
+                                      "value": "addresses"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"accountId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<integer>\",\n  \"contacts\": {\n    \"primaryContactId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"addresses\": {},\n  \"parent\": {\n    \"id\": \"<string>\",\n    \"access\": \"<string>\"\n  },\n  \"serviceProperties\": {}\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-ac117397-fba3-4d26-a23c-84de2e6a752a"
+                            },
+                            {
+                              "id": "4fd47a84-aa89-4709-a154-d669b698f8ff",
+                              "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?fields=addresses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Specify additional fields to include in the response.",
+                                      "key": "fields",
+                                      "value": "addresses"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-4fd47a84-aa89-4709-a154-d669b698f8ff"
+                            },
+                            {
+                              "id": "6991c959-af4b-4bab-8163-ad5c8dbd64a0",
+                              "name": "Resource not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?fields=addresses",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Specify additional fields to include in the response.",
+                                      "key": "fields",
+                                      "value": "addresses"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-6991c959-af4b-4bab-8163-ad5c8dbd64a0"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:03:42.000Z",
+                          "updatedAt": "2026-10-22T02:03:42.000Z",
+                          "uid": "35240-6ddb0175-4df8-4398-b08b-f4e113b63335"
+                        },
+                        {
+                          "name": "Create Account",
+                          "id": "22beed78-f4e8-4deb-9b07-9cb488f16799",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": 2,\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "accounts",
+                                "v1",
+                                "accounts",
+                                ":accountId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9e231a1b-4abd-4773-8986-b2a26716b358",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                                }
+                              ]
+                            },
+                            "description": "Create a new WatchGuard Cloud managed account (service provider or subscriber)."
+                          },
+                          "response": [
+                            {
+                              "id": "5daecd26-3a03-45b9-ac48-ab467dc3eb2c",
+                              "name": "Account created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": 2,\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"accountID\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-5daecd26-3a03-45b9-ac48-ab467dc3eb2c"
+                            },
+                            {
+                              "id": "777a0021-a5bb-4de1-a971-8b8f595f4d4e",
+                              "name": "Bad request \u2014 validation error in request body or parameters.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": 2,\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-777a0021-a5bb-4de1-a971-8b8f595f4d4e"
+                            },
+                            {
+                              "id": "2c4446ee-f138-4a73-8cdc-d5b534c7e9d4",
+                              "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": 2,\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-2c4446ee-f138-4a73-8cdc-d5b534c7e9d4"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:03:42.000Z",
+                          "updatedAt": "2026-10-22T02:03:42.000Z",
+                          "uid": "35240-22beed78-f4e8-4deb-9b07-9cb488f16799"
+                        },
+                        {
+                          "name": "Update Account",
+                          "id": "6e322cf8-2b2c-49e6-8497-d77d528c0348",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "accounts",
+                                "v1",
+                                "accounts",
+                                ":accountId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "459e3bb6-485a-493d-afb3-0f4d849a824c",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                                }
+                              ]
+                            },
+                            "description": "Update the name and primary contact details of a managed account."
+                          },
+                          "response": [
+                            {
+                              "id": "0a1de50c-3d18-40f7-92fd-c9a6c77c4ac9",
+                              "name": "Account updated successfully.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-0a1de50c-3d18-40f7-92fd-c9a6c77c4ac9"
+                            },
+                            {
+                              "id": "dc1f3aad-32c2-41b5-8ff1-4c95ac2f1363",
+                              "name": "Bad request \u2014 validation error in request body or parameters.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-dc1f3aad-32c2-41b5-8ff1-4c95ac2f1363"
+                            },
+                            {
+                              "id": "85aab67b-8431-4558-afab-5416ed7af8ff",
+                              "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-85aab67b-8431-4558-afab-5416ed7af8ff"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:03:42.000Z",
+                          "updatedAt": "2026-10-22T02:03:42.000Z",
+                          "uid": "35240-6e322cf8-2b2c-49e6-8497-d77d528c0348"
+                        },
+                        {
+                          "name": "Delete Account",
+                          "id": "fef578a8-d649-49dc-bd09-8ac731b0095a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?force=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "accounts",
+                                "v1",
+                                "accounts",
+                                ":accountId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "If true, delete the account and all managed sub-accounts.",
+                                  "key": "force",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fbb96d54-cdde-4a28-b275-1c70a865b7dc",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
+                                }
+                              ]
+                            },
+                            "description": "Delete a managed WatchGuard Cloud account and optionally all its sub-accounts."
+                          },
+                          "response": [
+                            {
+                              "id": "3df24961-6321-49c8-95b3-892303bfb470",
+                              "name": "Account deleted successfully.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?force=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, delete the account and all managed sub-accounts.",
+                                      "key": "force",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"childIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-3df24961-6321-49c8-95b3-892303bfb470"
+                            },
+                            {
+                              "id": "70bef6e2-327d-45f8-ac90-cea9f9b9ea94",
+                              "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?force=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, delete the account and all managed sub-accounts.",
+                                      "key": "force",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-70bef6e2-327d-45f8-ac90-cea9f9b9ea94"
+                            },
+                            {
+                              "id": "306ea17b-94fb-49c0-955b-3df34fdf16ea",
+                              "name": "Resource not found.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/platform/accounts/v1/accounts/:accountId?force=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "platform",
+                                    "accounts",
+                                    "v1",
+                                    "accounts",
+                                    ":accountId"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, delete the account and all managed sub-accounts.",
+                                      "key": "force",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:03:42.000Z",
+                              "updatedAt": "2026-10-22T02:03:42.000Z",
+                              "uid": "35240-306ea17b-94fb-49c0-955b-3df34fdf16ea"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:03:42.000Z",
+                          "updatedAt": "2026-10-22T02:03:42.000Z",
+                          "uid": "35240-fef578a8-d649-49dc-bd09-8ac731b0095a"
+                        }
+                      ],
+                      "id": "ad410fa3-d414-42fb-b64f-f8d721a82103",
+                      "createdAt": "2026-10-22T02:03:42.000Z",
+                      "updatedAt": "2026-10-22T02:03:42.000Z",
+                      "uid": "35240-ad410fa3-d414-42fb-b64f-f8d721a82103"
+                    }
+                  ],
+                  "id": "b7818444-5556-4b29-bffb-758013b89ae2",
+                  "createdAt": "2026-10-22T02:03:42.000Z",
+                  "updatedAt": "2026-10-22T02:03:42.000Z",
+                  "uid": "35240-b7818444-5556-4b29-bffb-758013b89ae2"
                 }
               ],
-              "body": "{\n  \"accountId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"type\": 112,\n  \"contacts\": {\n    \"primaryContactId\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\"\n  },\n  \"addresses\": {},\n  \"parent\": {\n    \"id\": \"string\",\n    \"access\": \"string\"\n  },\n  \"serviceProperties\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "baa7f997-4d06-40b4-9599-a39730fff22d",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6f879e05-979a-4ec7-8444-d567bdbce52e",
-              "name": "Resource not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "50d785e3-4de4-4cee-83c6-18e3bbeae27e",
+              "createdAt": "2026-10-22T02:03:42.000Z",
+              "updatedAt": "2026-10-22T02:03:42.000Z",
+              "uid": "35240-50d785e3-4de4-4cee-83c6-18e3bbeae27e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "df6e38da-35fa-4336-8b74-defe2ad813cd",
-          "name": "Create Account",
-          "request": {
-            "name": "Create Account",
-            "description": {
-              "content": "Create a new WatchGuard Cloud managed account (service provider or subscriber).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "accounts",
-                "v1",
-                "accounts",
-                ":accountId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "7175f3bf-ff85-4a51-bfcc-f800a63c4dcf",
-              "name": "Account created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"accountID\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "78be2de0-a912-4760-90d9-a0cd0363dda7",
-              "name": "Bad request — validation error in request body or parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "42b99f11-86b0-40c2-8854-e40f3cfab8d6",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4b4aacfb-f022-4813-b258-865b751d2129",
-          "name": "Update Account",
-          "request": {
-            "name": "Update Account",
-            "description": {
-              "content": "Update the name and primary contact details of a managed account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "accounts",
-                "v1",
-                "accounts",
-                ":accountId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0494ac8f-ffa5-4883-a9ff-1cdc96d46e79",
-              "name": "Account updated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b24f119d-d8b9-4391-851c-b2f49af8faff",
-              "name": "Bad request — validation error in request body or parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "93f46403-4584-41f1-8b53-6db49af2e58d",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "75080407-1c33-4716-9848-5f6cb1134a23",
-          "name": "Delete Account",
-          "request": {
-            "name": "Delete Account",
-            "description": {
-              "content": "Delete a managed WatchGuard Cloud account and optionally all its sub-accounts.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "accounts",
-                "v1",
-                "accounts",
-                ":accountId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "force",
-                  "value": "false",
-                  "description": "If true, delete the account and all managed sub-accounts."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ec80b9ba-d2f8-43e4-9c3a-72c312eb548b",
-              "name": "Account deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "force",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"childIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "56217ab4-7a5d-4a92-aa35-67fd883e2409",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "force",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "da7b092b-e176-4ebc-aed9-34aa8094e6ac",
-              "name": "Resource not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "force",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f8076752-2da1-42a5-b40d-52ee799d558e",
-          "name": "Get Managed Accounts",
-          "request": {
-            "name": "Get Managed Accounts",
-            "description": {
-              "content": "Retrieve a paginated list of accounts managed by the specified account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "accounts",
-                "v1",
-                "accounts",
-                ":accountId",
-                "children"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<integer>",
-                  "description": "Filter by account type (0=All, 1=Service Provider, 2=Subscriber)."
-                },
-                {
-                  "disabled": false,
-                  "key": "sortBy",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "sortOrder",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "<integer>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<integer>"
-                },
-                {
-                  "disabled": false,
-                  "key": "name",
-                  "value": "<string>",
-                  "description": "Filter accounts by name."
-                },
-                {
-                  "disabled": false,
-                  "key": "includeDelegatedAccounts",
-                  "value": "false"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "accountId",
-                  "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "29417545-a2a9-4be6-8466-e24c11306e42",
-              "name": "List of managed accounts.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId",
-                    "children"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "sortBy",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "sortOrder",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "includeDelegatedAccounts",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"accountId\": \"string\",\n      \"name\": \"string\",\n      \"type\": 6704,\n      \"parentAccess\": \"string\",\n      \"totalOperators\": 9638\n    },\n    {\n      \"accountId\": \"string\",\n      \"name\": \"string\",\n      \"type\": 120,\n      \"parentAccess\": \"string\",\n      \"totalOperators\": 6468\n    }\n  ],\n  \"pageControls\": {\n    \"limit\": 9198,\n    \"offset\": 7214,\n    \"totalItems\": 2485\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "eb167858-0f08-4854-bd6c-7ad67fcc6ac0",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "accounts",
-                    "v1",
-                    "accounts",
-                    ":accountId",
-                    "children"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "sortBy",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "sortOrder",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "includeDelegatedAccounts",
-                      "value": "false"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "accountId",
-                      "description": "(Required) WatchGuard Cloud account ID (e.g., WGC-1-123abc456 or ACC-1234567)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 1601,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "688a9df4-0c17-4687-8598-d8ae554eade1",
+          "createdAt": "2026-10-22T02:03:42.000Z",
+          "updatedAt": "2026-10-22T02:03:42.000Z",
+          "uid": "35240-688a9df4-0c17-4687-8598-d8ae554eade1"
         }
       ],
-      "event": []
+      "id": "4a43c984-b3ff-4ac4-83cf-afd7c8ad5d41",
+      "createdAt": "2026-10-22T02:03:42.000Z",
+      "updatedAt": "2026-10-22T02:03:42.000Z",
+      "uid": "35240-4a43c984-b3ff-4ac4-83cf-afd7c8ad5d41"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest"
     }
-  ],
-  "info": {
-    "_postman_id": "e9b6a08f-8058-47a4-8551-81d25288bd94",
-    "name": "WatchGuard Cloud Platform Accounts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

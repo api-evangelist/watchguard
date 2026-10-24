@@ -1,897 +1,980 @@
 {
+  "info": {
+    "_postman_id": "afdc8fe7-70ae-4df5-b9e0-bd0c811a456f",
+    "name": "WatchGuard Cloud Platform Operators API",
+    "description": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:04:27.000Z",
+    "updatedAt": "2026-10-22T02:04:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-afdc8fe7-70ae-4df5-b9e0-bd0c811a456f"
+  },
   "item": [
     {
-      "id": "7b5f3ad6-fffc-413e-bf45-e0515a67c1a6",
-      "name": "Operators",
-      "description": {
-        "content": "Manage WatchGuard Cloud operator users.",
-        "type": "text/plain"
-      },
+      "name": "platform",
       "item": [
         {
-          "id": "0daecd28-337e-4a5b-b2c7-fd76f6c6d4c9",
-          "name": "Create Operators",
-          "request": {
-            "name": "Create Operators",
-            "description": {
-              "content": "Create one or more WatchGuard Cloud operator users for an account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "operator-mgmt",
-                "v1",
-                "operators"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "operator-mgmt",
+          "item": [
             {
-              "id": "61e1a37b-b6a7-41b4-b439-06883dfa88a5",
-              "name": "Operator creation queued.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "operators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"transaction_id\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a4e76bc5-3dbc-4535-8307-3578ac53a76a",
-              "name": "Bad request — validation error in request body or parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "operators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 2190,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b7f7a027-a38d-4c11-a7c7-9639639484e3",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "operators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 2190,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c9a9fb70-382a-4fee-8352-2c87511fdf48",
-          "name": "Update Operators",
-          "request": {
-            "name": "Update Operators",
-            "description": {
-              "content": "Update existing WatchGuard Cloud operator user information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "operator-mgmt",
-                "v1",
-                "operators"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "400b84ff-cdb4-4320-9508-40a89c2a8115",
-              "name": "Operator update queued.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "operators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"transaction_id\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ac789f03-fd74-4af8-b809-ab1eba84fb57",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "operators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 2190,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "64a544f8-98ce-4148-b4ea-151571749ec4",
-          "name": "Delete Operators",
-          "request": {
-            "name": "Delete Operators",
-            "description": {
-              "content": "Delete one or more WatchGuard Cloud operator users.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "operator-mgmt",
-                "v1",
-                "DeleteOperators"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3b6506c7-4942-4dbc-b32f-edda87cbe4e3",
-              "name": "Operator deletion queued.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "DeleteOperators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"transaction_id\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e22cbfb2-095c-4873-a70a-11040937a12d",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "DeleteOperators"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 2190,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cbe403aa-f68f-409d-be28-c55947a3fb87",
-          "name": "Get Operator Transaction Status",
-          "request": {
-            "name": "Get Operator Transaction Status",
-            "description": {
-              "content": "Check the status of a previously submitted operator management transaction.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "operator-mgmt",
-                "v1",
-                "TransactionStatus"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "transaction_id",
-                  "value": "<string>",
-                  "description": "(Required) Transaction ID returned by a create/update/delete operator request."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "054d58e6-ac11-4b36-a6e3-178eefe8097c",
-              "name": "Transaction status.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "TransactionStatus"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "name": "operators",
+                  "item": [
                     {
-                      "key": "transaction_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Create Operators",
+                      "id": "d63b3e7b-09ba-4571-a67d-8544a10fbe00",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "operator-mgmt",
+                            "v1",
+                            "operators"
+                          ]
+                        },
+                        "description": "Create one or more WatchGuard Cloud operator users for an account."
+                      },
+                      "response": [
+                        {
+                          "id": "2b3b692a-3a70-4c5b-b58a-2726a759efc9",
+                          "name": "Operator creation queued.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "operators"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"transaction_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-2b3b692a-3a70-4c5b-b58a-2726a759efc9"
+                        },
+                        {
+                          "id": "d11e0b66-1df4-4786-aaf4-ac90d66d5f2e",
+                          "name": "Bad request \u2014 validation error in request body or parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "operators"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-d11e0b66-1df4-4786-aaf4-ac90d66d5f2e"
+                        },
+                        {
+                          "id": "0ac56eea-a575-4df5-adf3-df4fe9aaeecf",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "operators"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-0ac56eea-a575-4df5-adf3-df4fe9aaeecf"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:28.000Z",
+                      "updatedAt": "2026-10-22T02:04:28.000Z",
+                      "uid": "35240-d63b3e7b-09ba-4571-a67d-8544a10fbe00"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": \"string\",\n  \"transaction_status\": [\n    {\n      \"username\": \"string\",\n      \"status\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"username\": \"string\",\n      \"status\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4bc1a97f-c90c-4652-9142-8aa2c9af19fb",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "TransactionStatus"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
                     {
-                      "key": "transaction_id",
-                      "value": "<string>"
+                      "name": "Update Operators",
+                      "id": "5f6e85b4-ce7d-4ef4-acd6-79659ca8b338",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "operator-mgmt",
+                            "v1",
+                            "operators"
+                          ]
+                        },
+                        "description": "Update existing WatchGuard Cloud operator user information."
+                      },
+                      "response": [
+                        {
+                          "id": "3aba1312-313b-46d5-aaf8-1399337089fb",
+                          "name": "Operator update queued.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "operators"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"transaction_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-3aba1312-313b-46d5-aaf8-1399337089fb"
+                        },
+                        {
+                          "id": "6e98a512-fd5d-4705-aef1-f948d472c130",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/operators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "operators"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-6e98a512-fd5d-4705-aef1-f948d472c130"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:28.000Z",
+                      "updatedAt": "2026-10-22T02:04:28.000Z",
+                      "uid": "35240-5f6e85b4-ce7d-4ef4-acd6-79659ca8b338"
                     }
                   ],
-                  "variable": []
+                  "id": "4d9b321a-6284-41fb-8bcc-d0bd7494e68a",
+                  "createdAt": "2026-10-22T02:04:28.000Z",
+                  "updatedAt": "2026-10-22T02:04:28.000Z",
+                  "uid": "35240-4d9b321a-6284-41fb-8bcc-d0bd7494e68a"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "DeleteOperators",
+                  "item": [
+                    {
+                      "name": "Delete Operators",
+                      "id": "317fbabc-0330-4921-b620-f5658850afde",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/operator-mgmt/v1/DeleteOperators",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "operator-mgmt",
+                            "v1",
+                            "DeleteOperators"
+                          ]
+                        },
+                        "description": "Delete one or more WatchGuard Cloud operator users."
+                      },
+                      "response": [
+                        {
+                          "id": "9c5251d5-53c7-46c1-b493-a29070e43586",
+                          "name": "Operator deletion queued.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/DeleteOperators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "DeleteOperators"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"transaction_id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-9c5251d5-53c7-46c1-b493-a29070e43586"
+                        },
+                        {
+                          "id": "a51cc729-0b0e-4ece-9e45-a239cfd30fab",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/DeleteOperators",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "DeleteOperators"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-a51cc729-0b0e-4ece-9e45-a239cfd30fab"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:28.000Z",
+                      "updatedAt": "2026-10-22T02:04:28.000Z",
+                      "uid": "35240-317fbabc-0330-4921-b620-f5658850afde"
+                    }
+                  ],
+                  "id": "60a8efaf-2b8e-4058-a9d4-36aab1898757",
+                  "createdAt": "2026-10-22T02:04:28.000Z",
+                  "updatedAt": "2026-10-22T02:04:28.000Z",
+                  "uid": "35240-60a8efaf-2b8e-4058-a9d4-36aab1898757"
+                },
+                {
+                  "name": "TransactionStatus",
+                  "item": [
+                    {
+                      "name": "Get Operator Transaction Status",
+                      "id": "cf415fc3-9ff5-4f58-8978-47c343a1ed31",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/operator-mgmt/v1/TransactionStatus?transaction_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "operator-mgmt",
+                            "v1",
+                            "TransactionStatus"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Transaction ID returned by a create/update/delete operator request.",
+                              "key": "transaction_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Check the status of a previously submitted operator management transaction."
+                      },
+                      "response": [
+                        {
+                          "id": "7384da49-0012-4151-9b4d-a3698dd3b5a8",
+                          "name": "Transaction status.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/TransactionStatus?transaction_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "TransactionStatus"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Transaction ID returned by a create/update/delete operator request.",
+                                  "key": "transaction_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<string>\",\n  \"transaction_status\": [\n    {\n      \"username\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"username\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-7384da49-0012-4151-9b4d-a3698dd3b5a8"
+                        },
+                        {
+                          "id": "212ed570-d642-4cb6-a639-b256d155530a",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/TransactionStatus?transaction_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "TransactionStatus"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Transaction ID returned by a create/update/delete operator request.",
+                                  "key": "transaction_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-212ed570-d642-4cb6-a639-b256d155530a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:28.000Z",
+                      "updatedAt": "2026-10-22T02:04:28.000Z",
+                      "uid": "35240-cf415fc3-9ff5-4f58-8978-47c343a1ed31"
+                    }
+                  ],
+                  "id": "6d10649e-80db-43e0-bc02-dda8433eb4d4",
+                  "createdAt": "2026-10-22T02:04:28.000Z",
+                  "updatedAt": "2026-10-22T02:04:28.000Z",
+                  "uid": "35240-6d10649e-80db-43e0-bc02-dda8433eb4d4"
+                },
+                {
+                  "name": "OperatorsByAccountId",
+                  "item": [
+                    {
+                      "name": "Get Operators by Account",
+                      "id": "5faabb2d-71cf-4d3f-885c-d4f6a2736bca",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/platform/operator-mgmt/v1/OperatorsByAccountId?account_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform",
+                            "operator-mgmt",
+                            "v1",
+                            "OperatorsByAccountId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) WatchGuard Cloud account ID.",
+                              "key": "account_id",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve all operator users associated with a WatchGuard Cloud account."
+                      },
+                      "response": [
+                        {
+                          "id": "fc5a5843-c135-49a2-acd2-91477f59b345",
+                          "name": "List of operators for the account.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/OperatorsByAccountId?account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "OperatorsByAccountId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) WatchGuard Cloud account ID.",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": [\n    {\n      \"accountId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mfa\": \"<boolean>\",\n      \"userName\": \"<string>\"\n    },\n    {\n      \"accountId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"mfa\": \"<boolean>\",\n      \"userName\": \"<string>\"\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-fc5a5843-c135-49a2-acd2-91477f59b345"
+                        },
+                        {
+                          "id": "f69cbce3-0f76-4464-907b-7870791038a8",
+                          "name": "Unauthorized \u2014 invalid or expired access token or API key.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/platform/operator-mgmt/v1/OperatorsByAccountId?account_id=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "platform",
+                                "operator-mgmt",
+                                "v1",
+                                "OperatorsByAccountId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) WatchGuard Cloud account ID.",
+                                  "key": "account_id",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:04:28.000Z",
+                          "updatedAt": "2026-10-22T02:04:28.000Z",
+                          "uid": "35240-f69cbce3-0f76-4464-907b-7870791038a8"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:04:28.000Z",
+                      "updatedAt": "2026-10-22T02:04:28.000Z",
+                      "uid": "35240-5faabb2d-71cf-4d3f-885c-d4f6a2736bca"
+                    }
+                  ],
+                  "id": "411cc7c4-5f76-4fff-b14a-5e47f0e50468",
+                  "createdAt": "2026-10-22T02:04:28.000Z",
+                  "updatedAt": "2026-10-22T02:04:28.000Z",
+                  "uid": "35240-411cc7c4-5f76-4fff-b14a-5e47f0e50468"
                 }
               ],
-              "body": "{\n  \"code\": 2190,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b6c7e557-2a63-4ca4-978d-f1f6762fa187",
+              "createdAt": "2026-10-22T02:04:28.000Z",
+              "updatedAt": "2026-10-22T02:04:28.000Z",
+              "uid": "35240-b6c7e557-2a63-4ca4-978d-f1f6762fa187"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "62570ce4-174d-406c-8a8c-7a7825bfc8bf",
-          "name": "Get Operators by Account",
-          "request": {
-            "name": "Get Operators by Account",
-            "description": {
-              "content": "Retrieve all operator users associated with a WatchGuard Cloud account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "platform",
-                "operator-mgmt",
-                "v1",
-                "OperatorsByAccountId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "account_id",
-                  "value": "<string>",
-                  "description": "(Required) WatchGuard Cloud account ID."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "1ccc66b4-44ed-4c95-aea2-e77c3959dbc0",
-              "name": "List of operators for the account.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "OperatorsByAccountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "account_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": [\n    {\n      \"accountId\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"phone\": \"string\",\n      \"mfa\": true,\n      \"userName\": \"string\"\n    },\n    {\n      \"accountId\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"phone\": \"string\",\n      \"mfa\": false,\n      \"userName\": \"string\"\n    }\n  ],\n  \"status\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "80e721f8-fe37-4d04-bd1d-19e17d4246d1",
-              "name": "Unauthorized — invalid or expired access token or API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "platform",
-                    "operator-mgmt",
-                    "v1",
-                    "OperatorsByAccountId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "account_id",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 2190,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "065794e6-94f0-4053-ad9b-d36f965a2568",
+          "createdAt": "2026-10-22T02:04:28.000Z",
+          "updatedAt": "2026-10-22T02:04:28.000Z",
+          "uid": "35240-065794e6-94f0-4053-ad9b-d36f965a2568"
         }
       ],
-      "event": []
+      "id": "5ea51c9b-4e33-47da-bc6f-7be2da53312e",
+      "createdAt": "2026-10-22T02:04:28.000Z",
+      "updatedAt": "2026-10-22T02:04:28.000Z",
+      "uid": "35240-5ea51c9b-4e33-47da-bc6f-7be2da53312e"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.usa.cloud.watchguard.com/rest",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.usa.cloud.watchguard.com/rest"
     }
-  ],
-  "info": {
-    "_postman_id": "f3b8d8b1-4896-4ac7-b317-1ecba0a10b81",
-    "name": "WatchGuard Cloud Platform Accounts Operators API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The WatchGuard Cloud Platform API provides RESTful access to WatchGuard Cloud account management, including account creation and management, authorization for managed accounts, device and license activations, asset allocations, and operator management. All endpoints require an OAuth 2.0 bearer token and a WatchGuard-API-Key header.\n\nContact Support:\n Name: WatchGuard Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
