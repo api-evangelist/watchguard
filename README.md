@@ -1,4 +1,4 @@
-# WatchGuard (watchguard)
+# WatchGuard
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,88 +66,179 @@
 
 WatchGuard provides cloud-managed network and endpoint security solutions including Firebox next-generation firewalls, WatchGuard Endpoint Security (WES), AuthPoint multi-factor authentication, and WatchGuard Wi-Fi. WatchGuard Cloud is the unified management platform exposing RESTful APIs for account management, device activation, asset allocation, endpoint device management, security event monitoring, and operator administration.
 
-**APIs.json:** [https://www.watchguard.com](https://www.watchguard.com)
+**Areas:** Cloud Security · Endpoint Security · Firewall · MFA · Network Security · Zero Trust
 
-## Scope
+## WatchGuard on APIs.io
 
-- **Type:** Index
+Everything profiled for WatchGuard is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/watchguard/](https://apis.io/providers/watchguard/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Cloud Security
-- Endpoint Security
-- Firewall
-- MFA
-- Network Security
-- Zero Trust
+- [WatchGuard Accounts API](https://apis.io/apis/watchguard/watchguard-accounts-api/) — Manage WatchGuard Cloud accounts and sub-accounts.
+- [WatchGuard Activations API](https://apis.io/apis/watchguard/watchguard-activations-api/) — Activate hardware devices and software licenses.
+- [WatchGuard Allocations API](https://apis.io/apis/watchguard/watchguard-allocations-api/) — Allocate and deallocate assets to managed accounts.
+- [WatchGuard Authorization API](https://apis.io/apis/watchguard/watchguard-authorization-api/) — Retrieve audience tokens for managed account API access.
+- [WatchGuard Configurations API](https://apis.io/apis/watchguard/watchguard-configurations-api/) — Manage endpoint security configurations.
+- [WatchGuard Device Actions API](https://apis.io/apis/watchguard/watchguard-device-actions-api/) — Perform actions on endpoint devices such as isolation and scanning.
+- [WatchGuard Devices API](https://apis.io/apis/watchguard/watchguard-devices-api/) — Manage and query endpoint devices.
+- [WatchGuard Licenses API](https://apis.io/apis/watchguard/watchguard-licenses-api/) — Retrieve endpoint security license information.
+- [WatchGuard Operators API](https://apis.io/apis/watchguard/watchguard-operators-api/) — Manage WatchGuard Cloud operator users.
+- [WatchGuard Risk Assessment API](https://apis.io/apis/watchguard/watchguard-risk-assessment-api/) — Retrieve risk assessment summaries and detected risks.
+- [WatchGuard Security Events API](https://apis.io/apis/watchguard/watchguard-security-events-api/) — Retrieve security event data and overviews.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-17
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### WatchGuard Cloud Platform API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-RESTful API for managing WatchGuard Cloud accounts, sub-accounts, and users. Provides account creation and management, audience token generation for managed account access, hardware/license activation, asset allocation, and operator management. Uses OAuth 2.0 bearer tokens and WatchGuard API Key header authentication.
+- [Watchguard Agentic Access](https://apis.io/agentic-access/watchguard/watchguard-agentic-access/)
 
-- **Human URL:** [https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html](https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html)
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Account Management
-- Activation
-- Allocation
-- Operators
-- Platform
+- [WatchGuard Endpoint Device](https://apis.io/schemas/watchguard/watchguard-device/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://www.watchguard.com/help/docs/API/Content/en-US/watchguard-cloud/watchguard-cloud.html)
-- [OpenAPI](openapi/watchguard-cloud-platform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/watchguard-cloud-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/watchguard-cloud-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral Rules](rules/watchguard-rules.yml)
+Data models expressed in JSON Structure.
 
-### WatchGuard Endpoint Security Management API
+- [Watchguard Device Structure](https://apis.io/json-structure/watchguard/watchguard-device-structure/)
 
-RESTful API for managing WatchGuard Endpoint Security (WES) devices and security operations. Provides device listing and protection status, device isolation and release, immediate scan initiation, security event counters and exports, security overview, risk assessment summaries, and configuration management.
+#### JSON-LD (1)
 
-- **Human URL:** [https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html](https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Watchguard Context](https://apis.io/jsonld/watchguard/watchguard-context/)
 
-- Device Management
-- Endpoint Security
-- Incident Response
-- Risk Assessment
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://www.watchguard.com/help/docs/API/Content/en-US/endpoint_security/WES_endpoint_security/v1/WES_endpoint_security.html)
-- [OpenAPI](openapi/watchguard-endpoint-security-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/watchguard-endpoint-security.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/watchguard-endpoint-security.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [WatchGuard Vocabulary](https://apis.io/vocabularies/watchguard/watchguard-vocabulary/)
 
-## Common Properties
+#### Examples (4)
 
-- [GitHub Organization](https://github.com/WatchGuard)
-- [LinkedIn](https://www.linkedin.com/company/watchguard-technologies)
+Example requests and responses.
+
+- [Watchguard Activatedevice Example](https://apis.io/examples/watchguard/watchguard-activateDevice-example/)
+- [Watchguard Getaccount Example](https://apis.io/examples/watchguard/watchguard-getAccount-example/)
+- [Watchguard Isolatedevices Example](https://apis.io/examples/watchguard/watchguard-isolateDevices-example/)
+- [Watchguard Listdevices Example](https://apis.io/examples/watchguard/watchguard-listDevices-example/)
+
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [WatchGuard Cloud Platform Accounts API](https://apis.io/collections/watchguard/open-watchguard-accounts-api/)
+- [WatchGuard Cloud Platform Accounts Activations API](https://apis.io/collections/watchguard/open-watchguard-activations-api/)
+- [WatchGuard Cloud Platform Accounts Allocations API](https://apis.io/collections/watchguard/open-watchguard-allocations-api/)
+- [WatchGuard Cloud Platform Accounts Authorization API](https://apis.io/collections/watchguard/open-watchguard-authorization-api/)
+- [WatchGuard Cloud Platform API](https://apis.io/collections/watchguard/open-watchguard-cloud-platform/)
+- [WatchGuard Cloud Platform Accounts Configurations API](https://apis.io/collections/watchguard/open-watchguard-configurations-api/)
+- [WatchGuard Cloud Platform Accounts Device Actions API](https://apis.io/collections/watchguard/open-watchguard-device-actions-api/)
+- [WatchGuard Cloud Platform Accounts Devices API](https://apis.io/collections/watchguard/open-watchguard-devices-api/)
+- [WatchGuard Endpoint Security Management API](https://apis.io/collections/watchguard/open-watchguard-endpoint-security/)
+- [WatchGuard Cloud Platform Accounts Licenses API](https://apis.io/collections/watchguard/open-watchguard-licenses-api/)
+- [WatchGuard Cloud Platform Accounts Operators API](https://apis.io/collections/watchguard/open-watchguard-operators-api/)
+- [WatchGuard Cloud Platform Accounts Risk Assessment API](https://apis.io/collections/watchguard/open-watchguard-risk-assessment-api/)
+- [WatchGuard Cloud Platform Accounts Security Events API](https://apis.io/collections/watchguard/open-watchguard-security-events-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [WatchGuard — jsonschema rules](https://apis.io/rules/watchguard/watchguard-jsonschema-spectral-rules/)
+- [WatchGuard API Rules](https://apis.io/rules/watchguard/watchguard-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Watchguard Authentication](https://apis.io/security/watchguard/watchguard-authentication/)
+- [Watchguard Domain Security](https://apis.io/security/watchguard/watchguard-domain-security/)
+- [Watchguard Vulnerability Disclosure](https://apis.io/security/watchguard/watchguard-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Watchguard Plans Pricing](https://apis.io/plans/watchguard/watchguard-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Watchguard Rate Limits](https://apis.io/rate-limits/watchguard/watchguard-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Watchguard Finops](https://apis.io/finops/watchguard/watchguard-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.watchguard.com)
 - [Documentation](https://www.watchguard.com/help/docs/API/)
-- [Developer  Portal](https://developer.cloud.watchguard.com/)
-- [Getting Started](https://www.watchguard.com/help/docs/API/Content/en-US/api_get_started/get_started.html)
-- [OpenAPI](openapi/watchguard-cloud-platform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/watchguard-endpoint-security-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](rules/watchguard-rules.yml)
-- [JSON Schema](json-schema/watchguard-device-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/watchguard-device-structure.json)
-- [JSON-LD](json-ld/watchguard-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/watchguard-vocabulary.yml)
-- [L L Ms Txt](https://developer.cloud.watchguard.com/llms.txt)
+- [Getting started](https://www.watchguard.com/help/docs/API/Content/en-US/api_get_started/get_started.html)
+- [Blog](https://www.watchguard.com/wgrd-news/blog/feed)
+- [GitHub](https://github.com/WatchGuard)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 59.6 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/watchguard/](https://apis.io/providers/watchguard/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for WatchGuard: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/watchguard/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
